@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://d08dbfy3qd8qr"]
+
+[ext_resource type="Script" uid="uid://qyivfr8dael8" path="res://scripts/player/Player.gd" id="1_gndvh"]
+[ext_resource type="Script" uid="uid://cuh2ir2kywq4h" path="res://scripts/player/PlayerShield.gd" id="2_6vqvp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8gbi"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_js8gp"]
+
+[node name="Player" type="CharacterBody2D" unique_id=1305694418]
+script = ExtResource("1_gndvh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=121610161]
+shape = SubResource("CircleShape2D_v8gbi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=705283399]
+texture = SubResource("ViewportTexture_js8gp")
+
+[node name="Shield" type="Node2D" parent="." unique_id=2005459110]
+script = ExtResource("2_6vqvp")
+
+[node name="ColorRect" type="ColorRect" parent="Shield" unique_id=213899276]
+offset_left = 17.0
+offset_top = -14.0
+offset_right = 28.0
+offset_bottom = 14.0
+
+[node name="tempColor" type="ColorRect" parent="." unique_id=259176759]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0.20335871, 0.25655162, 0.75066197, 1)

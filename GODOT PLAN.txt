@@ -1,0 +1,428 @@
+GODOT PLAN
+					┌─────────────────┐
+					│    Main Menu    │
+					└────────┬────────┘
+							 │
+			  ┌──────────────┼──────────────┐
+			  ▼              ▼              ▼
+	   ┌─────────────┐ ┌───────────┐ ┌────────────┐
+	   │ Level Select│ │ Settings  │ │    Quit    │
+	   └──────┬──────┘ └───────────┘ └────────────┘
+			  │
+			  ▼
+	   ┌─────────────────┐
+	   │   Game Scene    │
+	   │                 │
+	   │  Level JSON     │
+	   │       ↓         │
+	   │  Spawn objects  │
+	   │       ↓         │
+	   │  Play / Update  │
+	   └────────┬────────┘
+				│
+				▼
+		  ┌───────────┐
+		  │ Level End │
+		  └───────────┘
+2. Godot scene structure
+
+I'd start with 5 main scenes:
+
+scenes/
+│
+├── MainMenu.tscn
+│
+├── LevelSelect.tscn
+│
+├── Settings.tscn
+│
+├── Game.tscn
+│
+└── objects/
+    ├── Player.tscn
+    ├── Wall.tscn
+    ├── SpikeWall.tscn
+    ├── ToggleOrb.tscn
+    └── SpeedTrigger.tscn
+
+The important distinction is:
+
+                 GAME SCENE
+                     │
+       ┌─────────────┼─────────────┐
+       ▼             ▼             ▼
+    Player       Level Data     Camera/UI
+       │             │
+       │             ▼
+       │        Spawn objects
+       │             │
+       └─────────────┴───────────────┐
+                                     ▼
+                              Level Objects
+3. Game.tscn
+
+Keep the first version simple:
+
+Game (Node2D)
+│
+├── Level (Node2D)
+│   ├── Player
+│   ├── Walls
+│   ├── SpikeWalls
+│   ├── ToggleOrbs
+│   └── SpeedTriggers
+│
+├── Camera2D
+│
+└── UI (CanvasLayer)
+    ├── Progress
+    └── PauseButton
+
+You don't need to manually put the obstacles into the scene.
+
+The JSON will eventually do this:
+
+Game starts
+	│
+	▼
+Load level.json
+	│
+	▼
+Read obstacle #1
+	│
+	├── type: "wall"
+	├── position: (500, 300)
+	├── rotation: 90
+	├── start: 2.5
+	└── end: 5.0
+	│
+	▼
+Spawn Wall.tscn
+4. Player
+Player (CharacterBody2D)
+│
+├── Sprite2D
+├── CollisionShape2D
+│
+└── Aura (Node2D)
+	├── UpShield
+	├── DownShield
+	├── LeftShield
+	└── RightShield
+
+Movement:
+
+		  ↑
+		  │
+	  ↖   │   ↗
+		\ │ /
+←──────── ● ────────→
+		/ │ \
+	  ↙   │   ↘
+		  │
+		  ↓
+
+
+8 possible directions
+
+The shield system can then be independent:
+
+Arrow keys
+	│
+	▼
+Enable corresponding shield
+	│
+	▼
+Player hits wall
+	│
+	├── Correct shield → BOUNCE
+	│
+	└── Wrong/no shield → DAMAGE
+5. The obstacle scenes
+
+Each obstacle should be its own reusable scene.
+
+Wall.tscn
+	│
+	├── Sprite2D
+	└── CollisionShape2D
+
+
+SpikeWall.tscn
+	│
+	├── Sprite2D
+	└── CollisionShape2D
+
+
+ToggleOrb.tscn
+	│
+	├── Sprite2D
+	└── Area2D
+		└── CollisionShape2D
+
+
+SpeedTrigger.tscn
+	│
+	├── Sprite2D
+	└── Area2D
+		└── CollisionShape2D
+
+Then their behavior stays contained:
+
+Wall
+ └── handles bouncing
+
+
+SpikeWall
+ └── handles damage
+
+
+ToggleOrb
+ └── toggles spike walls
+
+
+SpeedTrigger
+ └── changes game speed
+6. Level JSON
+
+Eventually I'd structure levels roughly like:
+
+levels/
+├── level_01.json
+├── level_02.json
+└── level_03.json
+
+Conceptually:
+
+{
+  "name": "First Level",
+  "music": "level_01.ogg",
+
+
+  "objects": [
+    {
+      "type": "wall",
+      "position": [500, 300],
+      "rotation": 90,
+      "start": 0,
+      "end": 10
+    },
+
+
+    {
+      "type": "spike_wall",
+      "position": [800, 300],
+      "rotation": 0,
+      "start": 5,
+      "end": 8
+    }
+  ]
+}
+
+So your architecture becomes:
+
+                 level_01.json
+                       │
+                       ▼
+                 LevelLoader
+                       │
+             ┌─────────┼─────────┐
+             ▼         ▼         ▼
+           Wall     SpikeWall    Orb
+             │         │         │
+             └─────────┴─────────┘
+                       │
+                       ▼
+                    Game
+7. Development order
+
+Don't build everything at once. I'd do it in this order:
+
+1. Player
+   ↓
+2. 8-direction movement
+   ↓
+3. Wall + bouncing
+   ↓
+4. Shield system
+   ↓
+5. Spike walls + damage
+   ↓
+6. Toggle orb
+   ↓
+7. Speed trigger
+   ↓
+8. Level JSON loader
+   ↓
+9. Music / timing
+   ↓
+10. Level Select
+   ↓
+11. Settings
+
+For your first playable prototype, you only need:
+
+Game.tscn
+│
+├── Player.tscn
+├── Wall.tscn
+└── UI
+
+Get ball → movement → shield → wall → bounce working first. Everything else can be layered on top of that architecture.
+
+would you say the scope of this project is enough for a one semester course in game developing for uni?
+
+Yes. More than enough, especially if this is your first game-development project.
+
+The key is to treat the project as a small but complete rhythm game, rather than trying to make a huge number of levels or mechanics.
+
+Scope
+                    RHYTHM GAME
+                         │
+        ┌────────────────┼────────────────┐
+        ▼                ▼                ▼
+     GAMEPLAY          CONTENT          SYSTEMS
+        │                │                │
+   ┌────┼────┐        ┌──┴──┐        ┌────┼────┐
+   ▼    ▼    ▼        ▼     ▼        ▼    ▼    ▼
+  Ball Shield Walls  Levels Music   JSON  Menu Settings
+   │
+   ├── 8 directions
+   ├── Bounce
+   ├── Damage
+   └── Speed
+        │
+        ▼
+   Toggle Orb
+
+For a semester project, I'd aim for:
+
+┌─────────────────────────────────────┐
+│              MVP                    │
+├─────────────────────────────────────┤
+│ ✓ 8-direction ball movement         │
+│ ✓ Wall bouncing                     │
+│ ✓ Directional shield                │
+│ ✓ Spike walls                       │
+│ ✓ Toggle orb                        │
+│ ✓ Speed triggers                    │
+│ ✓ Music synchronization             │
+│ ✓ JSON level format                 │
+│ ✓ 3–5 playable levels               │
+│ ✓ Level select                      │
+│ ✓ Settings                          │
+│ ✓ Win / lose conditions             │
+│ ✓ Basic UI                          │
+└─────────────────────────────────────┘
+What makes it a good university project
+
+You have several areas you can demonstrate technically:
+
+Gameplay
+   │
+   ├── Physics
+   ├── Collision
+   ├── Input
+   └── Game state
+		 │
+		 ▼
+Level System
+   │
+   ├── JSON parsing
+   ├── Object spawning
+   ├── Timed events
+   └── Level progression
+		 │
+		 ▼
+Game Architecture
+   │
+   ├── Reusable scenes
+   ├── Components
+   ├── Resource management
+   └── UI / menus
+		 │
+		 ▼
+Audio / Rhythm
+   │
+   ├── BPM
+   ├── Timing
+   └── Synchronization
+
+The rhythm/timing system is probably the part I'd give the most attention to. It takes the project from "ball game with obstacles" to an actual rhythm game.
+
+What I would NOT add
+
+For a one-semester project, avoid:
+
+✗ Multiplayer
+✗ Online leaderboards
+✗ Procedural levels
+✗ Level editor
+✗ Complex story
+✗ Inventory
+✗ Character customization
+✗ Dozens of levels
+✗ Multiple game modes
+
+If you finish early, those become optional extensions.
+
+A very reasonable semester progression
+Weeks 1–2
+Godot + basic player
+        ↓
+Weeks 3–4
+Movement + bouncing + shields
+        ↓
+Weeks 5–6
+Obstacles + damage + speed
+        ↓
+Weeks 7–8
+Music synchronization + timing
+        ↓
+Weeks 9–10
+JSON level system
+        ↓
+Weeks 11–12
+Menus + level selection + settings
+        ↓
+Weeks 13–14
+Content + polish + testing
+
+I'd actually consider the JSON-driven level system + rhythm synchronization to be your strongest academic component. It gives you something more interesting to explain than simply "I made several levels by placing objects in the editor."
+
+So yes: the scope is appropriate, provided you keep the content small and focus on making the underlying systems solid.
+
+
+{
+type: "walls",
+position: (x, y),
+rotation: 0,
+start: 0,
+end: 10
+}
+
+{
+type: "spikes",
+position: (x, y),
+rotation: 0,
+start: 0,
+end: 10,
+groupId: 1
+}
+
+{
+type: "toggle",
+position: (x, y),
+rotation: 0,
+start: 0,
+end: 10,
+groupId: 1
+}
+
+{
+type: "speed1|speed2|speed3",
+position: (x, y),
+rotation: 0,
+start: 0,
+end: 10,
+}
