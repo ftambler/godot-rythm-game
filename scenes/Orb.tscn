@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dx2d5sxof1ffq"]
+
+[ext_resource type="Script" uid="uid://oengqfgsowdr" path="res://scripts/world/Orb.gd" id="1_2pvil"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mf4yy"]
+
+[node name="Orb" type="Area2D" unique_id=541554074]
+collision_layer = 2
+script = ExtResource("1_2pvil")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=68305031]
+shape = SubResource("RectangleShape2D_mf4yy")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1891851646]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(1, 0.3019608, 1, 0.46666667)
