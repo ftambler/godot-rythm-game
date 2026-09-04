@@ -13,6 +13,34 @@ enum Direction {
 	UP_LEFT
 }
 
+static func from_vector(vector: Vector2) -> Direction:
+	match vector:
+		Vector2(0, -1):
+			return Direction.UP
+
+		Vector2(1, -1):
+			return Direction.UP_RIGHT
+
+		Vector2(1, 0):
+			return Direction.RIGHT
+
+		Vector2(1, 1):
+			return Direction.DOWN_RIGHT
+
+		Vector2(0, 1):
+			return Direction.DOWN
+
+		Vector2(-1, 1):
+			return Direction.DOWN_LEFT
+
+		Vector2(-1, 0):
+			return Direction.LEFT
+
+		Vector2(-1, -1):
+			return Direction.UP_LEFT
+
+	push_error("Invalid player direction: " + str(vector))
+	return Direction.DOWN
 
 static func to_vector(direction: Direction) -> Vector2:
 	match direction:

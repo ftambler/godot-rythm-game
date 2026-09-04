@@ -7,6 +7,8 @@
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_js8gp"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mf4yy"]
+
 [node name="Player" type="CharacterBody2D" unique_id=1305694418]
 script = ExtResource("1_gndvh")
 
@@ -31,3 +33,19 @@ offset_top = -10.0
 offset_right = 10.0
 offset_bottom = 10.0
 color = Color(0.20335871, 0.25655162, 0.75066197, 1)
+
+[node name="OrbDetector" type="Area2D" parent="." unique_id=1457973608]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbDetector" unique_id=664701558]
+shape = SubResource("RectangleShape2D_mf4yy")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1578041023]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1

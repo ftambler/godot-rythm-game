@@ -1,19 +1,26 @@
 class_name Player
 extends CharacterBody2D
 
-
-@export var speed: float = 300.0
-
 @onready var shield: PlayerShield = $Shield
-@onready var score_handler: ScoreHandler = $"../ScoreHandler"
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var orb_detector: Area2D = $OrbDetector
 
-var movement_direction: PlayerDirection.Direction = \
-	PlayerDirection.Direction.RIGHT
+@export var speed_type: PlayerSpeed.Type = PlayerSpeed.Type.SPEED_2
 
+var speed: float:
+	get:
+		return PlayerSpeed.get_value(speed_type)
+		
+signal object_hit(object: Node)
+
+var movement_direction: PlayerDirection.Direction = PlayerDirection.Direction.DOWN_RIGHT
 
 func _physics_process(delta: float) -> void:
 	move_player(delta)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("hit_orb"):
+		hit_orb()
 
 func move_player(delta: float) -> void:
 	var direction := PlayerDirection.to_vector(movement_direction)
@@ -27,6 +34,24 @@ func move_player(delta: float) -> void:
 
 signal hit_registered(result: HitResult.Type)
 
+func hit_orb() -> void:
+	print("HIT ORB CALLED")
+
+	var areas := orb_detector.get_overlapping_areas()
+	print("Areas detected: ", areas.size())
+
+	for area in areas:
+		print("Detected: ", area)
+
+		if area is Orb:
+			print("ORB FOUND")
+			hit_registered.emit(HitResult.Type.FULL)
+			object_hit.emit(area)
+			return
+
+	print("NO ORB")
+	hit_registered.emit(HitResult.Type.MISS)
+
 func handle_collision(collision: KinematicCollision2D) -> void:
 	var wall := collision.get_collider()
 
@@ -39,6 +64,7 @@ func handle_collision(collision: KinematicCollision2D) -> void:
 		)
 
 		hit_registered.emit(hit_result)
+		object_hit.emit(wall)
 
 		movement_direction = PlayerBounce.get_bounce(
 			movement_direction,
