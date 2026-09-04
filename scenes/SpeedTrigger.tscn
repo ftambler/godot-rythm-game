@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://brkln3n8iy8gn"]
+
+[ext_resource type="Script" uid="uid://mhmx8p183n1m" path="res://scripts/world/SpeedTrigger.gd" id="1_2f2b8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mf4yy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2f2b8"]
+font_size = 28
+
+[node name="SpeedTrigger" type="Area2D" unique_id=1554395987]
+script = ExtResource("1_2f2b8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1054819960]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=282872493]
+shape = SubResource("RectangleShape2D_mf4yy")
+
+[node name="Label" type="Label" parent="." unique_id=911739121]
+offset_left = -10.0
+offset_top = -20.0
+offset_right = 10.0
+offset_bottom = 19.0
+text = "1"
+label_settings = SubResource("LabelSettings_2f2b8")
+horizontal_alignment = 1
+vertical_alignment = 1
