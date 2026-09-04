@@ -1,0 +1,10 @@
+from pathlib import Path
+
+LEVEL_NAME = "test"
+LEVEL_DURATION = 5.0
+SONG_START = 0.0
+START_POSITION = (0.0, 0.0)
+START_DIRECTION = "DOWN_RIGHT"
+START_SPEED = 300.0
+OUTPUT_DIRECTORY = Path(__file__).parent
+PREDICT_TIME = 1
