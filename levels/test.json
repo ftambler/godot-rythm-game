@@ -1,0 +1,72 @@
+{
+  "music": "test.ogg",
+  "songStart": 0.0,
+  "songDuration": 5.0,
+  "player": {
+	"position": [
+	  	0.0,
+	  0.0
+	],
+	"direction": [
+	  0,
+	  1
+	],
+	"speed": 1
+  },
+  "objects": [
+	{
+	  "type": "walls",
+	  "position": [
+		0,
+		200
+	  ],
+	  "start": 0,
+	  "end": 50.0,
+	  "groupId": 1,
+	  "wallType": "HORIZONTAL"
+	},
+	{
+	  "type": "walls",
+	  "position": [
+		0,
+		-250
+	  ],
+	  "start": 1.0,
+	  "end": 50,
+	  "groupId": 2,
+	  "wallType": "HORIZONTAL"
+	},
+	{
+	  "type": "orb",
+	  "position": [
+		0,
+		100
+	  ],
+	  "start": 0,
+	  "end": 50.0,
+	  "groupId": 3
+	},
+	{
+	  "type": "speed_trigger",
+	  "position": [
+		0,
+		-150
+	  ],
+	  "start": 0,
+	  "end": 50.0,
+	  "groupId": 4,
+	  "speed": 1
+	},
+	{
+	  "type": "speed_trigger",
+	  "position": [
+		0,
+		150
+	  ],
+	  "start": 0,
+	  "end": 50.0,
+	  "groupId": 4,
+	  "speed": 3
+	}
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "music": "test.ogg",
+  "songStart": 0,
+  "songDuration": 5.0,
+  "player": {
+	"position": [
+	  0,
+	  0
+	],
+	"direction": [
+	  1,
+	  1
+	],
+	"speed": 100
+  },
+  "objects": [
+	{
+	  "type": "walls",
+	  "position": [
+		0,
+		0
+	  ],
+	  "wallType": 0,
+	  "start": 0,
+	  "end": 10,
+	  "groupId": 1
+	},
+	{
+	  "type": "orb",
+	  "position": [
+		0,
+		0
+	  ],
+	  "start": 0,
+	  "end": 10,
+	  "groupId": 1
+	},
+	{
+	  "type": "speed1|speed2|speed3",
+	  "position": [
+		0,
+		0
+	  ],
+	  "rotation": 0,
+	  "start": 0,
+	  "end": 10
+	}
+  ]
+}
