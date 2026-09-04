@@ -1,27 +1,16 @@
 [gd_scene format=3 uid="uid://lju8rbqgrtpf"]
 
 [ext_resource type="Script" uid="uid://bx8i0ipvf2152" path="res://scripts/Game.gd" id="1_sb48q"]
-[ext_resource type="PackedScene" uid="uid://d08dbfy3qd8qr" path="res://objects/Player.tscn" id="1_wbfu4"]
-[ext_resource type="PackedScene" uid="uid://x4behcck40to" path="res://objects/Wall.tscn" id="2_xkndl"]
+[ext_resource type="PackedScene" uid="uid://d08dbfy3qd8qr" path="res://scenes/Player.tscn" id="1_wbfu4"]
 [ext_resource type="Script" uid="uid://yj80pqfvgcta" path="res://scripts/scoring/ScoreHandler.gd" id="3_u44n3"]
+[ext_resource type="Script" uid="uid://b3clh8jwssaqj" path="res://scripts/level/level_manager.gd" id="5_r0x5m"]
 [ext_resource type="Script" uid="uid://c0o8owm1kvvwu" path="res://scripts/scoring/HUD.gd" id="5_t88pq"]
 
 [node name="Game" type="Node2D" unique_id=762137820]
 script = ExtResource("1_sb48q")
 
-[node name="Player" parent="." unique_id=35958358 instance=ExtResource("1_wbfu4")]
-position = Vector2(580, 348)
-
 [node name="ScoreHandler" type="Node" parent="." unique_id=1532150037]
 script = ExtResource("3_u44n3")
-
-[node name="Walls" type="Node" parent="." unique_id=520536821]
-
-[node name="Wall2" parent="Walls" unique_id=797682940 instance=ExtResource("2_xkndl")]
-position = Vector2(342, 344)
-
-[node name="Wall" parent="Walls" unique_id=868369098 instance=ExtResource("2_xkndl")]
-position = Vector2(866, 330)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=18197588]
 script = ExtResource("5_t88pq")
@@ -34,3 +23,14 @@ offset_bottom = 23.0
 offset_top = 25.0
 offset_right = 40.0
 offset_bottom = 48.0
+
+[node name="Player" parent="." unique_id=35958358 instance=ExtResource("1_wbfu4")]
+
+[node name="LevelManager" type="Node" parent="." unique_id=1655049988]
+script = ExtResource("5_r0x5m")
+
+[node name="Walls" type="Node2D" parent="LevelManager" unique_id=843267532]
+
+[node name="SpeedTriggers" type="Node2D" parent="LevelManager" unique_id=1421972330]
+
+[node name="Orbs" type="Node2D" parent="LevelManager" unique_id=1051268075]
