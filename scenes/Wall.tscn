@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://x4behcck40to"]
+
+[ext_resource type="Script" uid="uid://cfk2sgjwn0k2j" path="res://scripts/world/Wall.gd" id="1_33awu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mf4yy"]
+
+[node name="Wall" type="StaticBody2D" unique_id=489963941]
+script = ExtResource("1_33awu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1616078196]
+
+[node name="tempcolor" type="ColorRect" parent="." unique_id=2022530945]
+offset_left = -40.0
+offset_top = -10.0
+offset_right = 40.0
+offset_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=70109703]
+scale = Vector2(4, 1)
+shape = SubResource("RectangleShape2D_mf4yy")
