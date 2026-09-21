@@ -29,6 +29,7 @@ func _load_level() -> void:
 	player.movement_direction = PlayerDirection.from_vector(level.player_direction)
 	player.speed_type = level.player_speed
 	level_manager.start_level(level)
+	MusicController.play_music(level.music, level.song_start)
 	
 	print("Loaded level!")
 	print("Music: ", level.music)
