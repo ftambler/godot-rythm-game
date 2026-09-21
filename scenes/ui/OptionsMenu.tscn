@@ -1,0 +1,261 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/OptionsMenu.gd" id="1_options"]
+
+[sub_resource type="StyleBoxFlat" id="StylePanel"]
+bg_color = Color(0.055, 0.075, 0.12, 0.99)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18, 0.28, 0.36, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleButton"]
+bg_color = Color(0.11, 0.18, 0.23, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.42, 0.46, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleHover"]
+bg_color = Color(0.13, 0.38, 0.4, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.32, 0.84, 0.76, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+visible = false
+script = ExtResource("1_options")
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.018, 0.027, 0.05, 0.98)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -285.0
+offset_right = 340.0
+offset_bottom = 285.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 38
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 38
+theme_override_constants/margin_bottom = 28
+
+[node name="Content" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="Panel/Margin/Content"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Margin/Content/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_font_sizes/font_size = 30
+text = "Options"
+
+[node name="BackButton" type="Button" parent="Panel/Margin/Content/Header"]
+custom_minimum_size = Vector2(100, 38)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+text = "Back"
+
+[node name="AudioHeading" type="Label" parent="Panel/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.78, 0.72, 1)
+text = "AUDIO"
+
+[node name="MusicLabel" type="Label" parent="Panel/Margin/Content"]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="Panel/Margin/Content"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SfxLabel" type="Label" parent="Panel/Margin/Content"]
+layout_mode = 2
+text = "Sound effects"
+
+[node name="SfxSlider" type="HSlider" parent="Panel/Margin/Content"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="ControlsHeading" type="Label" parent="Panel/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.78, 0.72, 1)
+text = "CONTROLS"
+
+[node name="Bindings" type="VBoxContainer" parent="Panel/Margin/Content"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="ShieldUpRow" type="HBoxContainer" parent="Panel/Margin/Content/Bindings"]
+layout_mode = 2
+[node name="Label" type="Label" parent="Panel/Margin/Content/Bindings/ShieldUpRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shield up"
+[node name="PrimaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldUpRow"]
+custom_minimum_size = Vector2(170, 34)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+[node name="SecondaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldUpRow"]
+custom_minimum_size = Vector2(170, 34)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+
+[node name="ShieldDownRow" type="HBoxContainer" parent="Panel/Margin/Content/Bindings"]
+layout_mode = 2
+[node name="Label" type="Label" parent="Panel/Margin/Content/Bindings/ShieldDownRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shield down"
+[node name="PrimaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldDownRow"]
+custom_minimum_size = Vector2(170, 34)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+[node name="SecondaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldDownRow"]
+custom_minimum_size = Vector2(170, 34)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+
+[node name="ShieldLeftRow" type="HBoxContainer" parent="Panel/Margin/Content/Bindings"]
+layout_mode = 2
+[node name="Label" type="Label" parent="Panel/Margin/Content/Bindings/ShieldLeftRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shield left"
+[node name="PrimaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldLeftRow"]
+custom_minimum_size = Vector2(170, 34)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+[node name="SecondaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldLeftRow"]
+custom_minimum_size = Vector2(170, 34)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+
+[node name="ShieldRightRow" type="HBoxContainer" parent="Panel/Margin/Content/Bindings"]
+layout_mode = 2
+[node name="Label" type="Label" parent="Panel/Margin/Content/Bindings/ShieldRightRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shield right"
+[node name="PrimaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldRightRow"]
+custom_minimum_size = Vector2(170, 34)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+[node name="SecondaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldRightRow"]
+custom_minimum_size = Vector2(170, 34)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+
+[node name="OrbRow" type="HBoxContainer" parent="Panel/Margin/Content/Bindings"]
+layout_mode = 2
+[node name="Label" type="Label" parent="Panel/Margin/Content/Bindings/OrbRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hit orb"
+[node name="PrimaryButton" type="Button" parent="Panel/Margin/Content/Bindings/OrbRow"]
+custom_minimum_size = Vector2(170, 34)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+[node name="SecondaryButton" type="Button" parent="Panel/Margin/Content/Bindings/OrbRow"]
+custom_minimum_size = Vector2(170, 34)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+
+[node name="PauseRow" type="HBoxContainer" parent="Panel/Margin/Content/Bindings"]
+layout_mode = 2
+[node name="Label" type="Label" parent="Panel/Margin/Content/Bindings/PauseRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pause"
+[node name="PrimaryButton" type="Button" parent="Panel/Margin/Content/Bindings/PauseRow"]
+custom_minimum_size = Vector2(170, 34)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+[node name="SecondaryButton" type="Button" parent="Panel/Margin/Content/Bindings/PauseRow"]
+custom_minimum_size = Vector2(170, 34)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+
+[node name="Hint" type="Label" parent="Panel/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42, 0.51, 0.54, 1)
+text = "Select a binding, then press any key."
+
+[connection signal="pressed" from="Panel/Margin/Content/Header/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="Panel/Margin/Content/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Panel/Margin/Content/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="Panel/Margin/Content/Bindings/ShieldUpRow/PrimaryButton" to="." method="_on_binding_button_pressed" binds=["shield_up", 0]]
+[connection signal="pressed" from="Panel/Margin/Content/Bindings/ShieldUpRow/SecondaryButton" to="." method="_on_binding_button_pressed" binds=["shield_up", 1]]
+[connection signal="pressed" from="Panel/Margin/Content/Bindings/ShieldDownRow/PrimaryButton" to="." method="_on_binding_button_pressed" binds=["shield_down", 0]]
+[connection signal="pressed" from="Panel/Margin/Content/Bindings/ShieldDownRow/SecondaryButton" to="." method="_on_binding_button_pressed" binds=["shield_down", 1]]
+[connection signal="pressed" from="Panel/Margin/Content/Bindings/ShieldLeftRow/PrimaryButton" to="." method="_on_binding_button_pressed" binds=["shield_left", 0]]
+[connection signal="pressed" from="Panel/Margin/Content/Bindings/ShieldLeftRow/SecondaryButton" to="." method="_on_binding_button_pressed" binds=["shield_left", 1]]
+[connection signal="pressed" from="Panel/Margin/Content/Bindings/ShieldRightRow/PrimaryButton" to="." method="_on_binding_button_pressed" binds=["shield_right", 0]]
+[connection signal="pressed" from="Panel/Margin/Content/Bindings/ShieldRightRow/SecondaryButton" to="." method="_on_binding_button_pressed" binds=["shield_right", 1]]
+[connection signal="pressed" from="Panel/Margin/Content/Bindings/OrbRow/PrimaryButton" to="." method="_on_binding_button_pressed" binds=["hit_orb", 0]]
+[connection signal="pressed" from="Panel/Margin/Content/Bindings/OrbRow/SecondaryButton" to="." method="_on_binding_button_pressed" binds=["hit_orb", 1]]
+[connection signal="pressed" from="Panel/Margin/Content/Bindings/PauseRow/PrimaryButton" to="." method="_on_binding_button_pressed" binds=["pause_game", 0]]
+[connection signal="pressed" from="Panel/Margin/Content/Bindings/PauseRow/SecondaryButton" to="." method="_on_binding_button_pressed" binds=["pause_game", 1]]
