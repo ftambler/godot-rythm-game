@@ -1,7 +1,7 @@
 extends Node2D
 
-const WALL_SCENE := preload("res://scenes/Wall.tscn")
-const ORB_SCENE := preload("res://scenes/Orb.tscn")
+const WALL_SCENE := preload("res://scenes/game/Wall.tscn")
+const ORB_SCENE := preload("res://scenes/game/Orb.tscn")
 
 @onready var score_handler: ScoreHandler = $ScoreHandler
 @onready var hud: HUD = $HUD

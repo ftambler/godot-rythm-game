@@ -2,9 +2,9 @@ class_name LevelManager
 extends Node
 
 
-const WALL_SCENE := preload("res://scenes/Wall.tscn")
-const ORB_SCENE := preload("res://scenes/Orb.tscn")
-const SPEED_TRIGGER_SCENE := preload("res://scenes/SpeedTrigger.tscn")
+const WALL_SCENE := preload("res://scenes/game/Wall.tscn")
+const ORB_SCENE := preload("res://scenes/game/Orb.tscn")
+const SPEED_TRIGGER_SCENE := preload("res://scenes/game/SpeedTrigger.tscn")
 
 @onready var walls: Node2D = $Walls
 @onready var orbs: Node2D = $Orbs

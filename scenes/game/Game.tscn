@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://lju8rbqgrtpf"]
+
+[ext_resource type="Script" uid="uid://bx8i0ipvf2152" path="res://scripts/Game.gd" id="1_lyhax"]
+[ext_resource type="Script" uid="uid://yj80pqfvgcta" path="res://scripts/scoring/ScoreHandler.gd" id="2_365ku"]
+[ext_resource type="Script" uid="uid://c0o8owm1kvvwu" path="res://scripts/scoring/HUD.gd" id="3_gg4pt"]
+[ext_resource type="PackedScene" uid="uid://d08dbfy3qd8qr" path="res://scenes/game/Player.tscn" id="4_wnrko"]
+[ext_resource type="Script" uid="uid://b3clh8jwssaqj" path="res://scripts/level/level_manager.gd" id="5_qf6a8"]
+[ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="6_pause"]
+
+[node name="Game" type="Node2D" unique_id=762137820]
+script = ExtResource("1_lyhax")
+
+[node name="ScoreHandler" type="Node" parent="." unique_id=1532150037]
+script = ExtResource("2_365ku")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=18197588]
+script = ExtResource("3_gg4pt")
+
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=146781174]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="AccuracyLabel" type="Label" parent="HUD" unique_id=1980510560]
+offset_top = 25.0
+offset_right = 40.0
+offset_bottom = 48.0
+
+[node name="PauseMenu" parent="." unique_id=1250167345 instance=ExtResource("6_pause")]
+
+[node name="Player" parent="." unique_id=35958358 instance=ExtResource("4_wnrko")]
+
+[node name="LevelManager" type="Node" parent="." unique_id=1655049988]
+script = ExtResource("5_qf6a8")
+
+[node name="Walls" type="Node2D" parent="LevelManager" unique_id=843267532]
+
+[node name="SpeedTriggers" type="Node2D" parent="LevelManager" unique_id=1421972330]
+
+[node name="Orbs" type="Node2D" parent="LevelManager" unique_id=1051268075]
