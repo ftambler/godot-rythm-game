@@ -4,3 +4,5 @@
 *.uid
 *.tmp
 *.pyc
+*.exe
+*.pck
