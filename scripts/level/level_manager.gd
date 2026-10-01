@@ -2,9 +2,9 @@ class_name LevelManager
 extends Node
 
 
-const WALL_SCENE := preload("res://scenes/Wall.tscn")
-const ORB_SCENE := preload("res://scenes/Orb.tscn")
-const SPEED_TRIGGER_SCENE := preload("res://scenes/SpeedTrigger.tscn")
+const WALL_SCENE := preload("res://scenes/game/Wall.tscn")
+const ORB_SCENE := preload("res://scenes/game/Orb.tscn")
+const SPEED_TRIGGER_SCENE := preload("res://scenes/game/SpeedTrigger.tscn")
 
 @onready var walls: Node2D = $Walls
 @onready var orbs: Node2D = $Orbs
@@ -12,6 +12,9 @@ const SPEED_TRIGGER_SCENE := preload("res://scenes/SpeedTrigger.tscn")
 
 var level: LevelData
 var level_time: float = 0.0
+var _has_finished := false
+
+signal level_finished
 
 var spawn_queue: Array[LevelObjectData] = []
 var despawn_queue: Array[LevelObjectData] = []
@@ -21,6 +24,7 @@ var active_objects: Dictionary = {}
 func start_level(level_data: LevelData) -> void:
 	level = level_data
 	level_time = level.song_start
+	_has_finished = false
 
 	spawn_queue = level.objects.duplicate()
 	spawn_queue.sort_custom(_sort_by_start)
@@ -32,13 +36,16 @@ func start_level(level_data: LevelData) -> void:
 
 
 func _process(delta: float) -> void:
-	if level == null:
+	if level == null or _has_finished:
 		return
 
 	level_time += delta
 
 	_process_spawns()
 	_process_despawns()
+	if level_time >= level.song_duration:
+		_has_finished = true
+		level_finished.emit()
 
 
 func _process_spawns() -> void:

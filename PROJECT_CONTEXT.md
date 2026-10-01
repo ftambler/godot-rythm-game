@@ -41,6 +41,7 @@ Top-level structure:
 - `project.godot` — Godot config and input mapping
 - `Game.tscn` — root game scene
 - `levels/` — level definitions, including `test.json`
+- `audio/` — music assets referenced by level files, such as `test.ogg` or `test.mp3`
 - `scenes/` — scene files for runtime objects
 - `scripts/` — gameplay logic and editor-side tools
 - `GODOT PLAN.txt` — earlier design notes, some of which are aspirational and not fully implemented
@@ -52,6 +53,7 @@ Important runtime folders:
 - `scripts/player/` — movement, shield, bounce, speed, evaluation
 - `scripts/world/` — wall, orb, speed trigger objects
 - `scripts/scoring/` — score and HUD logic
+- `scripts/MusicController.gd` — autoloaded music playback, volume, and fade controller
 - `scripts/level_builder/` — Python generator for procedural level authoring
 
 ---
@@ -85,7 +87,8 @@ The runtime flow is:
 3. `LevelLoader.load_level(...)` parses the JSON and returns a `LevelData`
 4. `player` position and direction are assigned from loaded level data
 5. `LevelManager.start_level(level)` initializes the spawn/despawn queues
-6. `_process(delta)` begins spawning active objects over time
+6. `MusicController.play_music(level.music, level.song_start)` starts the configured music
+7. `_process(delta)` begins spawning active objects over time
 
 The runtime is strongly time-driven and uses `songStart`, `songDuration`, and per-object `start` / `end` timing.
 
@@ -97,7 +100,7 @@ The active level JSON is in `levels/test.json` and has the following current str
 
 ```json
 {
-  "music": "test.ogg",
+	"music": "test.mp3",
   "songStart": 0.0,
   "songDuration": 5.0,
   "player": {
@@ -112,15 +115,7 @@ The active level JSON is in `levels/test.json` and has the following current str
 	  "start": 0,
 	  "end": 50.0,
 	  "groupId": 1,
-	  "wallType": "HORIZONTAL"
-	},
-	{
-	  "type": "walls",
-	  "position": [0, -250],
-	  "start": 1.0,
-	  "end": 50,
-	  "groupId": 2,
-	  "wallType": "HORIZONTAL"
+	  "wallType": "HORIZONTAL|VERTICAL|DIAGONAL_DOWN|DIAGONAL_UP"
 	},
 	{
 	  "type": "orb",
@@ -191,6 +186,30 @@ player.speed_type = level.player_speed
 ```
 
 This means the actual data flow is now `JSON -> LevelData -> Player properties`, rather than storing a raw float speed value directly.
+
+### `scripts/MusicController.gd`
+
+This is an autoload singleton registered as `MusicController` in `project.godot`. It owns a dynamically created `AudioStreamPlayer`, so music does not need to be added directly to `Game.tscn`.
+
+Current behavior:
+
+- resolves relative music names from `res://audio/`
+- supports Godot audio assets such as `.ogg` and `.mp3`
+- starts level music at the `songStart` offset
+- fades between tracks and when stopping playback
+- exposes normalized volume control through `set_volume(value)`, where `0.0` is silent and `1.0` is full volume
+- avoids restarting the same track if it is already playing
+- logs a warning and continues without music when the referenced file is missing or cannot be loaded
+
+The active test level references `test.mp3`, so the corresponding file must exist at `res://audio/test.mp3`. OGG files are also supported; update the level's `music` value to the matching filename when using one.
+
+The controller can also be used directly by other systems:
+
+```gdscript
+MusicController.set_volume(0.5)
+MusicController.stop_music()
+MusicController.play_music("test.mp3", 0.0, 1.5)
+```
 
 ### `scripts/level/level_loader.gd`
 

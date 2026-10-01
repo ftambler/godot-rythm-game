@@ -1,0 +1,191 @@
+[gd_scene format=3 uid="uid://n7514hcxw80"]
+
+[ext_resource type="Script" uid="uid://b734ygbgiug3a" path="res://scripts/Menu.gd" id="1_menu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/OptionsMenu.tscn" id="2_options"]
+
+[sub_resource type="StyleBoxFlat" id="StylePanel"]
+bg_color = Color(0.055, 0.075, 0.12, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18, 0.28, 0.36, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleButton"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.11, 0.18, 0.23, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.42, 0.46, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleButtonPressed"]
+bg_color = Color(0.08, 0.28, 0.3, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleButtonHover"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.13, 0.38, 0.4, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.32, 0.84, 0.76, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="MainMenu" type="Control" unique_id=1738783810]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1067484300]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.018, 0.027, 0.05, 1)
+
+[node name="AccentTop" type="ColorRect" parent="." unique_id=1438057627]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.13, 0.72, 0.66, 1)
+
+[node name="AccentRail" type="ColorRect" parent="." unique_id=468793046]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -160.0
+offset_right = 5.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.13, 0.72, 0.66, 0.3)
+
+[node name="MainPanel" type="PanelContainer" parent="." unique_id=361850791]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -230.0
+offset_right = 270.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="Content" type="VBoxContainer" parent="MainPanel" unique_id=619682568]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Margin" type="MarginContainer" parent="MainPanel/Content" unique_id=1257115116]
+layout_mode = 2
+theme_override_constants/margin_left = 42
+theme_override_constants/margin_top = 38
+theme_override_constants/margin_right = 42
+theme_override_constants/margin_bottom = 38
+
+[node name="Stack" type="VBoxContainer" parent="MainPanel/Content/Margin" unique_id=1803399770]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Kicker" type="Label" parent="MainPanel/Content/Margin/Stack" unique_id=346630078]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.78, 0.72, 1)
+text = "RHYTHM / REFLEX"
+
+[node name="Title" type="Label" parent="MainPanel/Content/Margin/Stack" unique_id=1684216363]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_font_sizes/font_size = 42
+text = "TITULO: El juego"
+
+[node name="Subtitle" type="Label" parent="MainPanel/Content/Margin/Stack" unique_id=1987082890]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.65, 0.68, 1)
+text = "Descripcion que no pense"
+
+[node name="Rule" type="ColorRect" parent="MainPanel/Content/Margin/Stack" unique_id=1036228446]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.13, 0.72, 0.66, 1)
+
+[node name="Spacer" type="Control" parent="MainPanel/Content/Margin/Stack" unique_id=1953863878]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayButton" type="Button" parent="MainPanel/Content/Margin/Stack" unique_id=2092820164]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="MainPanel/Content/Margin/Stack" unique_id=1033624596]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="MainPanel/Content/Margin/Stack" unique_id=369088298]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+text = "Quit"
+
+[node name="OptionsMenu" parent="." unique_id=1766235288 instance=ExtResource("2_options")]
+
+[connection signal="pressed" from="MainPanel/Content/Margin/Stack/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainPanel/Content/Margin/Stack/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainPanel/Content/Margin/Stack/QuitButton" to="." method="_on_quit_button_pressed"]
