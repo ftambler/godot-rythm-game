@@ -1,8 +1,10 @@
+class_name PauseMenu
 extends CanvasLayer
 
 @onready var panel: Control = $Overlay/Panel
 @onready var music_slider: HSlider = $Overlay/Panel/MarginContainer/Content/MusicSlider
 @onready var sfx_slider: HSlider = $Overlay/Panel/MarginContainer/Content/SfxSlider
+var pause_enabled := false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -11,9 +13,12 @@ func _ready() -> void:
 	sfx_slider.value = MusicController.get_sfx_volume()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause_game"):
+	if pause_enabled and event.is_action_pressed("pause_game"):
 		toggle_pause()
 		get_viewport().set_input_as_handled()
+
+func set_pause_enabled(enabled: bool) -> void:
+	pause_enabled = enabled
 
 func toggle_pause() -> void:
 	if get_tree().paused:
