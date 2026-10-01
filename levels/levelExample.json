@@ -1,5 +1,8 @@
 {
   "music": "test.ogg",
+	"songName": "Example Song",
+	"artist": "Unknown Artist",
+	"difficulty": 1,
   "songStart": 0,
   "songDuration": 5.0,
   "player": {

@@ -1,5 +1,8 @@
 {
   "music": "test.mp3",
+	"songName": "Test Track",
+	"artist": "Demo Artist",
+	"difficulty": 2,
   "songStart": 0.0,
   "songDuration": 5.0,
   "player": {
