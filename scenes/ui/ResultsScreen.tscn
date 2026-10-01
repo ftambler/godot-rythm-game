@@ -1,0 +1,192 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/ResultsScreen.gd" id="1_results"]
+
+[sub_resource type="StyleBoxFlat" id="StylePanel"]
+bg_color = Color(0.055, 0.075, 0.12, 0.99)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18, 0.28, 0.36, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleButton"]
+bg_color = Color(0.11, 0.18, 0.23, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.42, 0.46, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleHover"]
+bg_color = Color(0.13, 0.38, 0.4, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.32, 0.84, 0.76, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="ResultsScreen" type="CanvasLayer"]
+layer = 21
+script = ExtResource("1_results")
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.018, 0.027, 0.05, 0.96)
+
+[node name="Panel" type="PanelContainer" parent="Overlay"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -250.0
+offset_right = 290.0
+offset_bottom = 250.0
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="Margin" type="MarginContainer" parent="Overlay/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 38
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 38
+theme_override_constants/margin_bottom = 30
+
+[node name="Content" type="VBoxContainer" parent="Overlay/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Eyebrow" type="Label" parent="Overlay/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.78, 0.72, 1)
+text = "RUN COMPLETE"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="Overlay/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_font_sizes/font_size = 30
+text = "Results"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="Overlay/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_font_sizes/font_size = 42
+text = "0"
+horizontal_alignment = 1
+
+[node name="ScoreCaption" type="Label" parent="Overlay/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.65, 0.68, 1)
+text = "SCORE"
+horizontal_alignment = 1
+
+[node name="Accuracy" type="Label" parent="Overlay/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.78, 0.72, 1)
+theme_override_font_sizes/font_size = 24
+text = "100.0%"
+horizontal_alignment = 1
+
+[node name="Stats" type="HBoxContainer" parent="Overlay/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Missed" type="VBoxContainer" parent="Overlay/Panel/Margin/Content/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Value" type="Label" parent="Overlay/Panel/Margin/Content/Stats/Missed"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+
+[node name="Caption" type="Label" parent="Overlay/Panel/Margin/Content/Stats/Missed"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.65, 0.68, 1)
+text = "MISSED"
+horizontal_alignment = 1
+
+[node name="Half" type="VBoxContainer" parent="Overlay/Panel/Margin/Content/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Value" type="Label" parent="Overlay/Panel/Margin/Content/Stats/Half"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+
+[node name="Caption" type="Label" parent="Overlay/Panel/Margin/Content/Stats/Half"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.65, 0.68, 1)
+text = "HALF HITS"
+horizontal_alignment = 1
+
+[node name="Full" type="VBoxContainer" parent="Overlay/Panel/Margin/Content/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Value" type="Label" parent="Overlay/Panel/Margin/Content/Stats/Full"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+
+[node name="Caption" type="Label" parent="Overlay/Panel/Margin/Content/Stats/Full"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.65, 0.68, 1)
+text = "FULL HITS"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="Overlay/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ReplayButton" type="Button" parent="Overlay/Panel/Margin/Content/Buttons"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+text = "Replay"
+
+[node name="MenuButton" type="Button" parent="Overlay/Panel/Margin/Content/Buttons"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleHover")
+text = "Main menu"
+
+[connection signal="pressed" from="Overlay/Panel/Margin/Content/Buttons/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="Overlay/Panel/Margin/Content/Buttons/MenuButton" to="." method="_on_menu_button_pressed"]

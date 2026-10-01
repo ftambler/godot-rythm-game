@@ -5,6 +5,9 @@ extends Node
 var total_hits: int = 0
 var score: int = 0
 var accuracy: float = 0.0
+var missed_hits: int = 0
+var half_hits: int = 0
+var full_hits: int = 0
 
 signal score_updated(score: int, accuracy: float)
 
@@ -12,6 +15,13 @@ func handle_hit(result: HitResult.Type) -> void:
 	total_hits += 1
 	score += HitResult.get_score(result)
 	accuracy += HitResult.get_accuracy(result)
+	match result:
+		HitResult.Type.MISS:
+			missed_hits += 1
+		HitResult.Type.HALF:
+			half_hits += 1
+		HitResult.Type.FULL:
+			full_hits += 1
 
 	score_updated.emit(
 		get_score(),
