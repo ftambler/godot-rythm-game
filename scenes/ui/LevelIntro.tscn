@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://ytw7cwpt4dvd"]
+
+[ext_resource type="Script" uid="uid://b080l6wkjth3w" path="res://scripts/LevelIntro.gd" id="1_intro"]
+
+[sub_resource type="StyleBoxFlat" id="StylePanel"]
+bg_color = Color(0.055, 0.075, 0.12, 0.99)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18, 0.28, 0.36, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="LevelIntro" type="CanvasLayer" unique_id=1172595569]
+layer = 20
+script = ExtResource("1_intro")
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=650180199]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Panel" type="PanelContainer" parent="Overlay" unique_id=444983567]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 464.0
+offset_bottom = 128.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="Margin" type="MarginContainer" parent="Overlay/Panel" unique_id=1322896177]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="Content" type="VBoxContainer" parent="Overlay/Panel/Margin" unique_id=885401131]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="SongRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=790730316]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SongName" type="Label" parent="Overlay/Panel/Margin/Content/SongRow" unique_id=1182552629]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_font_sizes/font_size = 18
+text = "Song Name"
+clip_text = true
+
+[node name="Difficulty" type="Label" parent="Overlay/Panel/Margin/Content/SongRow" unique_id=3340261]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_font_sizes/font_size = 18
+text = "2"
+
+[node name="Star" type="Label" parent="Overlay/Panel/Margin/Content/SongRow" unique_id=1615962192]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.78, 0.35, 1)
+theme_override_font_sizes/font_size = 18
+text = " ★"
+
+[node name="ArtistRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=2091427807]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Artist" type="Label" parent="Overlay/Panel/Margin/Content/ArtistRow" unique_id=280764914]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.55, 0.65, 0.68, 1)
+theme_override_font_sizes/font_size = 16
+text = "Artist"
+clip_text = true
+
+[node name="Duration" type="Label" parent="Overlay/Panel/Margin/Content/ArtistRow" unique_id=771665279]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.65, 0.68, 1)
+theme_override_font_sizes/font_size = 16
+text = "0:05"

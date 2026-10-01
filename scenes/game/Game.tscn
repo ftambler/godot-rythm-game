@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://d08dbfy3qd8qr" path="res://scenes/game/Player.tscn" id="4_wnrko"]
 [ext_resource type="Script" uid="uid://b3clh8jwssaqj" path="res://scripts/level/level_manager.gd" id="5_qf6a8"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="6_pause"]
+[ext_resource type="PackedScene" uid="uid://ytw7cwpt4dvd" path="res://scenes/ui/LevelIntro.tscn" id="7_intro"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ResultsScreen.tscn" id="8_results"]
 
 [node name="Game" type="Node2D" unique_id=762137820]
 script = ExtResource("1_lyhax")
@@ -26,6 +28,13 @@ offset_right = 40.0
 offset_bottom = 48.0
 
 [node name="PauseMenu" parent="." unique_id=1250167345 instance=ExtResource("6_pause")]
+visible = false
+
+[node name="LevelIntro" parent="." unique_id=933100029 instance=ExtResource("7_intro")]
+visible = false
+
+[node name="ResultsScreen" parent="." unique_id=763232056 instance=ExtResource("8_results")]
+visible = false
 
 [node name="Player" parent="." unique_id=35958358 instance=ExtResource("4_wnrko")]
 
