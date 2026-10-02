@@ -4,6 +4,8 @@ extends CanvasLayer
 signal replay_requested
 signal menu_requested
 
+@onready var eyebrow_label: Label = $Overlay/Panel/Margin/Content/Eyebrow
+@onready var title_label: Label = $Overlay/Panel/Margin/Content/Title
 @onready var score_label: Label = $Overlay/Panel/Margin/Content/Score
 @onready var accuracy_label: Label = $Overlay/Panel/Margin/Content/Accuracy
 @onready var missed_label: Label = $Overlay/Panel/Margin/Content/Stats/Missed/Value
@@ -15,7 +17,9 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 
-func open(score_handler: ScoreHandler) -> void:
+func open(score_handler: ScoreHandler, did_win: bool) -> void:
+	eyebrow_label.text = "RUN COMPLETE" if did_win else "RUN OVER"
+	title_label.text = "Results" if did_win else "Defeat"
 	score_label.text = str(score_handler.get_score())
 	accuracy_label.text = "%s%%" % snapped(score_handler.get_accuracy() * 100.0, 0.1)
 	missed_label.text = str(score_handler.missed_hits)
