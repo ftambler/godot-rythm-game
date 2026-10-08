@@ -6,3 +6,4 @@
 *.pyc
 *.exe
 *.pck
+**/.venv

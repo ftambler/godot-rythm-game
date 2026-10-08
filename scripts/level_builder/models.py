@@ -44,6 +44,7 @@ class LevelObject:
     group_id: int | None = None
     wall_type: str | None = None
     rotation: float | None = None
+    speed: int | None = None
 
 
 @dataclass
