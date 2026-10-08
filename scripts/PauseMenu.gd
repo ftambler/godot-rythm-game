@@ -1,6 +1,8 @@
 class_name PauseMenu
 extends CanvasLayer
 
+signal restart_requested
+
 @onready var panel: Control = $Overlay/Panel
 @onready var music_slider: HSlider = $Overlay/Panel/MarginContainer/Content/MusicSlider
 @onready var sfx_slider: HSlider = $Overlay/Panel/MarginContainer/Content/SfxSlider
@@ -37,6 +39,9 @@ func resume() -> void:
 
 func _on_resume_button_pressed() -> void:
 	resume()
+
+func _on_restart_button_pressed() -> void:
+	restart_requested.emit()
 
 func _on_main_menu_button_pressed() -> void:
 	get_tree().paused = false
