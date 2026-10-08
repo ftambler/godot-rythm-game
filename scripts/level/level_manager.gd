@@ -43,6 +43,7 @@ func _process(delta: float) -> void:
 
 	_process_spawns()
 	_process_despawns()
+
 	if level_time >= level.song_duration:
 		_has_finished = true
 		level_finished.emit()
@@ -110,7 +111,7 @@ func _despawn_object(data: LevelObjectData) -> void:
 
 
 func object_hit(object: Node) -> void:
-	if object is Orb:
+	if object is Orb or object is Wall:
 		for data in active_objects:
 			if active_objects[data] == object:
 				_despawn_object(data)
