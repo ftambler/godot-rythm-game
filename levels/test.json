@@ -1,75 +1,207 @@
 {
   "music": "test.mp3",
-	"songName": "Test Track",
-	"artist": "Demo Artist",
-	"difficulty": 2,
   "songStart": 0.0,
-  "songDuration": 5.0,
+  "songDuration": 9.0,
   "player": {
-	"position": [
-	  	0.0,
-	  0.0
-	],
-	"direction": [
-	  0,
-	  1
-	],
-	"speed": 1
+    "position": [
+      0.0,
+      0.0
+    ],
+    "direction": [
+      1,
+      1
+    ],
+    "speed": 1
   },
   "objects": [
-	{
-	  "type": "walls",
-	  "position": [
-		0,
-		200
-	  ],
-	  "start": 0,
-	  "end": 50.0,
-	  "groupId": 1,
-	  "wallType": "HORIZONTAL"
-	},
-	{
-	  "type": "walls",
-	  "position": [
-		0,
-		-250
-	  ],
-	  "start": 1.0,
-	  "end": 50,
-	  "groupId": 2,
-	  "wallType": "HORIZONTAL"
-	},
-	{
-	  "type": "orb",
-	  "position": [
-		0,
-		100
-	  ],
-	  "start": 0,
-	  "end": 50.0,
-	  "groupId": 3
-	},
-	{
-	  "type": "speed_trigger",
-	  "position": [
-		0,
-		-150
-	  ],
-	  "start": 0,
-	  "end": 50.0,
-	  "groupId": 4,
-	  "speed": 1
-	},
-	{
-	  "type": "speed_trigger",
-	  "position": [
-		0,
-		150
-	  ],
-	  "start": 0,
-	  "end": 50.0,
-	  "groupId": 4,
-	  "speed": 3
-	}
+    {
+      "type": "walls",
+      "position": [
+        166.5,
+        166.5
+      ],
+      "start": 0.0,
+      "end": 9.0,
+      "groupId": 1,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -0.5,
+        333.5
+      ],
+      "start": 0.0,
+      "end": 9.0,
+      "groupId": 2
+    },
+    {
+      "type": "walls",
+      "position": [
+        -166.99999999999997,
+        500.0
+      ],
+      "start": 0.25,
+      "end": 9.0,
+      "groupId": 2,
+      "wallType": "DIAGONAL_DOWN"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -0.5,
+        333.5
+      ],
+      "start": 0.583,
+      "end": 9.0,
+      "groupId": 3
+    },
+    {
+      "type": "walls",
+      "position": [
+        166.50000000000003,
+        166.49999999999997
+      ],
+      "start": 0.917,
+      "end": 9.0,
+      "groupId": 3,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        5.684341886080802e-14,
+        0.0
+      ],
+      "start": 1.25,
+      "end": 9.0,
+      "groupId": 4
+    },
+    {
+      "type": "walls",
+      "position": [
+        -166.50000000000003,
+        -166.50000000000009
+      ],
+      "start": 1.5830000000000002,
+      "end": 9.0,
+      "groupId": 4,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        0.49999999999980105,
+        -333.4999999999999
+      ],
+      "start": 1.9169999999999998,
+      "end": 9.0,
+      "groupId": 5
+    },
+    {
+      "type": "walls",
+      "position": [
+        166.9999999999999,
+        -500.0
+      ],
+      "start": 2.25,
+      "end": 9.0,
+      "groupId": 5,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        333.5,
+        -333.4999999999999
+      ],
+      "start": 2.583,
+      "end": 9.0,
+      "groupId": 6
+    },
+    {
+      "type": "walls",
+      "position": [
+        500.49999999999983,
+        -166.50000000000006
+      ],
+      "start": 2.917,
+      "end": 9.0,
+      "groupId": 6,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        333.9999999999998,
+        2.842170943040401e-14
+      ],
+      "start": 3.25,
+      "end": 9.0,
+      "groupId": 7
+    },
+    {
+      "type": "walls",
+      "position": [
+        167.4999999999997,
+        166.5000000000001
+      ],
+      "start": 3.583,
+      "end": 9.0,
+      "groupId": 7,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        334.49999999999955,
+        333.49999999999994
+      ],
+      "start": 3.917,
+      "end": 9.0,
+      "groupId": 8
+    },
+    {
+      "type": "walls",
+      "position": [
+        500.99999999999966,
+        500.0
+      ],
+      "start": 4.25,
+      "end": 9.0,
+      "groupId": 8,
+      "wallType": "DIAGONAL_UP"
+    },
+    {
+      "type": "orb",
+      "position": [
+        334.49999999999955,
+        333.4999999999999
+      ],
+      "start": 4.583,
+      "end": 9.0,
+      "groupId": 9
+    },
+    {
+      "type": "walls",
+      "position": [
+        167.49999999999972,
+        166.50000000000006
+      ],
+      "start": 4.917,
+      "end": 9.0,
+      "groupId": 9,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        333.9999999999998,
+        -2.842170943040401e-14
+      ],
+      "start": 5.25,
+      "end": 9.0,
+      "groupId": 10
+    }
   ]
 }
