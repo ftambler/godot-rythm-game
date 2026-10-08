@@ -21,6 +21,7 @@ func _ready() -> void:
 	score_handler.health_depleted.connect(_on_health_depleted)
 	level_manager.level_finished.connect(_on_level_finished)
 	level_intro.start_requested.connect(_start_level)
+	pause_menu.restart_requested.connect(_replay_level)
 	results_screen.replay_requested.connect(_replay_level)
 	results_screen.menu_requested.connect(_return_to_menu)
 	update_hud(score_handler.get_score(), score_handler.get_accuracy())
