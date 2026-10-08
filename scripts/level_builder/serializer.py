@@ -1,6 +1,25 @@
 import json
+from pathlib import Path
 
 from models import Level, LevelObject
+
+
+VALID_SPEEDS = {
+    500.0: 1,
+    700.0: 2,
+    900.0: 3,
+}
+
+
+def player_speed_to_runtime_index(speed: float) -> int:
+    if speed is None:
+        return 1
+
+    nearest_speed = min(
+        VALID_SPEEDS,
+        key=lambda candidate: abs(candidate - float(speed)),
+    )
+    return VALID_SPEEDS[nearest_speed]
 
 
 def object_to_dict(obj: LevelObject) -> dict:
@@ -24,6 +43,9 @@ def object_to_dict(obj: LevelObject) -> dict:
     if obj.rotation is not None:
         result["rotation"] = obj.rotation
 
+    if obj.speed is not None:
+        result["speed"] = obj.speed
+
     return result
 
 
@@ -41,7 +63,7 @@ def build_json(level: Level) -> dict:
             "direction": list(
                 level.player.direction.to_vector()
             ),
-            "speed": level.player.speed,
+            "speed": player_speed_to_runtime_index(level.player.speed),
         },
         "objects": [
             object_to_dict(obj)
@@ -53,9 +75,11 @@ def build_json(level: Level) -> dict:
 def save_level(
     level_json: dict,
     level_name: str,
+    output_dir: str | Path | None = None,
 ) -> None:
 
-    filename = f"{level_name}.json"
+    output_dir = Path(output_dir) if output_dir is not None else Path.cwd()
+    filename = output_dir / f"{level_name}.json"
 
     with open(filename, "w", encoding="utf-8") as file:
         json.dump(
@@ -65,3 +89,4 @@ def save_level(
         )
 
     print(f"Level saved to {filename}")
+    return filename

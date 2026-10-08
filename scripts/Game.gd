@@ -12,15 +12,20 @@ const ORB_SCENE := preload("res://scenes/game/Orb.tscn")
 @onready var results_screen: ResultsScreen = $ResultsScreen
 
 var level: LevelData
+var _run_finished: bool = false
 
 func _ready() -> void:
 	player.hit_registered.connect(score_handler.handle_hit)
 	score_handler.score_updated.connect(update_hud)
+	score_handler.gameplay_stats_updated.connect(update_gameplay_hud)
+	score_handler.health_depleted.connect(_on_health_depleted)
 	level_manager.level_finished.connect(_on_level_finished)
 	level_intro.start_requested.connect(_start_level)
+	pause_menu.restart_requested.connect(_replay_level)
 	results_screen.replay_requested.connect(_replay_level)
 	results_screen.menu_requested.connect(_return_to_menu)
 	update_hud(score_handler.get_score(), score_handler.get_accuracy())
+	update_gameplay_hud(score_handler.combo, score_handler.health)
 	player.object_hit.connect(level_manager.object_hit)
 	_load_level()
 
@@ -53,9 +58,19 @@ func _start_level() -> void:
 	MusicController.play_music(level.music, level.song_start)
 
 func _on_level_finished() -> void:
+	_finish_level(true)
+
+func _on_health_depleted() -> void:
+	_finish_level(false)
+
+func _finish_level(did_win: bool) -> void:
+	if _run_finished:
+		return
+
+	_run_finished = true
 	get_tree().paused = true
 	pause_menu.set_pause_enabled(false)
-	results_screen.open(score_handler)
+	results_screen.open(score_handler, did_win)
 
 func _replay_level() -> void:
 	get_tree().paused = false
@@ -70,3 +85,7 @@ func _return_to_menu() -> void:
 func update_hud(score: int, accuracy: float) -> void:
 	hud.update_score(score)
 	hud.update_accuracy(accuracy)
+
+func update_gameplay_hud(combo: int, health: int) -> void:
+	hud.update_combo(combo)
+	hud.update_health(health)

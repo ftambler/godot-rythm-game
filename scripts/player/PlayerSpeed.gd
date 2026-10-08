@@ -8,9 +8,9 @@ enum Type {
 }
 
 const VALUES := {
-	Type.SPEED_1: 300.0,
-	Type.SPEED_2: 500.0,
-	Type.SPEED_3: 700.0
+	Type.SPEED_1: 500.0,
+	Type.SPEED_2: 700.0,
+	Type.SPEED_3: 900.0
 }
 
 static func get_value(speed_type: Type) -> float:

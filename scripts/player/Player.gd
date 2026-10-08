@@ -35,21 +35,22 @@ func move_player(delta: float) -> void:
 signal hit_registered(result: HitResult.Type)
 
 func hit_orb() -> void:
-	print("HIT ORB CALLED")
-
 	var areas := orb_detector.get_overlapping_areas()
-	print("Areas detected: ", areas.size())
+	var matched_orb: Orb
 
 	for area in areas:
-		print("Detected: ", area)
-
 		if area is Orb:
-			print("ORB FOUND")
-			hit_registered.emit(HitResult.Type.FULL)
-			object_hit.emit(area)
-			return
+			matched_orb = area
+			break
 
-	print("NO ORB")
+	if matched_orb != null:
+		for area in areas:
+			if area is Orb and area.global_position.is_equal_approx(matched_orb.global_position):
+				object_hit.emit(area)
+
+		hit_registered.emit(HitResult.Type.FULL)
+		return
+
 	hit_registered.emit(HitResult.Type.MISS)
 
 func handle_collision(collision: KinematicCollision2D) -> void:

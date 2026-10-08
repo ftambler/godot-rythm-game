@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bx8i0ipvf2152" path="res://scripts/Game.gd" id="1_lyhax"]
 [ext_resource type="Script" uid="uid://yj80pqfvgcta" path="res://scripts/scoring/ScoreHandler.gd" id="2_365ku"]
-[ext_resource type="Script" uid="uid://c0o8owm1kvvwu" path="res://scripts/scoring/HUD.gd" id="3_gg4pt"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="3_hud"]
 [ext_resource type="PackedScene" uid="uid://d08dbfy3qd8qr" path="res://scenes/game/Player.tscn" id="4_wnrko"]
 [ext_resource type="Script" uid="uid://b3clh8jwssaqj" path="res://scripts/level/level_manager.gd" id="5_qf6a8"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="6_pause"]
@@ -15,17 +15,7 @@ script = ExtResource("1_lyhax")
 [node name="ScoreHandler" type="Node" parent="." unique_id=1532150037]
 script = ExtResource("2_365ku")
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=18197588]
-script = ExtResource("3_gg4pt")
-
-[node name="ScoreLabel" type="Label" parent="HUD" unique_id=146781174]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="AccuracyLabel" type="Label" parent="HUD" unique_id=1980510560]
-offset_top = 25.0
-offset_right = 40.0
-offset_bottom = 48.0
+[node name="HUD" parent="." unique_id=18197588 instance=ExtResource("3_hud")]
 
 [node name="PauseMenu" parent="." unique_id=1250167345 instance=ExtResource("6_pause")]
 visible = false

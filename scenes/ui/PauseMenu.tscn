@@ -121,6 +121,14 @@ theme_override_styles/normal = SubResource("StyleButton")
 theme_override_styles/hover = SubResource("StyleButtonHover")
 text = "Resume"
 
+[node name="RestartButton" type="Button" parent="Overlay/Panel/MarginContainer/Content"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
+theme_override_styles/normal = SubResource("StyleButton")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+text = "Restart"
+
 [node name="MainMenuButton" type="Button" parent="Overlay/Panel/MarginContainer/Content"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -132,4 +140,5 @@ text = "Go to main menu"
 [connection signal="value_changed" from="Overlay/Panel/MarginContainer/Content/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="Overlay/Panel/MarginContainer/Content/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="pressed" from="Overlay/Panel/MarginContainer/Content/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Overlay/Panel/MarginContainer/Content/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Overlay/Panel/MarginContainer/Content/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

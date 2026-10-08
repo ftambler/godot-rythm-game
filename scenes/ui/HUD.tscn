@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" uid="uid://c0o8owm1kvvwu" path="res://scripts/scoring/HUD.gd" id="1_hud"]
+
+[sub_resource type="StyleBoxFlat" id="HealthBarBackground"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="HealthBarFill"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="HUD" type="CanvasLayer" unique_id=18197588]
+script = ExtResource("1_hud")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=146781174]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="AccuracyLabel" type="Label" parent="." unique_id=1980510560]
+offset_top = 25.0
+offset_right = 40.0
+offset_bottom = 48.0
+
+[node name="ComboLabel" type="Label" parent="." unique_id=1657645092]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.42
+anchor_right = 0.5
+anchor_bottom = 0.42
+offset_left = -120.0
+offset_top = -24.0
+offset_right = 120.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthLabel" type="Label" parent="." unique_id=564363648]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -190.0
+offset_right = 64.0
+offset_bottom = -168.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "100%"
+horizontal_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1086121328]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = -164.0
+offset_right = 50.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("HealthBarBackground")
+theme_override_styles/fill = SubResource("HealthBarFill")
+value = 100.0
+fill_mode = 3
+show_percentage = false
