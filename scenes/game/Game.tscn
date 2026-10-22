@@ -8,9 +8,13 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="6_pause"]
 [ext_resource type="PackedScene" uid="uid://ytw7cwpt4dvd" path="res://scenes/ui/LevelIntro.tscn" id="7_intro"]
 [ext_resource type="PackedScene" path="res://scenes/ui/ResultsScreen.tscn" id="8_results"]
+[ext_resource type="PackedScene" path="res://scenes/game/GridBackground.tscn" id="9_grid"]
+[ext_resource type="Script" path="res://scripts/visual/GameplayFeedback.gd" id="10_feedback"]
 
 [node name="Game" type="Node2D" unique_id=762137820]
 script = ExtResource("1_lyhax")
+
+[node name="GridBackground" parent="." instance=ExtResource("9_grid")]
 
 [node name="ScoreHandler" type="Node" parent="." unique_id=1532150037]
 script = ExtResource("2_365ku")
@@ -36,3 +40,7 @@ script = ExtResource("5_qf6a8")
 [node name="SpeedTriggers" type="Node2D" parent="LevelManager" unique_id=1421972330]
 
 [node name="Orbs" type="Node2D" parent="LevelManager" unique_id=1051268075]
+
+[node name="GameplayFeedback" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("10_feedback")
+player = NodePath("../Player")

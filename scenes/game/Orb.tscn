@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dx2d5sxof1ffq"]
 
 [ext_resource type="Script" uid="uid://oengqfgsowdr" path="res://scripts/world/Orb.gd" id="1_2pvil"]
+[ext_resource type="Script" path="res://scripts/visual/OrbVisual.gd" id="2_ovis"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mf4yy"]
 
@@ -11,9 +12,5 @@ script = ExtResource("1_2pvil")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=68305031]
 shape = SubResource("RectangleShape2D_mf4yy")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1891851646]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-color = Color(0.8784314, 0.2627451, 0.8784314, 1)
+[node name="Visual" type="Node2D" parent="." unique_id=1891851646]
+script = ExtResource("2_ovis")
