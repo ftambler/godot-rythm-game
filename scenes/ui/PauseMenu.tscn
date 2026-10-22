@@ -1,50 +1,12 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="1_pause"]
-
-[sub_resource type="StyleBoxFlat" id="StylePanel"]
-bg_color = Color(0.055, 0.075, 0.12, 0.98)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.18, 0.28, 0.36, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_color = Color(0, 0, 0, 0.35)
-shadow_size = 18
-
-[sub_resource type="StyleBoxFlat" id="StyleButton"]
-bg_color = Color(0.11, 0.18, 0.23, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.2, 0.42, 0.46, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleButtonHover"]
-bg_color = Color(0.13, 0.38, 0.4, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.32, 0.84, 0.76, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [node name="PauseMenu" type="CanvasLayer"]
 layer = 10
 script = ExtResource("1_pause")
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="Overlay" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,7 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-color = Color(0.02, 0.03, 0.06, 0.78)
+theme_type_variation = &"Scrim"
 
 [node name="Panel" type="PanelContainer" parent="Overlay"]
 layout_mode = 0
@@ -64,7 +26,6 @@ offset_left = -190.0
 offset_top = -190.0
 offset_right = 190.0
 offset_bottom = 190.0
-theme_override_styles/panel = SubResource("StylePanel")
 
 [node name="MarginContainer" type="MarginContainer" parent="Overlay/Panel"]
 layout_mode = 2
@@ -79,15 +40,14 @@ theme_override_constants/separation = 18
 
 [node name="Title" type="Label" parent="Overlay/Panel/MarginContainer/Content"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
-theme_override_font_sizes/font_size = 30
 text = "Paused"
 horizontal_alignment = 1
+theme_type_variation = &"HeadingLabel"
 
 [node name="MusicLabel" type="Label" parent="Overlay/Panel/MarginContainer/Content"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.35, 0.78, 0.72, 1)
 text = "Music"
+theme_type_variation = &"MutedLabel"
 
 [node name="MusicSlider" type="HSlider" parent="Overlay/Panel/MarginContainer/Content"]
 custom_minimum_size = Vector2(0, 28)
@@ -98,8 +58,8 @@ value = 1.0
 
 [node name="SfxLabel" type="Label" parent="Overlay/Panel/MarginContainer/Content"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.35, 0.78, 0.72, 1)
 text = "Sound effects"
+theme_type_variation = &"MutedLabel"
 
 [node name="SfxSlider" type="HSlider" parent="Overlay/Panel/MarginContainer/Content"]
 custom_minimum_size = Vector2(0, 28)
@@ -116,25 +76,16 @@ size_flags_vertical = 3
 [node name="ResumeButton" type="Button" parent="Overlay/Panel/MarginContainer/Content"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleButtonHover")
 text = "Resume"
 
 [node name="RestartButton" type="Button" parent="Overlay/Panel/MarginContainer/Content"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleButtonHover")
 text = "Restart"
 
 [node name="MainMenuButton" type="Button" parent="Overlay/Panel/MarginContainer/Content"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleButtonHover")
 text = "Go to main menu"
 
 [connection signal="value_changed" from="Overlay/Panel/MarginContainer/Content/MusicSlider" to="." method="_on_music_slider_value_changed"]

@@ -1,42 +1,6 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/OptionsMenu.gd" id="1_options"]
-
-[sub_resource type="StyleBoxFlat" id="StylePanel"]
-bg_color = Color(0.055, 0.075, 0.12, 0.99)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.18, 0.28, 0.36, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleButton"]
-bg_color = Color(0.11, 0.18, 0.23, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.2, 0.42, 0.46, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleHover"]
-bg_color = Color(0.13, 0.38, 0.4, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.32, 0.84, 0.76, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 1
@@ -49,14 +13,14 @@ mouse_filter = 1
 visible = false
 script = ExtResource("1_options")
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="Overlay" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.018, 0.027, 0.05, 0.98)
+theme_type_variation = &"ScrimStrong"
 
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -71,7 +35,6 @@ offset_right = 340.0
 offset_bottom = 285.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StylePanel")
 
 [node name="Margin" type="MarginContainer" parent="Panel"]
 layout_mode = 2
@@ -90,21 +53,18 @@ layout_mode = 2
 [node name="Title" type="Label" parent="Panel/Margin/Content/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.92, 0.97, 0.97, 1)
-theme_override_font_sizes/font_size = 30
 text = "Options"
+theme_type_variation = &"HeadingLabel"
 
 [node name="BackButton" type="Button" parent="Panel/Margin/Content/Header"]
 custom_minimum_size = Vector2(100, 38)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 text = "Back"
 
 [node name="AudioHeading" type="Label" parent="Panel/Margin/Content"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.35, 0.78, 0.72, 1)
 text = "AUDIO"
+theme_type_variation = &"KickerLabel"
 
 [node name="MusicLabel" type="Label" parent="Panel/Margin/Content"]
 layout_mode = 2
@@ -130,8 +90,8 @@ value = 1.0
 
 [node name="ControlsHeading" type="Label" parent="Panel/Margin/Content"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.35, 0.78, 0.72, 1)
 text = "CONTROLS"
+theme_type_variation = &"KickerLabel"
 
 [node name="Bindings" type="VBoxContainer" parent="Panel/Margin/Content"]
 layout_mode = 2
@@ -146,13 +106,9 @@ text = "Shield up"
 [node name="PrimaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldUpRow"]
 custom_minimum_size = Vector2(170, 34)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 [node name="SecondaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldUpRow"]
 custom_minimum_size = Vector2(170, 34)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 
 [node name="ShieldDownRow" type="HBoxContainer" parent="Panel/Margin/Content/Bindings"]
 layout_mode = 2
@@ -163,13 +119,9 @@ text = "Shield down"
 [node name="PrimaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldDownRow"]
 custom_minimum_size = Vector2(170, 34)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 [node name="SecondaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldDownRow"]
 custom_minimum_size = Vector2(170, 34)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 
 [node name="ShieldLeftRow" type="HBoxContainer" parent="Panel/Margin/Content/Bindings"]
 layout_mode = 2
@@ -180,13 +132,9 @@ text = "Shield left"
 [node name="PrimaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldLeftRow"]
 custom_minimum_size = Vector2(170, 34)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 [node name="SecondaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldLeftRow"]
 custom_minimum_size = Vector2(170, 34)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 
 [node name="ShieldRightRow" type="HBoxContainer" parent="Panel/Margin/Content/Bindings"]
 layout_mode = 2
@@ -197,13 +145,9 @@ text = "Shield right"
 [node name="PrimaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldRightRow"]
 custom_minimum_size = Vector2(170, 34)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 [node name="SecondaryButton" type="Button" parent="Panel/Margin/Content/Bindings/ShieldRightRow"]
 custom_minimum_size = Vector2(170, 34)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 
 [node name="OrbRow" type="HBoxContainer" parent="Panel/Margin/Content/Bindings"]
 layout_mode = 2
@@ -214,13 +158,9 @@ text = "Hit orb"
 [node name="PrimaryButton" type="Button" parent="Panel/Margin/Content/Bindings/OrbRow"]
 custom_minimum_size = Vector2(170, 34)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 [node name="SecondaryButton" type="Button" parent="Panel/Margin/Content/Bindings/OrbRow"]
 custom_minimum_size = Vector2(170, 34)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 
 [node name="PauseRow" type="HBoxContainer" parent="Panel/Margin/Content/Bindings"]
 layout_mode = 2
@@ -231,18 +171,14 @@ text = "Pause"
 [node name="PrimaryButton" type="Button" parent="Panel/Margin/Content/Bindings/PauseRow"]
 custom_minimum_size = Vector2(170, 34)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 [node name="SecondaryButton" type="Button" parent="Panel/Margin/Content/Bindings/PauseRow"]
 custom_minimum_size = Vector2(170, 34)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleButton")
-theme_override_styles/hover = SubResource("StyleHover")
 
 [node name="Hint" type="Label" parent="Panel/Margin/Content"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.42, 0.51, 0.54, 1)
 text = "Select a binding, then press any key."
+theme_type_variation = &"MutedLabel"
 
 [connection signal="pressed" from="Panel/Margin/Content/Header/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="value_changed" from="Panel/Margin/Content/MusicSlider" to="." method="_on_music_slider_value_changed"]
