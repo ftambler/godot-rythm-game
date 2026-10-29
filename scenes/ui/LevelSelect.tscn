@@ -1,0 +1,200 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/LevelSelect.gd" id="1_select"]
+[ext_resource type="PackedScene" path="res://scenes/game/GridBackground.tscn" id="2_grid"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_select")
+
+[node name="GridBackground" parent="." instance=ExtResource("2_grid")]
+
+[node name="Header" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 56.0
+offset_top = -130.0
+offset_right = 396.0
+offset_bottom = 130.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="Kicker" type="Label" parent="Header"]
+layout_mode = 2
+text = "SELECT LEVEL"
+theme_type_variation = &"KickerLabel"
+
+[node name="Title" type="Label" parent="Header"]
+layout_mode = 2
+text = "Levels"
+theme_type_variation = &"HeadingLabel"
+
+[node name="Rule" type="Panel" parent="Header"]
+custom_minimum_size = Vector2(48, 2)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"AccentRule"
+
+[node name="Counter" type="Label" parent="Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "01 / 01"
+theme_type_variation = &"AccentValueLabel"
+
+[node name="SortSpacer" type="Control" parent="Header"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SortCaption" type="Label" parent="Header"]
+layout_mode = 2
+unique_name_in_owner = true
+text = "SORT BY"
+theme_type_variation = &"CaptionLabel"
+
+[node name="SortButtons" type="HBoxContainer" parent="Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Default" type="Button" parent="Header/SortButtons"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 13
+toggle_mode = true
+text = "Default"
+
+[node name="Difficulty" type="Button" parent="Header/SortButtons"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 13
+toggle_mode = true
+text = "Difficulty"
+
+[node name="Length" type="Button" parent="Header/SortButtons"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 13
+toggle_mode = true
+text = "Length"
+
+[node name="Name" type="Button" parent="Header/SortButtons"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 13
+toggle_mode = true
+text = "A–Z"
+
+[node name="BackSpacer" type="Control" parent="Header"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BackButton" type="Button" parent="Header"]
+custom_minimum_size = Vector2(110, 36)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+text = "Back"
+
+[node name="Hints" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = -52.0
+offset_right = 556.0
+offset_bottom = -32.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="BrowseKey" type="Label" parent="Hints"]
+layout_mode = 2
+text = "↑ ↓"
+theme_type_variation = &"CaptionLabel"
+
+[node name="Browse" type="Label" parent="Hints"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "browse"
+theme_type_variation = &"MutedLabel"
+
+[node name="Gap1" type="Control" parent="Hints"]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PlayKey" type="Label" parent="Hints"]
+layout_mode = 2
+text = "ENTER"
+theme_type_variation = &"CaptionLabel"
+
+[node name="Play" type="Label" parent="Hints"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "play"
+theme_type_variation = &"MutedLabel"
+
+[node name="Gap2" type="Control" parent="Hints"]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BackKey" type="Label" parent="Hints"]
+layout_mode = 2
+text = "ESC"
+theme_type_variation = &"CaptionLabel"
+
+[node name="Back" type="Label" parent="Hints"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "back"
+theme_type_variation = &"MutedLabel"
+
+[node name="Track" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="EmptyLabel" type="Label" parent="Track"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -12.0
+offset_right = 160.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "No levels listed in levels/index.json"
+horizontal_alignment = 1
+theme_type_variation = &"MutedLabel"
+
+[connection signal="pressed" from="Header/BackButton" to="." method="_on_back_button_pressed"]
