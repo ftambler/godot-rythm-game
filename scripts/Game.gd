@@ -32,7 +32,7 @@ func _ready() -> void:
 
 
 func _load_level() -> void:
-	level = LevelLoader.load_level("res://levels/test.json")
+	level = LevelLoader.load_level(LevelCatalog.path_for(LevelCatalog.selected_id))
 
 	if level == null:
 		return
