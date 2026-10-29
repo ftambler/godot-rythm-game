@@ -1,0 +1,26 @@
+{
+  "levels": [
+    {
+      "id": "test",
+      "levelName": "Test Level",
+      "songName": "Pingamusic",
+      "artist": "Artist 1",
+      "difficulty": 5,
+      "songDuration": 9.0,
+      "wallCount": 9,
+      "orbCount": 9,
+      "speedTriggerCount": 0
+    },
+    {
+      "id": "levelExample",
+      "levelName": "Ex",
+      "songName": "Ex",
+      "artist": "Ex",
+      "difficulty": 10,
+      "songDuration": 90.0,
+      "wallCount": 90,
+      "orbCount": 91,
+      "speedTriggerCount": 10
+    }
+  ]
+}
