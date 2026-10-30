@@ -1,13 +1,13 @@
 import json
 from pathlib import Path
 
+from config import SPEED_LEVELS
 from models import Level, LevelObject
 
 
 VALID_SPEEDS = {
-    500.0: 1,
-    700.0: 2,
-    900.0: 3,
+    speed: level
+    for level, speed in SPEED_LEVELS.items()
 }
 
 

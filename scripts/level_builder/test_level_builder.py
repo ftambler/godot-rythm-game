@@ -1,3 +1,4 @@
+import math
 import sys
 import unittest
 import json
@@ -6,9 +7,10 @@ from tempfile import TemporaryDirectory
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from config import OBJECT_CLEARANCE
 from directions import Direction
-from generator import generate_beat_events, generate_level_from_bpm
-from models import PlayerState
+from generator import generate_beat_events, generate_level, generate_level_from_bpm
+from models import Action, InputEvent, PlayerState
 from serializer import build_json
 from visualizer import visualize_level
 
@@ -76,6 +78,80 @@ class LevelBuilderPhysicsTests(unittest.TestCase):
         payload = build_json(level)
         self.assertEqual(payload["songDuration"], 5.0)
         self.assertTrue(all(obj.end == level.song_duration for obj in level.objects))
+
+    def test_bpm_levels_never_stack_objects(self):
+        for seed in range(20):
+            for pattern in (["orb", "wall"], ["wall"], ["orb", "wall", "wall"]):
+                level = generate_level_from_bpm(
+                    music="test.mp3",
+                    song_start=0.0,
+                    song_duration=30.0,
+                    bpm=120.0,
+                    initial_player=PlayerState(position=(0.0, 0.0), direction=Direction.DOWN_RIGHT, speed=500.0),
+                    pattern=pattern,
+                    speed_changes={8.0: 2, 16.0: 3, 24.0: 1},
+                    seed=seed,
+                )
+
+                objects = level.objects
+                for i, a in enumerate(objects):
+                    for b in objects[i + 1:]:
+                        self.assertGreaterEqual(
+                            math.dist(a.position, b.position),
+                            OBJECT_CLEARANCE,
+                            f"seed={seed} pattern={pattern}: objects at {a.position} and {b.position} overlap",
+                        )
+
+    def test_speed_changes_move_later_objects(self):
+        level = generate_level_from_bpm(
+            music="test.mp3",
+            song_start=0.0,
+            song_duration=3.0,
+            bpm=60.0,
+            initial_player=PlayerState(position=(0.0, 0.0), direction=Direction.RIGHT, speed=500.0),
+            pattern=["orb"],
+            speed_changes={1.0: 3},
+        )
+
+        orbs = [obj.position for obj in level.objects if obj.type == "orb"]
+        triggers = [obj for obj in level.objects if obj.type == "speed_trigger"]
+
+        # The change at t=1 lands on an orb, so it moves to the middle of the
+        # gap before it (t=0.5) instead of hiding under the orb.
+        self.assertEqual(orbs, [(0.0, 0.0), (700.0, 0.0), (1600.0, 0.0), (2500.0, 0.0)])
+        self.assertEqual(len(triggers), 1)
+        self.assertEqual(triggers[0].position, (250.0, 0.0))
+        self.assertEqual(triggers[0].speed, 3)
+
+    def test_recorded_inputs_respect_speed_changes(self):
+        level = generate_level(
+            inputs=[
+                InputEvent(time=1.0, action=Action.ONE),
+                InputEvent(time=2.0, action=Action.ONE),
+            ],
+            music="test.mp3",
+            song_start=0.0,
+            song_duration=2.0,
+            initial_player=PlayerState(position=(0.0, 0.0), direction=Direction.RIGHT, speed=500.0),
+            speed_changes={0.5: 2},
+        )
+
+        orbs = [obj.position for obj in level.objects if obj.type == "orb"]
+        self.assertEqual(orbs, [(600.0, 0.0), (1300.0, 0.0)])
+
+    def test_same_seed_gives_same_layout(self):
+        def build(seed):
+            return generate_level_from_bpm(
+                music="test.mp3",
+                song_start=0.0,
+                song_duration=10.0,
+                bpm=120.0,
+                initial_player=PlayerState(position=(0.0, 0.0), direction=Direction.DOWN_RIGHT, speed=500.0),
+                pattern=["orb", "wall"],
+                seed=seed,
+            )
+
+        self.assertEqual(build_json(build(7)), build_json(build(7)))
 
     def test_visualizer_inverts_y_axis_to_match_game_coordinates(self):
         with TemporaryDirectory() as temp_dir:
