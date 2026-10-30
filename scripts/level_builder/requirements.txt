@@ -1,0 +1,6 @@
+numpy
+matplotlib
+librosa>=0.11
+soundfile
+# Only needed for live input recording mode.
+keyboard
