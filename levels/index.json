@@ -1,26 +1,48 @@
 {
   "levels": [
     {
-      "id": "test",
-      "levelName": "Test Level",
-      "songName": "Pingamusic",
-      "artist": "Artist 1",
-      "difficulty": 5,
+      "id": "demoLevel",
+      "levelName": "Demo",
+      "songName": "Demo",
+      "artist": "Demo",
+      "difficulty": 1,
       "songDuration": 9.0,
       "wallCount": 9,
       "orbCount": 9,
       "speedTriggerCount": 0
     },
     {
-      "id": "levelExample",
-      "levelName": "Ex",
-      "songName": "Ex",
-      "artist": "Ex",
+      "id": "test_easy",
+      "levelName": "Test (Easy)",
+      "songName": "Pingamusic",
+      "artist": "Artist 1",
+      "difficulty": 2,
+      "songDuration": 413.18,
+      "wallCount": 244,
+      "orbCount": 378,
+      "speedTriggerCount": 7
+    },
+    {
+      "id": "test_normal",
+      "levelName": "Test (Normal)",
+      "songName": "Pingamusic",
+      "artist": "Artist 1",
+      "difficulty": 5,
+      "songDuration": 413.18,
+      "wallCount": 496,
+      "orbCount": 603,
+      "speedTriggerCount": 11
+    },
+    {
+      "id": "test_hard",
+      "levelName": "Test (Hard)",
+      "songName": "Pingamusic",
+      "artist": "Artist 1",
       "difficulty": 10,
-      "songDuration": 90.0,
-      "wallCount": 90,
-      "orbCount": 91,
-      "speedTriggerCount": 10
+      "songDuration": 413.18,
+      "wallCount": 800,
+      "orbCount": 892,
+      "speedTriggerCount": 11
     }
   ]
 }
