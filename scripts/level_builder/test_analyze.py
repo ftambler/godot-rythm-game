@@ -7,7 +7,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from analyze import MAX_ORB_RUN, MIN_REACTION_TIME, analyze_song, merge_short_sections
+from analyze import MAX_ORB_RUN, MIN_REACTION_TIME, MIN_WALL_GAP_BEATS, analyze_song, merge_short_sections
 from chart import load_chart, save_chart
 from models import Action
 
@@ -87,6 +87,10 @@ class AnalyzeSongTests(unittest.TestCase):
             actions = [event.action for event in chart.inputs]
             self.assertIn(Action.ONE, actions)
             self.assertIn(Action.TWO, actions)
+
+            wall_times = [event.time for event in chart.inputs if event.action == Action.TWO]
+            min_wall_gap = MIN_WALL_GAP_BEATS * 60.0 / chart.bpm
+            self.assertTrue(all(b - a >= min_wall_gap - 1e-3 for a, b in zip(wall_times, wall_times[1:])))
 
             orb_run = 0
             for action in actions:

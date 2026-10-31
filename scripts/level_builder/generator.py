@@ -6,6 +6,7 @@ import numpy as np
 from bounce import get_bounce
 from config import (
     LEVEL_END_BUFFER,
+    OBJECT_DESPAWN_DELAY,
     MAX_LAYOUT_ATTEMPTS,
     OBJECT_CLEARANCE,
     OBJECT_SPAWN_LEAD,
@@ -22,6 +23,9 @@ from models import (
 )
 from simulator import advance_to, sample_segment
 
+# Seconds of already placed path re-checked together with each new chunk:
+# enough to cover every object that can still be on screen.
+CONFLICT_LOOKBACK = max(OBJECT_SPAWN_LEAD, OBJECT_DESPAWN_DELAY) + 0.25
 # How many previous travel directions the wall choice tries to avoid.
 RECENT_DIRECTIONS = 3
 
@@ -41,9 +45,9 @@ class ChunkLayout:
     object_positions: np.ndarray
     object_hit_times: np.ndarray
     object_spawn_times: np.ndarray
+    object_end_times: np.ndarray
     sample_times: np.ndarray
     sample_positions: np.ndarray
-    sample_speeds: np.ndarray
     end_player: PlayerState
 
 
@@ -230,15 +234,14 @@ def simulate_chunk(
 
     objects: list[LevelObject] = []
     hit_times: list[float] = []
-    sample_times, sample_positions, sample_speeds = [], [], []
+    sample_times, sample_positions = [], []
 
     def sample_until(target_time: float) -> float:
-        times, positions, speeds = sample_segment(
+        times, positions = sample_segment(
             player, current_time, target_time, SIMULATION_STEP
         )
         sample_times.append(times)
         sample_positions.append(positions)
-        sample_speeds.append(speeds)
         return advance_to(player, current_time, target_time)
 
     for event in events:
@@ -249,6 +252,9 @@ def simulate_chunk(
             round(player.position[1], 3),
         )
         spawn_time = max(0.0, event.time - OBJECT_SPAWN_LEAD)
+        # Gone shortly after its beat, so a missed orb doesn't linger and the
+        # path is free to cross this spot again later.
+        despawn_time = min(level_end, event.time + OBJECT_DESPAWN_DELAY)
 
         if event.kind == "wall":
             objects.append(
@@ -257,7 +263,7 @@ def simulate_chunk(
                     position=position,
                     wall_type=wall_type,
                     start=spawn_time,
-                    end=level_end,
+                    end=despawn_time,
                     group_id=group_id,
                 )
             )
@@ -269,7 +275,7 @@ def simulate_chunk(
                     type="orb",
                     position=position,
                     start=spawn_time,
-                    end=level_end,
+                    end=despawn_time,
                     group_id=group_id + 1,
                 )
             )
@@ -280,7 +286,7 @@ def simulate_chunk(
                     type="speed_trigger",
                     position=position,
                     start=spawn_time,
-                    end=level_end,
+                    end=despawn_time,
                     group_id=group_id + 1,
                     speed=event.speed_level,
                 )
@@ -296,9 +302,9 @@ def simulate_chunk(
         object_positions=np.array([obj.position for obj in objects], dtype=float).reshape(-1, 2),
         object_hit_times=np.array(hit_times, dtype=float),
         object_spawn_times=np.array([obj.start for obj in objects], dtype=float),
+        object_end_times=np.array([obj.end for obj in objects], dtype=float),
         sample_times=np.concatenate(sample_times),
         sample_positions=np.concatenate(sample_positions),
-        sample_speeds=np.concatenate(sample_speeds),
         end_player=player,
     )
 
@@ -306,11 +312,18 @@ def simulate_chunk(
 def path_touches_objects(
     times: np.ndarray,
     positions: np.ndarray,
-    speeds: np.ndarray,
     object_positions: np.ndarray,
     object_hit_times: np.ndarray,
     object_spawn_times: np.ndarray,
+    object_end_times: np.ndarray,
 ) -> bool:
+    """Whether the path comes near a visible object other than when hitting it.
+
+    Being near an object is fine during the one continuous visit in which the
+    player hits it (approaching, touching, leaving). Coming back to it later,
+    or passing it before its hit while it's on screen, is a collision.
+    """
+
     if len(times) == 0 or len(object_positions) == 0:
         return False
 
@@ -318,42 +331,86 @@ def path_touches_objects(
         positions[:, None, :] - object_positions[None, :, :],
         axis=2,
     )
-    visible = times[:, None] >= object_spawn_times[None, :]
-    # Around its own hit time the player is supposed to be next to the object.
-    passing = (
-        np.abs(times[:, None] - object_hit_times[None, :]) * speeds[:, None]
-        < OBJECT_CLEARANCE * 1.01
+    visible = (
+        (times[:, None] >= object_spawn_times[None, :])
+        & (times[:, None] <= object_end_times[None, :])
+    )
+    near = (distances < OBJECT_CLEARANCE) & visible
+
+    # Number each stretch of consecutive "near" / "not near" samples per object.
+    changes = np.diff(near.astype(np.int8), axis=0) != 0
+    visit_ids = np.vstack([
+        np.zeros((1, near.shape[1]), dtype=np.int64),
+        np.cumsum(changes, axis=0),
+    ])
+
+    # The visit that contains the hit is allowed, if the hit is in these samples.
+    covered = (object_hit_times >= times[0]) & (object_hit_times <= times[-1])
+    hit_indices = np.clip(np.searchsorted(times, object_hit_times), 0, len(times) - 1)
+    hit_visits = visit_ids[hit_indices, np.arange(near.shape[1])]
+    hitting_visit = (visit_ids == hit_visits[None, :]) & covered[None, :]
+
+    return bool(np.any(near & ~hitting_visit))
+
+
+def objects_overlap_on_screen(candidate: ChunkLayout, recent: list[ChunkLayout]) -> bool:
+    """Whether a new object sits on another one while both are visible.
+
+    Quick back-to-back hits are next to each other by nature and allowed.
+    """
+
+    if len(candidate.object_positions) == 0:
+        return False
+
+    others = recent + [candidate]
+    positions = np.concatenate([chunk.object_positions for chunk in others])
+    hits = np.concatenate([chunk.object_hit_times for chunk in others])
+    spawns = np.concatenate([chunk.object_spawn_times for chunk in others])
+    ends = np.concatenate([chunk.object_end_times for chunk in others])
+
+    distances = np.linalg.norm(
+        candidate.object_positions[:, None, :] - positions[None, :, :],
+        axis=2,
+    )
+    both_visible = (
+        np.maximum(candidate.object_spawn_times[:, None], spawns[None, :])
+        < np.minimum(candidate.object_end_times[:, None], ends[None, :])
+    )
+    back_to_back = (
+        np.abs(candidate.object_hit_times[:, None] - hits[None, :])
+        < OBJECT_CLEARANCE / min(SPEED_LEVELS.values())
     )
 
-    return bool(np.any((distances < OBJECT_CLEARANCE) & visible & ~passing))
+    return bool(np.any((distances < OBJECT_CLEARANCE) & both_visible & ~back_to_back))
 
 
 def has_conflict(candidate: ChunkLayout, placed: list[ChunkLayout]) -> bool:
-    if placed:
-        old_positions = np.concatenate([chunk.object_positions for chunk in placed])
-        old_hit_times = np.concatenate([chunk.object_hit_times for chunk in placed])
-        old_spawn_times = np.concatenate([chunk.object_spawn_times for chunk in placed])
+    """Whether the candidate's path or objects collide with what is on screen.
 
-        # The new path must not run into anything placed earlier.
-        if path_touches_objects(
-            candidate.sample_times,
-            candidate.sample_positions,
-            candidate.sample_speeds,
-            old_positions,
-            old_hit_times,
-            old_spawn_times,
-        ):
-            return True
+    Objects only exist from OBJECT_SPAWN_LEAD before their beat until
+    OBJECT_DESPAWN_DELAY after it, so only the last stretch of the level can
+    interact with the candidate.
+    """
 
-    # The new objects must not sit on any part of the path while visible.
-    all_chunks = placed + [candidate]
+    window_start = candidate.sample_times[0] - CONFLICT_LOOKBACK
+    recent = [candidate]
+    for chunk in reversed(placed):
+        if chunk.sample_times[-1] < window_start:
+            break
+        recent.insert(0, chunk)
+
+    if objects_overlap_on_screen(candidate, recent[:-1]):
+        return True
+
+    # Whole chunks only: cutting one would hide the hit of an object the player
+    # is still moving away from, making that look like a second visit.
     return path_touches_objects(
-        np.concatenate([chunk.sample_times for chunk in all_chunks]),
-        np.concatenate([chunk.sample_positions for chunk in all_chunks]),
-        np.concatenate([chunk.sample_speeds for chunk in all_chunks]),
-        candidate.object_positions,
-        candidate.object_hit_times,
-        candidate.object_spawn_times,
+        np.concatenate([chunk.sample_times for chunk in recent]),
+        np.concatenate([chunk.sample_positions for chunk in recent]),
+        np.concatenate([chunk.object_positions for chunk in recent]),
+        np.concatenate([chunk.object_hit_times for chunk in recent]),
+        np.concatenate([chunk.object_spawn_times for chunk in recent]),
+        np.concatenate([chunk.object_end_times for chunk in recent]),
     )
 
 

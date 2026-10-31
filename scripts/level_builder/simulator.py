@@ -10,7 +10,7 @@ def advance_player(
     delta: float,
 ) -> None:
 
-    direction = player.direction.to_vector()
+    direction = player.direction.unit_vector()
 
     player.position = (
         player.position[0] + direction[0] * player.speed * delta,
@@ -41,17 +41,16 @@ def sample_segment(
     start_time: float,
     end_time: float,
     step: float,
-) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, np.ndarray]:
     """Sample the straight path the player follows between two times.
 
-    Returns (times, positions, speeds) without modifying the player.
+    Returns (times, positions) without modifying the player.
     """
 
     count = max(1, math.ceil((end_time - start_time) / step))
     times = np.linspace(start_time, end_time, count + 1)
-    direction = np.array(player.direction.to_vector(), dtype=float)
+    direction = np.array(player.direction.unit_vector(), dtype=float)
     offsets = (times - start_time)[:, None] * direction * player.speed
     positions = np.array(player.position, dtype=float) + offsets
-    speeds = np.full(times.shape, player.speed)
 
-    return times, positions, speeds
+    return times, positions

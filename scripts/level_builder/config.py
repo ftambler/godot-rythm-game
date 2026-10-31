@@ -5,18 +5,22 @@ LEVEL_DURATION = 5.0
 SONG_START = 0.0
 START_POSITION = (0.0, 0.0)
 START_DIRECTION = "DOWN_RIGHT"
-START_SPEED = 500.0
+START_SPEED = 600.0
 DEFAULT_BPM = 120.0
 LEVEL_END_BUFFER = 3.0
-OBJECT_SPAWN_LEAD = 0.75
+# Seconds before its beat an object appears; about half a screen ahead at speed 1.
+OBJECT_SPAWN_LEAD = 1.0
+# Seconds after its beat an object is removed (if the player didn't already clear it).
+OBJECT_DESPAWN_DELAY = 0.5
 OUTPUT_DIRECTORY = Path(__file__).parent
 PREDICT_TIME = 1
 
 # Runtime speed levels (PlayerSpeed.Type in Godot) -> pixels per second.
+# Must match scripts/player/PlayerSpeed.gd (test_level_builder checks this).
 SPEED_LEVELS = {
-    1: 500.0,
-    2: 700.0,
-    3: 900.0,
+    1: 600.0,
+    2: 800.0,
+    3: 1000.0,
 }
 
 # Minimum distance (px) the player path must keep from any object it is not

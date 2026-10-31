@@ -24,9 +24,11 @@ LOW_BAND_MELS = 12
 SILENCE_RATIO = 0.25
 BEATS_PER_BAR = 4
 # Speed sections shorter than this are merged into their neighbours.
-MIN_SECTION_BARS = 8
+MIN_SECTION_BARS = 4
 # Songs whose loudness varies less than this (relative) get no speed changes.
 MIN_DYNAMIC_RANGE = 0.15
+# Minimum beats between two walls, so wall clusters don't overlap.
+MIN_WALL_GAP_BEATS = 0.5
 # Most orbs in a row before one becomes a wall (keeps the path from going straight forever).
 MAX_ORB_RUN = 4
 # Never place two events closer than this (seconds), whatever the tempo.
@@ -49,16 +51,16 @@ class DifficultySettings:
 
 DIFFICULTIES = {
     "easy": DifficultySettings(
-        subdivisions=2, density=0.5, min_gap_beats=1,
-        max_gap_beats=4, wall_fraction=0.3, max_speed_level=2,
+        subdivisions=2, density=0.75, min_gap_beats=1,
+        max_gap_beats=2, wall_fraction=0.3, max_speed_level=2,
     ),
     "normal": DifficultySettings(
-        subdivisions=2, density=0.75, min_gap_beats=0.5,
-        max_gap_beats=2, wall_fraction=0.4, max_speed_level=3,
+        subdivisions=4, density=1.25, min_gap_beats=0.5,
+        max_gap_beats=1.5, wall_fraction=0.4, max_speed_level=3,
     ),
     "hard": DifficultySettings(
-        subdivisions=4, density=1.25, min_gap_beats=0.25,
-        max_gap_beats=2, wall_fraction=0.45, max_speed_level=3,
+        subdivisions=4, density=1.6, min_gap_beats=0.25,
+        max_gap_beats=1, wall_fraction=0.45, max_speed_level=3,
     ),
 }
 
@@ -134,7 +136,7 @@ def analyze_song(
     grid = build_grid(beat_times, settings.subdivisions, frame_times, onset_env, low_env, rms)
 
     times = select_events(grid, settings, beat_duration=60.0 / bpm)
-    inputs = classify_events(grid, times, settings.wall_fraction)
+    inputs = classify_events(grid, times, settings.wall_fraction, beat_duration=60.0 / bpm)
     start_speed_level, speed_changes = find_speed_sections(
         beat_times, frame_times, rms, settings.max_speed_level
     )
@@ -270,18 +272,30 @@ def classify_events(
     grid: list[GridPoint],
     times: list[float],
     wall_fraction: float,
+    beat_duration: float,
 ) -> list[InputEvent]:
     by_time = {point.time: point for point in grid}
     points = [by_time[time] for time in times]
 
+    # Walls are 80px long: closer than this they would overlap each other.
+    min_wall_gap = MIN_WALL_GAP_BEATS * beat_duration
+    wall_times: list[float] = []
+
+    def add_wall(time: float) -> bool:
+        if not fits(wall_times, time, min_wall_gap):
+            return False
+        bisect.insort(wall_times, time)
+        return True
+
+    # Punchiest low-end hits first; a hit too close to a stronger wall stays an orb.
     wall_count = round(len(points) * wall_fraction)
-    wall_times = {
-        point.time
-        for point in sorted(points, key=lambda p: p.low_strength, reverse=True)[:wall_count]
-    }
+    for point in sorted(points, key=lambda p: p.low_strength, reverse=True):
+        if len(wall_times) >= wall_count:
+            break
+        add_wall(point.time)
 
     # Long runs of orbs are long straight lines; turn the punchiest orb of an
-    # over-long run into a wall.
+    # over-long run that has room for it into a wall.
     run: list[GridPoint] = []
     for point in points:
         if point.time in wall_times:
@@ -289,9 +303,10 @@ def classify_events(
             continue
         run.append(point)
         if len(run) > MAX_ORB_RUN:
-            strongest = max(run, key=lambda p: p.low_strength)
-            wall_times.add(strongest.time)
-            run = run[run.index(strongest) + 1:]
+            for candidate in sorted(run, key=lambda p: p.low_strength, reverse=True):
+                if add_wall(candidate.time):
+                    run = run[run.index(candidate) + 1:]
+                    break
 
     return [
         InputEvent(

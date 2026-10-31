@@ -1,4 +1,5 @@
 import math
+import re
 import sys
 import unittest
 import json
@@ -7,7 +8,7 @@ from tempfile import TemporaryDirectory
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from config import OBJECT_CLEARANCE
+from config import OBJECT_CLEARANCE, OBJECT_DESPAWN_DELAY, OBJECT_SPAWN_LEAD, SPEED_LEVELS
 from directions import Direction
 from generator import generate_beat_events, generate_level, generate_level_from_bpm
 from models import Action, InputEvent, PlayerState
@@ -63,7 +64,7 @@ class LevelBuilderPhysicsTests(unittest.TestCase):
         self.assertEqual(level.player.direction, Direction.DOWN_RIGHT)
         self.assertEqual(level.player.speed, 500.0)
 
-    def test_generated_objects_remain_visible_through_finish_buffer(self):
+    def test_objects_only_live_around_their_beat(self):
         level = generate_level_from_bpm(
             music="test.mp3",
             song_start=0.0,
@@ -77,7 +78,11 @@ class LevelBuilderPhysicsTests(unittest.TestCase):
         self.assertEqual(level.song_duration, 5.0)
         payload = build_json(level)
         self.assertEqual(payload["songDuration"], 5.0)
-        self.assertTrue(all(obj.end == level.song_duration for obj in level.objects))
+        for obj in level.objects:
+            self.assertLess(obj.start, obj.end)
+            self.assertLessEqual(obj.end, level.song_duration)
+            if obj.start > 0:
+                self.assertAlmostEqual(obj.end - obj.start, OBJECT_SPAWN_LEAD + OBJECT_DESPAWN_DELAY)
 
     def test_bpm_levels_never_stack_objects(self):
         for seed in range(20):
@@ -93,9 +98,12 @@ class LevelBuilderPhysicsTests(unittest.TestCase):
                     seed=seed,
                 )
 
+                # Objects on screen at the same time must not overlap.
                 objects = level.objects
                 for i, a in enumerate(objects):
                     for b in objects[i + 1:]:
+                        if max(a.start, b.start) >= min(a.end, b.end):
+                            continue
                         self.assertGreaterEqual(
                             math.dist(a.position, b.position),
                             OBJECT_CLEARANCE,
@@ -108,7 +116,7 @@ class LevelBuilderPhysicsTests(unittest.TestCase):
             song_start=0.0,
             song_duration=3.0,
             bpm=60.0,
-            initial_player=PlayerState(position=(0.0, 0.0), direction=Direction.RIGHT, speed=500.0),
+            initial_player=PlayerState(position=(0.0, 0.0), direction=Direction.RIGHT, speed=SPEED_LEVELS[1]),
             pattern=["orb"],
             speed_changes={1.0: 3},
         )
@@ -118,9 +126,12 @@ class LevelBuilderPhysicsTests(unittest.TestCase):
 
         # The change at t=1 lands on an orb, so it moves to the middle of the
         # gap before it (t=0.5) instead of hiding under the orb.
-        self.assertEqual(orbs, [(0.0, 0.0), (700.0, 0.0), (1600.0, 0.0), (2500.0, 0.0)])
+        slow, fast = SPEED_LEVELS[1], SPEED_LEVELS[3]
+        trigger_x = slow * 0.5
+        first_x = trigger_x + fast * 0.5
+        self.assertEqual(orbs, [(0.0, 0.0), (first_x, 0.0), (first_x + fast, 0.0), (first_x + 2 * fast, 0.0)])
         self.assertEqual(len(triggers), 1)
-        self.assertEqual(triggers[0].position, (250.0, 0.0))
+        self.assertEqual(triggers[0].position, (trigger_x, 0.0))
         self.assertEqual(triggers[0].speed, 3)
 
     def test_recorded_inputs_respect_speed_changes(self):
@@ -132,12 +143,33 @@ class LevelBuilderPhysicsTests(unittest.TestCase):
             music="test.mp3",
             song_start=0.0,
             song_duration=2.0,
-            initial_player=PlayerState(position=(0.0, 0.0), direction=Direction.RIGHT, speed=500.0),
+            initial_player=PlayerState(position=(0.0, 0.0), direction=Direction.RIGHT, speed=SPEED_LEVELS[1]),
             speed_changes={0.5: 2},
         )
 
         orbs = [obj.position for obj in level.objects if obj.type == "orb"]
-        self.assertEqual(orbs, [(600.0, 0.0), (1300.0, 0.0)])
+        first_x = SPEED_LEVELS[1] * 0.5 + SPEED_LEVELS[2] * 0.5
+        self.assertEqual(orbs, [(first_x, 0.0), (first_x + SPEED_LEVELS[2], 0.0)])
+
+    def test_diagonal_movement_matches_game_speed(self):
+        level = generate_level(
+            inputs=[InputEvent(time=1.0, action=Action.ONE)],
+            music="test.mp3",
+            song_start=0.0,
+            song_duration=1.0,
+            initial_player=PlayerState(position=(0.0, 0.0), direction=Direction.DOWN_RIGHT, speed=SPEED_LEVELS[1]),
+        )
+
+        # Godot normalizes diagonal directions, so one second covers `speed` pixels.
+        self.assertAlmostEqual(math.hypot(*level.objects[0].position), SPEED_LEVELS[1], delta=0.01)
+
+    def test_speed_levels_match_godot(self):
+        source = (Path(__file__).resolve().parents[1] / "player" / "PlayerSpeed.gd").read_text(encoding="utf-8")
+        godot_speeds = {
+            int(level): float(value)
+            for level, value in re.findall(r"Type\.SPEED_(\d+):\s*([\d.]+)", source)
+        }
+        self.assertEqual(godot_speeds, SPEED_LEVELS)
 
     def test_same_seed_gives_same_layout(self):
         def build(seed):
