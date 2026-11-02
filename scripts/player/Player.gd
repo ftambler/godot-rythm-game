@@ -32,6 +32,14 @@ func move_player(delta: float) -> void:
 	if collision:
 		handle_collision(collision)
 
+		# Spend the rest of this frame's movement in the new direction, so
+		# every bounce doesn't drop a bit of distance and fall behind the music.
+		if collision.get_collider() is Wall:
+			var remainder := collision.get_remainder().length()
+			var bounced := move_and_collide(PlayerDirection.to_vector(movement_direction) * remainder)
+			if bounced:
+				handle_collision(bounced)
+
 signal hit_registered(result: HitResult.Type)
 
 func hit_orb() -> void:
