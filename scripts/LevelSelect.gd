@@ -89,6 +89,8 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	# Grabbed up front: changing scene below removes this node from the tree.
+	var viewport := get_viewport()
 	if event.is_action_pressed("ui_up", true) or event.is_action_pressed("shield_up", true):
 		_select(_target - 1)
 	elif event.is_action_pressed("ui_down", true) or event.is_action_pressed("shield_down", true):
@@ -99,7 +101,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_on_back_button_pressed()
 	else:
 		return
-	get_viewport().set_input_as_handled()
+	viewport.set_input_as_handled()
 
 
 func _input(event: InputEvent) -> void:
