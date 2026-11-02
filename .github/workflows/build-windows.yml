@@ -45,11 +45,12 @@ jobs:
         run: |
           mkdir -p build/windows
           godot --headless --export-release "$EXPORT_PRESET" "build/windows/${EXPORT_NAME}.exe"
+          echo "SHORT_SHA=${GITHUB_SHA::7}" >> "$GITHUB_ENV"
 
       - name: Upload build
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.EXPORT_NAME }}-windows-${{ github.sha }}
+          name: ${{ env.EXPORT_NAME }}-windows-${{ env.SHORT_SHA }}
           path: build/windows/
           if-no-files-found: error
 
