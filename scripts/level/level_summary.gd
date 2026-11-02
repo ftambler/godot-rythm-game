@@ -5,6 +5,7 @@ class_name LevelSummary
 
 var id: String  # level file name without extension
 var level_name: String = ""
+var music: String = ""  # same value as the level file's "music", previewed on level select
 var song_name: String = "Unknown Song"
 var artist: String = "Unknown Artist"
 var difficulty: int = 1
@@ -18,6 +19,7 @@ static func from_dict(data: Dictionary) -> LevelSummary:
 	var summary := LevelSummary.new()
 	summary.id = str(data["id"])
 	summary.level_name = str(data.get("levelName", ""))
+	summary.music = str(data.get("music", ""))
 	summary.song_name = str(data.get("songName", "Unknown Song"))
 	summary.artist = str(data.get("artist", "Unknown Artist"))
 	summary.difficulty = clampi(int(data.get("difficulty", 1)), 1, LevelData.MAX_DIFFICULTY)

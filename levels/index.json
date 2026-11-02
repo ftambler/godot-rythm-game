@@ -3,6 +3,7 @@
     {
       "id": "demoLevel",
       "levelName": "Demo",
+      "music": "flamewall.mp3",
       "songName": "Demo",
       "artist": "Demo",
       "difficulty": 1,
@@ -14,6 +15,7 @@
     {
       "id": "test_easy",
       "levelName": "Test (Easy)",
+      "music": "flamewall.mp3",
       "songName": "Pingamusic",
       "artist": "Artist 1",
       "difficulty": 2,
@@ -25,6 +27,7 @@
     {
       "id": "test_normal",
       "levelName": "Test (Normal)",
+      "music": "flamewall.mp3",
       "songName": "Pingamusic",
       "artist": "Artist 1",
       "difficulty": 5,
@@ -36,6 +39,7 @@
     {
       "id": "test_hard",
       "levelName": "Test (Hard)",
+      "music": "flamewall.mp3",
       "songName": "Pingamusic",
       "artist": "Artist 1",
       "difficulty": 10,
