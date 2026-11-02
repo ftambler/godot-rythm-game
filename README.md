@@ -26,7 +26,7 @@ Los aciertos aumentan el puntaje y el combo. Los errores reducen la vida; acerta
 
 Para ejecutar el juego, abrí `project.godot` con Godot 4.7 y ejecutá el proyecto.
 
-O descarga el [Latest Release](https://github.com).
+O descargá el [Latest Release](https://github.com/ftambler/godot-rythm-game/releases/latest).
 
 ## Generar un nivel
 
