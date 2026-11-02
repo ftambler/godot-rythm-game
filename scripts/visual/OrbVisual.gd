@@ -25,12 +25,12 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	var pulse := 0.5 + 0.5 * sin(_time * PULSE_SPEED)
 
-	draw_circle(Vector2.ZERO, Palette.ORB_CORE_RADIUS + 4.0, Color(Palette.CYAN, 0.08 + 0.06 * pulse))
-	draw_circle(Vector2.ZERO, Palette.ORB_CORE_RADIUS, Palette.WHITE.lerp(Palette.CYAN, 0.35 - 0.25 * pulse))
-	draw_arc(Vector2.ZERO, Palette.ORB_RING_RADIUS, 0.0, TAU, 32, Palette.CYAN, 1.5, true)
+	draw_circle(Vector2.ZERO, Palette.ORB_CORE_RADIUS + 4.0, Color(Palette.ORB, 0.08 + 0.06 * pulse))
+	draw_circle(Vector2.ZERO, Palette.ORB_CORE_RADIUS, Palette.WHITE.lerp(Palette.ORB, 0.35 - 0.25 * pulse))
+	draw_arc(Vector2.ZERO, Palette.ORB_RING_RADIUS, 0.0, TAU, 32, Palette.ORB, 1.5, true)
 
 	var slot := TAU / DASH_COUNT
 	var spin := _time * RING_SPIN_SPEED
 	for i in DASH_COUNT:
 		var start := spin + slot * i
-		draw_arc(Vector2.ZERO, Palette.ORB_OUTER_RADIUS, start, start + slot * DASH_FILL, 8, Color(Palette.CYAN, 0.55), 1.5, true)
+		draw_arc(Vector2.ZERO, Palette.ORB_OUTER_RADIUS, start, start + slot * DASH_FILL, 8, Color(Palette.ORB, 0.55), 1.5, true)

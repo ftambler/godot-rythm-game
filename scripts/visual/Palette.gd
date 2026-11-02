@@ -21,6 +21,7 @@ const PINK := Color("#FF4FA3")    # misses, damage
 const GREEN := Color("#78F59A")   # successful interactions
 const YELLOW := Color("#FFD166")  # speed changes, special events
 const WALL := Color("#4FB4FF")    # cool blue variant of cyan for static obstacles
+const ORB := Color("#FF2E97")     # hot pink for orbs
 
 # Text
 const WHITE := Color("#F3F6FF")
