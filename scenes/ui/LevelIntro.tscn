@@ -2,6 +2,14 @@
 
 [ext_resource type="Script" uid="uid://b080l6wkjth3w" path="res://scripts/LevelIntro.gd" id="1_intro"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_band"]
+content_margin_top = 22.0
+content_margin_bottom = 22.0
+bg_color = Color(0.0667, 0.0941, 0.1647, 0.55)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.2078, 0.9059, 0.949, 0.35)
+
 [node name="LevelIntro" type="CanvasLayer" unique_id=1172595569]
 layer = 20
 script = ExtResource("1_intro")
@@ -13,60 +21,75 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0)
+color = Color(0.0314, 0.0431, 0.0941, 0.35)
 
-[node name="Panel" type="PanelContainer" parent="Overlay" unique_id=444983567]
-layout_mode = 0
-offset_left = 28.0
-offset_top = 92.0
-offset_right = 468.0
-offset_bottom = 196.0
+[node name="Band" type="PanelContainer" parent="Overlay" unique_id=444983567]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_band")
 
-[node name="Margin" type="MarginContainer" parent="Overlay/Panel" unique_id=1322896177]
+[node name="Content" type="VBoxContainer" parent="Overlay/Band" unique_id=885401131]
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 12
-
-[node name="Content" type="VBoxContainer" parent="Overlay/Panel/Margin" unique_id=885401131]
-layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
 theme_override_constants/separation = 6
+alignment = 1
 
-[node name="SongRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=790730316]
+[node name="Kicker" type="Label" parent="Overlay/Band/Content"]
 layout_mode = 2
-theme_override_constants/separation = 0
+text = "NOW PLAYING"
+horizontal_alignment = 1
+theme_type_variation = &"KickerLabel"
 
-[node name="SongName" type="Label" parent="Overlay/Panel/Margin/Content/SongRow" unique_id=1182552629]
+[node name="SongName" type="Label" parent="Overlay/Band/Content" unique_id=1182552629]
 layout_mode = 2
-size_flags_horizontal = 3
 text = "Song Name"
-clip_text = true
-theme_type_variation = &"SubheadingLabel"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+theme_type_variation = &"TitleLabel"
 
-[node name="Difficulty" type="Label" parent="Overlay/Panel/Margin/Content/SongRow" unique_id=3340261]
+[node name="Artist" type="Label" parent="Overlay/Band/Content" unique_id=280764914]
 layout_mode = 2
-text = "2"
-theme_type_variation = &"SubheadingLabel"
-
-[node name="Star" type="Label" parent="Overlay/Panel/Margin/Content/SongRow" unique_id=1615962192]
-layout_mode = 2
-text = " ★"
-theme_type_variation = &"SpecialLabel"
-
-[node name="ArtistRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=2091427807]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Artist" type="Label" parent="Overlay/Panel/Margin/Content/ArtistRow" unique_id=280764914]
-layout_mode = 2
-size_flags_horizontal = 3
 text = "Artist"
-clip_text = true
+horizontal_alignment = 1
+text_overrun_behavior = 3
 theme_type_variation = &"MutedLabel"
 
-[node name="Duration" type="Label" parent="Overlay/Panel/Margin/Content/ArtistRow" unique_id=771665279]
+[node name="Details" type="HBoxContainer" parent="Overlay/Band/Content"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Stars" type="HBoxContainer" parent="Overlay/Band/Content/Details"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="StarsLit" type="Label" parent="Overlay/Band/Content/Details/Stars" unique_id=3340261]
+layout_mode = 2
+text = "★★"
+theme_type_variation = &"SpecialLabel"
+
+[node name="StarsDim" type="Label" parent="Overlay/Band/Content/Details/Stars" unique_id=1615962192]
+layout_mode = 2
+text = "★★★★★★★★"
+theme_type_variation = &"SpecialLabel"
+
+[node name="Separator" type="Label" parent="Overlay/Band/Content/Details"]
+layout_mode = 2
+text = "·"
+theme_type_variation = &"MutedLabel"
+
+[node name="Duration" type="Label" parent="Overlay/Band/Content/Details" unique_id=771665279]
 layout_mode = 2
 text = "0:05"
 theme_type_variation = &"MutedLabel"
