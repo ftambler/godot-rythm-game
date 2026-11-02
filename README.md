@@ -26,12 +26,34 @@ Los aciertos aumentan el puntaje y el combo. Los errores reducen la vida; acerta
 
 Para ejecutar el juego, abrí `project.godot` con Godot 4.7 y ejecutá el proyecto.
 
+O descarga el [Latest Release](https://github.com).
+
 ## Generar un nivel
 
-Desde `scripts/level_builder`, ejecutá:
+Los niveles se generan a partir de la canción con un script de Python. Desde `scripts/level_builder`, la primera vez instalá las dependencias:
 
 ```powershell
-.\.venv\Scripts\python main.py --bpm 120 --duration 5 --pattern orb wall --name test
+python -m venv .venv
+.\.venv\Scripts\python -m pip install -r requirements.txt
 ```
 
-El generador guarda el nivel como `levels/test.json` y crea una vista previa `levels/test.png`.
+Después, con la canción en `audio/`:
+
+```powershell
+.\.venv\Scripts\python main.py --analyze cancion.mp3 --difficulty normal --name cancion_normal
+```
+
+**Cómo funciona:**
+
+1. **Análisis del audio** (`analyze.py`, con librosa): detecta el tempo y los pulsos de la canción, y mide la fuerza de cada golpe en una grilla de ½ o ¼ de pulso. Se quedan los golpes más fuertes; las partes más fuertes de la canción reciben más objetos y los silencios quedan vacíos. Los golpes con más graves (bombo, caja) se vuelven paredes y el resto orbes. Según el volumen de cada tramo de la canción se colocan cambios de velocidad.
+2. **Chart:** el resultado se guarda en `charts/<nombre>.chart.json`, una lista de tiempos y tipos de objeto que se puede editar a mano.
+3. **Ubicación:** el generador simula el recorrido de la pelota con la misma física del juego y coloca cada objeto donde va a estar la pelota en ese pulso. Elige la orientación de cada pared para que el recorrido no pase por encima de otros objetos visibles.
+
+La dificultad (`easy`, `normal`, `hard`) cambia la densidad de objetos y la velocidad máxima. El nivel se guarda en `levels/<nombre>.json` con una vista previa `levels/<nombre>.png`. Para que aparezca en el juego, agregalo a `levels/index.json`.
+
+Otras opciones:
+
+- `--chart charts/<nombre>.chart.json`: regenera el nivel desde un chart editado, sin volver a analizar la canción.
+- `--seed N`: genera otro recorrido con los mismos tiempos.
+- `--duration 60`: usa solo los primeros 60 segundos.
+- `--bpm 120 --pattern orb wall`: modo simple, coloca un objeto en cada pulso siguiendo el patrón, sin analizar el audio.
