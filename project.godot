@@ -23,6 +23,10 @@ MusicController="*res://scripts/MusicController.gd"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[gui]
+
+theme/custom="res://themes/minimal_neon_theme.tres"
+
 [input]
 
 shield_up={

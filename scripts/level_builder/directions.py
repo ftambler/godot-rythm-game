@@ -1,3 +1,4 @@
+import math
 from enum import Enum
 
 
@@ -14,3 +15,9 @@ class Direction(Enum):
 
     def to_vector(self) -> tuple[int, int]:
         return self.value
+
+    def unit_vector(self) -> tuple[float, float]:
+        """Movement direction with length 1, like PlayerDirection.to_vector in Godot."""
+        x, y = self.value
+        length = math.hypot(x, y)
+        return (x / length, y / length)

@@ -1,5 +1,8 @@
 class_name LevelData
 
+const MAX_DIFFICULTY := 10
+
+var level_name: String = ""
 var music: String
 var song_name: String = "Unknown Song"
 var artist: String = "Unknown Artist"

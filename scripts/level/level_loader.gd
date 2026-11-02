@@ -22,9 +22,10 @@ static func _parse_level(data: Dictionary) -> LevelData:
 	var level := LevelData.new()
 
 	level.music = data["music"]
+	level.level_name = str(data.get("levelName", ""))
 	level.song_name = str(data.get("songName", "Unknown Song"))
 	level.artist = str(data.get("artist", "Unknown Artist"))
-	level.difficulty = clampi(int(data.get("difficulty", 1)), 1, 5)
+	level.difficulty = clampi(int(data.get("difficulty", 1)), 1, LevelData.MAX_DIFFICULTY)
 	level.song_start = data["songStart"]
 	level.song_duration = data["songDuration"]
 

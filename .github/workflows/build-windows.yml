@@ -1,0 +1,80 @@
+name: Build Windows
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  # Must match the engine version the project is developed with (project.godot -> config/features).
+  GODOT_VERSION: 4.7.2
+  EXPORT_PRESET: Windows Desktop
+  EXPORT_NAME: Build
+
+jobs:
+  export-windows:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # needed to create releases
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Godot and export templates
+        run: |
+          base="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable"
+          wget -q "$base/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          wget -q "$base/Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
+
+          unzip -q "Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          sudo mv "Godot_v${GODOT_VERSION}-stable_linux.x86_64" /usr/local/bin/godot
+
+          templates_dir="$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          mkdir -p "$templates_dir"
+          unzip -q "Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
+          mv templates/* "$templates_dir"
+
+          rm -rf templates *.zip *.tpz
+
+      - name: Import project
+        run: godot --headless --import
+
+      - name: Export
+        run: |
+          mkdir -p build/windows
+          godot --headless --export-release "$EXPORT_PRESET" "build/windows/${EXPORT_NAME}.exe"
+          echo "SHORT_SHA=${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.EXPORT_NAME }}-windows-${{ env.SHORT_SHA }}
+          path: build/windows/
+          if-no-files-found: error
+
+      # Releases are only published for pushes (merges) to main.
+      # The release name is the commit's first line; the tag is the same text made tag-safe.
+      - name: Read release name from commit
+        id: release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          name="$(printf '%s\n' "$COMMIT_MESSAGE" | head -n 1 | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
+          tag="$(printf '%s' "$name" | tr -cs 'A-Za-z0-9._-' '-' | sed 's/^-*//; s/-*$//')"
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Zip build
+        if: steps.release.outcome == 'success'
+        run: cd build/windows && zip -r "../../${EXPORT_NAME}-windows.zip" .
+
+      - name: Publish release
+        if: steps.release.outcome == 'success'
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ steps.release.outputs.name }}
+          tag_name: ${{ steps.release.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          files: ${{ env.EXPORT_NAME }}-windows.zip
