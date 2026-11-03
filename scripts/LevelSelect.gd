@@ -26,6 +26,8 @@ const RECEDE_X := 50.0               # sideways drift of far cards, sells the de
 const MIN_BRIGHTNESS := 0.55
 
 const SCROLL_SHARPNESS := 12.0
+const PREVIEW_FADE := 0.5
+const PREVIEW_START_RANGE := 0.9  # random preview start falls in this fraction of the song
 
 const SORT_LABELS := {
 	SortMode.DEFAULT: "Default",
@@ -92,9 +94,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Grabbed up front: changing scene below removes this node from the tree.
 	var viewport := get_viewport()
 	if event.is_action_pressed("ui_up", true) or event.is_action_pressed("shield_up", true):
-		_select(_target - 1)
+		_browse(_target - 1)
 	elif event.is_action_pressed("ui_down", true) or event.is_action_pressed("shield_down", true):
-		_select(_target + 1)
+		_browse(_target + 1)
 	elif event.is_action_pressed("ui_accept"):
 		_play_selected()
 	elif event.is_action_pressed("ui_cancel"):
@@ -109,9 +111,9 @@ func _input(event: InputEvent) -> void:
 	# under the cursor would otherwise swallow it.
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			_select(_target - 1)
+			_browse(_target - 1)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			_select(_target + 1)
+			_browse(_target + 1)
 
 
 ## True when the list is long enough that the loop's seam (half the list away
@@ -139,6 +141,26 @@ func _select(position: int) -> void:
 	for i in count:
 		_cards[i].set_selected(i == _selected)
 	counter_label.text = "%02d / %02d" % [_selected + 1, count]
+	_play_preview()
+
+
+## Loops the selected level's song from a random point in its first 90%.
+## Levels sharing a song keep it playing where it is.
+func _play_preview() -> void:
+	var level := _cards[_selected].level
+	if level.music.is_empty():
+		MusicController.stop_music(PREVIEW_FADE)
+	else:
+		var start := randf() * level.song_duration * PREVIEW_START_RANGE
+		MusicController.play_music(level.music, start, PREVIEW_FADE, true)
+
+
+## Selects a card in response to the player, with the UI sound.
+func _browse(position: int) -> void:
+	if _cards.is_empty():
+		return
+	_select(position)
+	MusicController.play_ui_sound()
 
 
 ## Selects a card without animating the drum there.
@@ -230,6 +252,7 @@ func _play_selected() -> void:
 	if _cards.is_empty():
 		return
 	LevelCatalog.selected_id = _cards[_selected].level.id
+	MusicController.play_ui_sound()
 	get_tree().change_scene_to_file(GAME_SCENE)
 
 
@@ -245,8 +268,9 @@ func _on_card_pressed(card: LevelCard) -> void:
 		var count := _cards.size()
 		var half := floori(count / 2.0)
 		step = posmod(step + half, count) - half
-	_select(_target + step)
+	_browse(_target + step)
 
 
 func _on_back_button_pressed() -> void:
+	MusicController.play_ui_sound()
 	get_tree().change_scene_to_file(MENU_SCENE)

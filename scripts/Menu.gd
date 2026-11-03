@@ -6,6 +6,7 @@ extends Control
 @onready var options_menu: Control = $OptionsMenu
 
 func _ready() -> void:
+	MusicController.play_menu_music()
 	play_button.grab_focus()
 
 func _on_play_button_pressed() -> void:

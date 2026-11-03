@@ -3,13 +3,26 @@ extends Node
 const MUSIC_DIRECTORY := "res://audio/"
 const MIN_VOLUME_DB := -80.0
 const SETTINGS_PATH := "user://settings.cfg"
+const MENU_MUSIC := "res://audio/ui/menuLoop.mp3"
+const UI_BUTTON_SOUND := preload("res://audio/ui/menuButton.mp3")
+const UI_SOUND_POLYPHONY := 4
+# Keyboard actions that move focus between controls; focus changes caused by
+# anything else (e.g. a menu calling grab_focus() on open) stay silent.
+const UI_NAVIGATION_ACTIONS: Array[StringName] = [
+	&"ui_up", &"ui_down", &"ui_left", &"ui_right", &"ui_focus_next", &"ui_focus_prev",
+]
 
 var _player: AudioStreamPlayer
+var _ui_player: AudioStreamPlayer
+var _last_ui_sound_frame := -1
 var _volume := 1.0
 var _sfx_volume := 1.0
 var _fade_tween: Tween
 
 func _ready() -> void:
+	# Fades and UI sounds keep running while the game is paused (pause menu,
+	# level intro); the music itself still pauses with the tree.
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	_load_settings()
 	_ensure_bus("Music")
 	_ensure_bus("SFX")
@@ -18,9 +31,38 @@ func _ready() -> void:
 	_player = AudioStreamPlayer.new()
 	_player.name = "MusicPlayer"
 	_player.bus = "Music"
+	_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_child(_player)
+	_ui_player = AudioStreamPlayer.new()
+	_ui_player.name = "UiSoundPlayer"
+	_ui_player.bus = "SFX"
+	_ui_player.stream = UI_BUTTON_SOUND
+	_ui_player.max_polyphony = UI_SOUND_POLYPHONY
+	add_child(_ui_player)
+	get_tree().node_added.connect(_on_node_added)
+	# The main scene's nodes are added before this autoload is ready, so
+	# node_added misses them; hook those up once startup has finished.
+	_hook_existing_buttons.call_deferred(get_tree().root)
 
-func play_music(file_name: String, start_position := 0.0, fade_duration := 1.0) -> void:
+func play_menu_music() -> void:
+	# Optional until the track is added to the project.
+	if ResourceLoader.exists(MENU_MUSIC):
+		play_music(MENU_MUSIC, 0.0, 1.0, true)
+	else:
+		# Don't carry a level preview from the level select into the menu.
+		stop_music()
+
+## Plays the UI click/hover sound on the SFX bus. Repeated calls within one
+## frame (e.g. a button's hover and the screen reacting to the same input)
+## play it once.
+func play_ui_sound() -> void:
+	var frame := Engine.get_process_frames()
+	if frame == _last_ui_sound_frame:
+		return
+	_last_ui_sound_frame = frame
+	_ui_player.play()
+
+func play_music(file_name: String, start_position := 0.0, fade_duration := 1.0, loop := false) -> void:
 	var music_path := file_name
 	if not music_path.begins_with("res://"):
 		music_path = MUSIC_DIRECTORY + file_name
@@ -35,7 +77,13 @@ func play_music(file_name: String, start_position := 0.0, fade_duration := 1.0) 
 		return
 
 	if _player.playing and _player.stream == stream:
+		# Undoes a fade-out still in progress (e.g. browsing away from a song
+		# and straight back); killing that tween also cancels its pending switch.
+		fade_in(fade_duration)
 		return
+
+	if stream is AudioStreamMP3 or stream is AudioStreamOggVorbis:
+		stream.loop = loop
 
 	if _player.playing:
 		await fade_out(fade_duration)
@@ -49,7 +97,10 @@ func stop_music(fade_duration := 1.0) -> void:
 	if not _player.playing:
 		return
 
-	await fade_out(fade_duration)
+	if fade_duration > 0.0:
+		await fade_out(fade_duration)
+	else:
+		_kill_fade()
 	_player.stop()
 	_player.stream = null
 
@@ -81,6 +132,28 @@ func fade_out(duration: float) -> void:
 	_fade_tween = create_tween()
 	_fade_tween.tween_property(_player, "volume_db", MIN_VOLUME_DB, maxf(duration, 0.0))
 	await _fade_tween.finished
+
+func _on_node_added(node: Node) -> void:
+	# Re-parented buttons are added again; they already have the sounds hooked up.
+	if node is BaseButton and not node.pressed.is_connected(play_ui_sound):
+		node.mouse_entered.connect(_on_button_hovered.bind(node))
+		node.focus_entered.connect(_on_button_focused)
+		node.pressed.connect(play_ui_sound)
+
+func _hook_existing_buttons(node: Node) -> void:
+	_on_node_added(node)
+	for child in node.get_children():
+		_hook_existing_buttons(child)
+
+func _on_button_hovered(button: BaseButton) -> void:
+	if not button.disabled:
+		play_ui_sound()
+
+func _on_button_focused() -> void:
+	for action in UI_NAVIGATION_ACTIONS:
+		if Input.is_action_just_pressed(action):
+			play_ui_sound()
+			return
 
 func _volume_to_db(value: float) -> float:
 	return linear_to_db(maxf(value, 0.0001))
