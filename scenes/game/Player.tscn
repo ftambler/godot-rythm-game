@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scripts/visual/PlayerVisual.gd" id="3_pvis"]
 [ext_resource type="Script" path="res://scripts/visual/ShieldVisual.gd" id="4_svis"]
 [ext_resource type="Script" path="res://scripts/player/PlayerCamera.gd" id="5_pcam"]
+[ext_resource type="Script" path="res://scripts/visual/PlayerTrail.gd" id="6_trail"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v8gbi"]
 
@@ -28,6 +29,9 @@ script = ExtResource("2_6vqvp")
 [node name="ShieldVisual" type="Node2D" parent="Shield" unique_id=213899276]
 z_index = 1
 script = ExtResource("4_svis")
+
+[node name="Trail" type="Node2D" parent="."]
+script = ExtResource("6_trail")
 
 [node name="Visual" type="Node2D" parent="." unique_id=259176759]
 z_index = 1
