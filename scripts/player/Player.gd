@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var shield: PlayerShield = $Shield
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var orb_detector: Area2D = $OrbDetector
+@onready var camera: PlayerCamera = $Camera2D
 
 @export var speed_type: PlayerSpeed.Type = PlayerSpeed.Type.SPEED_2
 

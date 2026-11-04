@@ -40,6 +40,9 @@ func _load_level() -> void:
 	player.position = level.player_position
 	player.movement_direction = PlayerDirection.from_vector(level.player_direction)
 	player.speed_type = level.player_speed
+	# Start the camera already leading, and stop interpolation from sliding in from the old position.
+	player.camera.snap()
+	player.reset_physics_interpolation()
 	# Cut the menu loop so the level song starts on time once the intro ends.
 	MusicController.stop_music(0.0)
 	get_tree().paused = true
