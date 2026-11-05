@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juego de Ritmo – Documentación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Colors mirror scripts/visual/Palette.gd */
+  :root {
+    --background: #080B18;
+    --background-secondary: #0D1222;
+    --grid: #151D32;
+    --grid-highlight: #1B2740;
+    --panel: #11182A;
+    --panel-elevated: #182239;
+    --border: #293650;
+    --cyan: #35E7F2;
+    --pink: #FF4FA3;
+    --green: #78F59A;
+    --yellow: #FFD166;
+    --wall: #4FB4FF;
+    --orb: #FF2E97;
+    --white: #F3F6FF;
+    --muted: #8D9AB5;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    margin: 0;
+    padding: 72px 16px 96px;
+    background: var(--background);
+    color: var(--white);
+    font: 400 16px/1.7 "Inter", system-ui, sans-serif;
+  }
+
+  /* Fixed layers repeat on every printed page, so each page gets the whole
+     A4 background image instead of one image stretched across the document. */
+  .page-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--background) url("gdd_background.png") center / cover no-repeat;
+  }
+
+  /* Layout table: its thead/tfoot repeat on every printed page, giving each
+     page a top and bottom margin while @page margin stays 0 (so the
+     background still reaches the paper edge). */
+  .print-frame { width: 100%; border-collapse: collapse; }
+  .print-frame > * > tr > td { padding: 0; }
+  .page-space { height: 0; }
+
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  /* Neon titles: white core, glow in a Palette accent */
+  .neon {
+    --glow: var(--cyan);
+    color: var(--white);
+    font-family: "Orbitron", sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-shadow:
+      0 0 4px var(--glow),
+      0 0 12px var(--glow),
+      0 0 40px var(--glow),
+      0 0 128px var(--glow);
+  }
+  .neon.pink   { --glow: var(--pink); }
+  .neon.green  { --glow: var(--green); }
+  .neon.yellow { --glow: var(--yellow); }
+  .neon.wall   { --glow: var(--wall); }
+  .neon.orb    { --glow: var(--orb); }
+
+  h1, h2, h3, h4 { margin: 0; line-height: 1.25; }
+
+  h1 {
+    font-size: clamp(32px, 7vw, 56px);
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-family: "Orbitron", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin: 20px 0 64px;
+  }
+
+  h2 {
+    font-size: clamp(24px, 4.5vw, 34px);
+    text-transform: uppercase;
+    margin: 88px 0 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 20px;
+    margin: 48px 0 16px;
+  }
+  h4 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin: 28px 0 8px;
+  }
+
+  p { margin: 0 0 16px; }
+  .muted { color: var(--muted); }
+  strong { color: var(--white); font-weight: 600; }
+
+  .panel {
+    background: rgba(17, 24, 42, 0.82); /* --panel */
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 0 0 20px;
+  }
+  .panel > :last-child { margin-bottom: 0; }
+
+  ul, ol { margin: 0 0 16px; padding-left: 24px; }
+  li { margin-bottom: 8px; }
+  li::marker { color: var(--cyan); font-weight: 600; }
+
+  .loop li::marker { font-family: "Orbitron", sans-serif; }
+
+  .keys kbd {
+    display: inline-block;
+    min-width: 26px;
+    padding: 1px 7px;
+    border: 1px solid var(--cyan);
+    border-radius: 5px;
+    color: var(--cyan);
+    font: 600 13px/1.5 "Orbitron", sans-serif;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(53, 231, 242, 0.35);
+  }
+
+  .tag { font-weight: 600; }
+  .tag.green  { color: var(--green); }
+  .tag.yellow { color: var(--yellow); }
+  .tag.pink   { color: var(--pink); }
+  .tag.orb    { color: var(--orb); }
+  .tag.wall   { color: var(--wall); }
+
+  figure {
+    margin: 32px 0;
+  }
+  .figure-slot {
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    background: rgba(8, 11, 24, 0.6);
+    color: var(--muted);
+    font-family: "Orbitron", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  figcaption {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .mda {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(17, 24, 42, 0.82);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .mda th, .mda td {
+    padding: 16px 20px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+  }
+  .mda tr:last-child td { border-bottom: 0; }
+  .mda th {
+    background: rgba(24, 34, 57, 0.9); /* --panel-elevated */
+    color: var(--muted);
+    font: 600 12px/1.4 "Orbitron", sans-serif;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .mda td:first-child { width: 30%; }
+  .mda td:first-child strong {
+    display: block;
+    font-family: "Orbitron", sans-serif;
+    font-size: 15px;
+  }
+  .mda td:first-child span { color: var(--muted); font-size: 13px; }
+
+  .sprints {
+    display: grid;
+    gap: 20px;
+  }
+  .sprint {
+    --accent: var(--green);
+    position: relative;
+    background: rgba(17, 24, 42, 0.82);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 22px 26px;
+    box-shadow: -6px 0 18px -10px var(--accent);
+    break-inside: avoid;
+  }
+  /* A sprint list split so its first card can stay with the section heading */
+  .keep + .sprints { margin-top: 20px; }
+  .sprint.planned { --accent: var(--yellow); }
+  .sprint header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 16px;
+    margin-bottom: 12px;
+  }
+  .sprint h4 { margin: 0; color: var(--accent); }
+  .sprint .period { color: var(--muted); font-size: 14px; }
+  .sprint .goal { font-weight: 600; margin-bottom: 12px; }
+  .sprint dl { margin: 0; }
+  .sprint dt {
+    color: var(--muted);
+    font: 600 11px/1.4 "Orbitron", sans-serif;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+  .sprint dd { margin: 4px 0 0; }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { padding: 0 18mm; }
+    .page-bg { background-size: 100% 100%; } /* image is exactly A4 */
+    .page-space { height: 16mm; }
+    h1 { margin-top: 12mm; }
+    h2 { margin-top: 48px; break-after: avoid; }
+    /* Headings travel with the block that follows them (break-after is
+       ignored inside the print-frame cell, so group them instead). */
+    .keep { break-inside: avoid; }
+    h3, h4 { break-after: avoid; }
+    .panel, figure, .mda, .mda tr { break-inside: avoid; }
+  }
+
+  @media (max-width: 560px) {
+    .panel, .sprint { padding: 18px 18px; }
+    .mda th, .mda td { padding: 12px 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="page-bg" aria-hidden="true"></div>
+<table class="print-frame" role="presentation">
+<thead><tr><td><div class="page-space"></div></td></tr></thead>
+<tfoot><tr><td><div class="page-space"></div></td></tr></tfoot>
+<tbody><tr><td>
+<main>
+
+  <h1 class="neon">Juego de Ritmo</h1>
+  <p class="subtitle">Documentación del proyecto · Feature Complete</p>
+
+  <!-- Resumen -->
+  <h2 class="neon">Resumen del juego</h2>
+  <div class="panel">
+    <p>Juego de ritmo en el que una pelota parte del centro de la pantalla en una de 8 direcciones (arriba, abajo, izquierda, derecha y sus 4 diagonales). Al chocar contra una <span class="tag wall">pared</span> (horizontal, vertical, diagonal derecha o diagonal izquierda) la dirección de la pelota se refleja como la luz en un espejo. El jugador debe cubrirse con un escudo (<span class="keys"><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></span> o flechas) en la dirección exacta de la pared en el momento del impacto, y presionar la barra espaciadora al pasar por los <span class="tag orb">“orbes”</span>. Los <span class="tag yellow">activadores de velocidad</span> aceleran o frenan la pelota y cambian el ritmo de la partida. La perspectiva es 2D vista desde arriba y el nivel está sincronizado con una canción.</p>
+    <p>El juego tiene un sistema de puntos y combos: si haces los movimientos correctos, tu combo y tu puntaje aumentan. También hay una barra de vida que baja cuando te equivocas de forma seguida hasta hacerte perder, pero puedes ir recuperándola a medida que vuelves a acertar.</p>
+  </div>
+
+  <!-- Diseño -->
+  <div class="keep">
+  <h2 class="neon">Documentación de Diseño</h2>
+
+  <h3 class="neon wall">Mecánicas</h3>
+  <p class="muted">Según <em>Challenges for Game Designers</em> (Brathwaite y Schreiber, p. 53), las mecánicas se agrupan en cinco tipos.</p>
+
+  <h4>Setup (armado del juego)</h4>
+  <div class="panel">
+    <p>Al iniciar un nivel, la pelota aparece en el centro de la pantalla con una dirección inicial definida por el nivel. Las paredes, los orbes y los activadores de velocidad van apareciendo a medida que avanza el nivel, según el diseño del mismo y sincronizados con la canción. El puntaje arranca en 0 y la precisión en 100 %.</p>
+  </div>
+
+  </div>
+  <h4>Condición de victoria / derrota</h4>
+  <div class="panel">
+    <p><span class="tag green">Victoria:</span> el nivel siempre se juega hasta el final de la canción. No se gana de forma binaria: el resultado se mide con el puntaje total y el porcentaje de precisión final, que el jugador intenta superar en cada intento.</p>
+    <p><span class="tag pink">Derrota:</span> el jugador pierde la partida si su barra de vida llega a cero. La barra disminuye cada vez que no se protege correctamente (o falla la dirección/tiempo) y se recupera ligeramente al realizar protecciones correctas.</p>
+  </div>
+
+  <h4>Acciones del jugador (verbos)</h4>
+  <div class="panel">
+    <ul>
+      <li><strong>Cubrirse / bloquear:</strong> activar el escudo con <span class="keys"><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></span> (o flechas). En una pared diagonal hay que presionar las dos teclas que forman la diagonal; si solo se presiona una, se obtiene un acierto parcial (<span class="tag yellow">half hit</span>) ganando el 50 % de los puntos y perdiendo precisión, mientras que la combinación exacta otorga un acierto perfecto (<span class="tag green">full hit</span>).</li>
+      <li><strong>Activar orbes:</strong> presionar la <span class="keys"><kbd>Espacio</kbd></span> en el momento exacto en que la pelota pasa por el orbe.</li>
+      <li><strong>Anticipar:</strong> leer la trayectoria reflejada para preparar el siguiente escudo.</li>
+    </ul>
+    <p class="muted">El jugador no controla el movimiento de la pelota: solo controla el momento y la dirección de su respuesta.</p>
+  </div>
+
+  <h4>Flujo del juego (core loop)</h4>
+  <div class="panel">
+    <p>El juego es en tiempo real y sin turnos. El ciclo central se repite en cada impacto:</p>
+    <ol class="loop">
+      <li>La pelota avanza en una de las 8 direcciones al ritmo de la música.</li>
+      <li>El jugador observa la próxima pared u orbe y anticipa el momento del contacto.</li>
+      <li>Presiona el escudo (o la barra espaciadora) en la dirección y el tiempo correctos.</li>
+      <li>El juego evalúa la respuesta (<span class="tag green">full hits</span> para aciertos perfectos, <span class="tag yellow">half hits</span> para aciertos parciales o <span class="tag pink">MISS</span> para fallos), actualiza el puntaje y la precisión, y ajusta la barra de vida (aumenta ligeramente con aciertos o disminuye con fallos).</li>
+      <li>La dirección de la pelota se refleja como en un espejo; los activadores de velocidad cambian la velocidad a la que se mueve la pelota.</li>
+      <li>Se vuelve al paso 1 hasta terminar la canción.</li>
+    </ol>
+    <p><strong>Reglas de reflexión:</strong> la pared horizontal invierte el componente vertical, la vertical invierte el horizontal, y las diagonales intercambian los componentes (por ejemplo, la pelota que viene desde la izquierda y choca con una diagonal sale hacia arriba o hacia abajo).</p>
+  </div>
+
+  <figure>
+    <div class="figure-slot">Screenshot de nivel</div>
+    <figcaption>Figura 1. Screenshot de nivel</figcaption>
+  </figure>
+
+  <h4>Vistas del juego</h4>
+  <div class="panel">
+    <p>Vista 2D desde arriba con toda la información pública: el jugador ve la pelota, las paredes, los orbes y los activadores antes de llegar a ellos. La interfaz muestra el puntaje, la precisión y la retroalimentación de cada golpe (full hits, half hits o fallos). La música funciona como una “vista” sonora: el ritmo indica cuándo llegará el próximo impacto.</p>
+  </div>
+
+  <div class="keep">
+  <h3 class="neon wall">Dinámicas</h3>
+  <p class="muted">De las dinámicas centrales que propone <em>Challenges for Game Designers</em> (p. 30), el juego se apoya en dos: predicción y razonamiento espacial.</p>
+
+  <h4>Predicción</h4>
+  <div class="panel">
+    <p>El jugador gana si logra anticipar cuándo ocurrirá cada impacto. Debe leer la distancia a la próxima pared y el ritmo de la canción para presionar el escudo en el momento exacto. Los activadores de velocidad y los orbes refuerzan esta dinámica: obligan a recalcular el tiempo en plena partida y premian la reacción justa con puntaje y precisión.</p>
+  </div>
+
+  </div>
+  <h4>Razonamiento espacial</h4>
+  <div class="panel">
+    <p>El jugador debe calcular hacia dónde irá la pelota después de cada reflexión y qué orientación tiene la pared que viene. Con 8 direcciones y 4 tipos de pared, cada choque exige interpretar ángulos como en un espejo. Elegir la dirección exacta del escudo (especialmente en diagonales, donde hay que combinar dos teclas) es lo que separa el puntaje completo del 50 %.</p>
+  </div>
+
+  <div class="keep">
+  <h3 class="neon wall">Estéticas (MDA)</h3>
+  <p class="muted">Según el paper MDA (Hunicke, LeBlanc y Zubek, 2004), el juego busca cuatro estéticas, ordenadas por importancia:</p>
+  <table class="mda">
+    <thead>
+      <tr><th>Estética</th><th>Cómo la genera el juego</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Desafío</strong><span>Challenge</span></td>
+        <td>El juego como carrera de obstáculos: timing exacto, escudo en la dirección correcta, obtención de half hits con penalización del 50 % en diagonales y cambios de velocidad que suben la dificultad.</td>
+      </tr>
+      <tr>
+        <td><strong>Sensación</strong><span>Sensation</span></td>
+        <td>Placer sensorial al sincronizar la acción con la música: cada impacto acertado coincide con el ritmo y se acompaña con efectos visuales y sonoros.</td>
+      </tr>
+      <tr>
+        <td><strong>Sumisión</strong><span>Submission</span></td>
+        <td>El juego como pasatiempo que absorbe: el ciclo repetitivo y rítmico lleva al jugador a un estado de flujo donde reacciona casi sin pensar.</td>
+      </tr>
+      <tr>
+        <td><strong>Descubrimiento</strong><span>Discovery</span></td>
+        <td>Cada nivel propone nuevas combinaciones de paredes, orbes y velocidades que el jugador va descubriendo y aprendiendo a dominar.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- Producción -->
+  <div class="keep">
+  <h2 class="neon">Documentación de Producción</h2>
+
+  <h3 class="neon green">Tareas realizadas (Feature Complete)</h3>
+  <p class="muted">A continuación se detallan los sprints finalizados del 3 de septiembre al 8 de octubre de 2026, enfocados en la implementación funcional y mecánica del juego (Feature Complete):</p>
+
+  <div class="sprints">
+    <article class="sprint">
+      <header><h4>Sprint 1</h4><span class="period">3–9 de septiembre de 2026</span></header>
+      <div class="goal">Definición conceptual del juego</div>
+      <dl>
+        <dt>Tareas</dt><dd>Definición del concepto general y reglas principales; implementación del movimiento base de la pelota en 8 direcciones.</dd>
+        <dt>Criterios de aceptación</dt><dd>La pelota se desplaza correctamente en las 8 direcciones definidas dentro del espacio de juego.</dd>
+      </dl>
+    </article>
+  </div>
+  </div>
+  <div class="sprints">
+    <article class="sprint">
+      <header><h4>Sprint 2</h4><span class="period">10–16 de septiembre de 2026</span></header>
+      <div class="goal">Sistema de rebotes y orientaciones de pared</div>
+      <dl>
+        <dt>Tareas</dt><dd>Desarrollo de paredes con 4 orientaciones (horizontal, vertical, diagonal derecha, diagonal izquierda) y lógica de reflexión como espejo.</dd>
+        <dt>Criterios de aceptación</dt><dd>La trayectoria de la pelota se refleja de forma precisa al colisionar con cualquier tipo de pared.</dd>
+      </dl>
+    </article>
+    <article class="sprint">
+      <header><h4>Sprint 3</h4><span class="period">17–23 de septiembre de 2026</span></header>
+      <div class="goal">Controles del jugador y mecánicas de escudo</div>
+      <dl>
+        <dt>Tareas</dt><dd>Implementación del escudo con entrada WASD y flechas, soporte para combinaciones de teclas diagonales.</dd>
+        <dt>Criterios de aceptación</dt><dd>El jugador puede orientar el escudo en las 8 direcciones con respuesta inmediata a las entradas de teclado.</dd>
+      </dl>
+    </article>
+    <article class="sprint">
+      <header><h4>Sprint 4</h4><span class="period">24–30 de septiembre de 2026</span></header>
+      <div class="goal">Sistema de puntuación, precisión y activadores de velocidad</div>
+      <dl>
+        <dt>Tareas</dt><dd>Lógica de puntuación completa (full hit) y parcial (half hit al 50 %) con cálculo de precisión; integración de activadores de aceleración y desaceleración.</dd>
+        <dt>Criterios de aceptación</dt><dd>Los bloqueos diagonales incompletos otorgan 50 % de puntos y penalizan la precisión; la pelota cambia su velocidad correctamente al cruzar un activador.</dd>
+      </dl>
+    </article>
+    <article class="sprint">
+      <header><h4>Sprint 5</h4><span class="period">1–8 de octubre de 2026</span></header>
+      <div class="goal">Orbes de ritmo, barra de vida, sistema de combos y nivel de prueba funcional (Feature Complete)</div>
+      <dl>
+        <dt>Tareas</dt><dd>Activación de orbes mediante la barra espaciadora; primer nivel de prueba sincronizado con canción; barra de vida con lógica de recuperación y derrota al llegar a cero; contador de combos.</dd>
+        <dt>Criterios de aceptación</dt><dd>El nivel de prueba se ejecuta completo de forma fluida con todas las mecánicas integradas y sincronizadas con la música.</dd>
+      </dl>
+    </article>
+  </div>
+
+  <div class="keep">
+  <h3 class="neon yellow">Plan de producción hasta noviembre</h3>
+  <p class="muted">Planificación detallada por sprints continuos desde el 9 de octubre hasta la entrega final de noviembre de 2026, enfocada exclusivamente en la producción de contenido, diseño de niveles, arte, audio y pulido:</p>
+
+  <div class="sprints">
+    <article class="sprint planned">
+      <header><h4>Sprint 6</h4><span class="period">9–15 de octubre de 2026</span></header>
+      <div class="goal">Pulido inicial y dinámica visual de movimiento</div>
+      <dl>
+        <dt>Tareas</dt><dd>Diseño e implementación de un fondo dinámico que transmita sensación de movimiento constante al jugador durante la partida.</dd>
+        <dt>Criterios de aceptación</dt><dd>El fondo dinámico se renderiza de forma fluida y transmite correctamente la sensación de movimiento durante la partida.</dd>
+      </dl>
+    </article>
+  </div>
+  </div>
+  <div class="sprints">
+    <article class="sprint planned">
+      <header><h4>Sprint 7</h4><span class="period">16–22 de octubre de 2026</span></header>
+      <div class="goal">Diseño y mapeo de niveles iniciales</div>
+      <dl>
+        <dt>Tareas</dt><dd>Crear y mapear los primeros 2 niveles introductorios utilizando patrones progresivos de paredes, orbes y activadores de velocidad.</dd>
+        <dt>Criterios de aceptación</dt><dd>Niveles 1 y 2 totalmente jugables de principio a fin, manteniendo sincronización perfecta con sus respectivas canciones.</dd>
+      </dl>
+    </article>
+    <article class="sprint planned">
+      <header><h4>Sprint 8</h4><span class="period">23–29 de octubre de 2026</span></header>
+      <div class="goal">Expansión de contenido y niveles avanzados</div>
+      <dl>
+        <dt>Tareas</dt><dd>Diseñar e integrar niveles de mayor dificultad con canciones adicionales y patrones complejos de alta densidad.</dd>
+        <dt>Criterios de aceptación</dt><dd>Mínimo 2 niveles avanzados implementados y probados satisfactoriamente.</dd>
+      </dl>
+    </article>
+    <article class="sprint planned">
+      <header><h4>Sprint 9</h4><span class="period">30 de octubre–5 de noviembre de 2026</span></header>
+      <div class="goal">Integración de arte final, interfaz visual y audio definitivos</div>
+      <dl>
+        <dt>Tareas</dt><dd>Reemplazar assets temporales por sprites y animaciones finales, agregar efectos de partículas visuales, pulir la UI e integrar efectos de sonido (SFX).</dd>
+        <dt>Criterios de aceptación</dt><dd>Inexistencia de elementos placeholder en el juego; interfaz y efectos visuales/sonoros completamente integrados.</dd>
+      </dl>
+    </article>
+    <article class="sprint planned">
+      <header><h4>Sprint 10</h4><span class="period">6–12 de noviembre de 2026</span></header>
+      <div class="goal">Playtesting externo, balanceo y pulido general</div>
+      <dl>
+        <dt>Tareas</dt><dd>Sesiones de prueba con usuarios externos, ajuste de curvas de dificultad y afinación fina de sincro de ritmo en todos los niveles.</dd>
+        <dt>Criterios de aceptación</dt><dd>Feedback recolectado e incorporado para suavizar picos injustos de dificultad.</dd>
+      </dl>
+    </article>
+    <article class="sprint planned">
+      <header><h4>Sprint 11</h4><span class="period">13–18 de noviembre de 2026</span></header>
+      <div class="goal">Content Complete, resolución de errores y entrega final</div>
+      <dl>
+        <dt>Tareas</dt><dd>Corrección de bugs menores, compilación de la versión final (build) con todo el contenido, actualización documental y preparación de la presentación.</dd>
+        <dt>Criterios de aceptación</dt><dd>Build estable sin errores bloqueantes y documentación de entrega validada.</dd>
+      </dl>
+    </article>
+  </div>
+
+</main>
+</td></tr></tbody>
+</table>
+</body>
+</html>
