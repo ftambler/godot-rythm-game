@@ -46,12 +46,15 @@ const ORB_RING_RADIUS := 9.0
 const ORB_OUTER_RADIUS := 13.0
 const GRID_CELL_SIZE := 36.0
 const GRID_MAJOR_EVERY := 4
+const TRAIL_WIDTH := 3.0
+const TRAIL_ALPHA := 0.6
 
 # Timing (seconds)
 const FLASH_DURATION := 0.18
 const EFFECT_DURATION := 0.3
 const PULSE_DURATION := 0.14
 const APPEAR_DURATION := 0.12
+const TRAIL_DURATION := 0.18  # ~110 px behind the player at SPEED_1, ~180 px at SPEED_3
 
 
 static func hit_result_color(result: HitResult.Type) -> Color:

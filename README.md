@@ -6,8 +6,8 @@
 | Santiago Pereira | 
 | Federico Tambler | 
 
-**Curso / materia:** completar  
-**Institución:** completar  
+**Curso / materia:** Desarrollo de Videojuegos 
+
 **Año:** 2026
 
 ## Resumen del juego
@@ -20,13 +20,14 @@ Los aciertos aumentan el puntaje y el combo. Los errores reducen la vida; acerta
 
 ## Cómo jugar
 
-- **Escudo:** WASD o flechas.
-- **Orbes:** barra espaciadora.
-- **Pausa:** P o Escape.
-
 Para ejecutar el juego, abrí `project.godot` con Godot 4.7 y ejecutá el proyecto.
 
 O descargá el [Latest Release](https://github.com/ftambler/godot-rythm-game/releases/latest).
+
+Dentro del juego:
+- **Escudo:** WASD o flechas.
+- **Orbes:** barra espaciadora.
+- **Pausa:** P o Escape.
 
 ## Generar un nivel
 
