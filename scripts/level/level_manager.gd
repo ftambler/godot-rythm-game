@@ -98,6 +98,8 @@ func _spawn_object(data: LevelObjectData) -> void:
 			return
 
 	object.position = data.position
+	# Placed after entering the tree, so don't let interpolation slide it in from the origin.
+	object.reset_physics_interpolation()
 	active_objects[data] = object
 
 

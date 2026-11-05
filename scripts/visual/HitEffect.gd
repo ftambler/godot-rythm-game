@@ -33,6 +33,11 @@ static func spawn_wall(parent: Node, wall_transform: Transform2D, contact: Vecto
 	effect.ring_offset = effect.to_local(contact)
 
 
+func _init() -> void:
+	# Effects never move, and interpolating would slide them in from where they were added.
+	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+
+
 func _ready() -> void:
 	var tween := create_tween()
 	tween.tween_property(self, "_progress", 1.0, Palette.EFFECT_DURATION).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
