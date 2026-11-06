@@ -18,6 +18,7 @@ const BORDER := Color("#293650")
 # Accents (each one has a single role)
 const CYAN := Color("#35E7F2")    # player identity, primary values
 const PINK := Color("#FF4FA3")    # misses, damage
+const DANGER := Color("#FF2A2A")  # low-health aura
 const GREEN := Color("#78F59A")   # successful interactions
 const YELLOW := Color("#FFD166")  # speed changes, special events
 const WALL := Color("#4FB4FF")    # cool blue variant of cyan for static obstacles

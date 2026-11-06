@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scripts/player/PlayerCamera.gd" id="5_pcam"]
 [ext_resource type="Script" path="res://scripts/visual/PlayerTrail.gd" id="6_trail"]
 
+[ext_resource type="Script" path="res://scripts/visual/PlayerAura.gd" id="7_aura"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_v8gbi"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_js8gp"]
@@ -32,6 +34,9 @@ script = ExtResource("4_svis")
 
 [node name="Trail" type="Node2D" parent="."]
 script = ExtResource("6_trail")
+
+[node name="Aura" type="Node2D" parent="."]
+script = ExtResource("7_aura")
 
 [node name="Visual" type="Node2D" parent="." unique_id=259176759]
 z_index = 1
