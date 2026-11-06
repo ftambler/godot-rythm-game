@@ -72,7 +72,7 @@ def record_inputs(duration: float) -> list[InputEvent]:
 
 
 LEVELS_DIRECTORY = Path(__file__).resolve().parents[2] / "levels"
-AUDIO_DIRECTORY = Path(__file__).resolve().parents[2] / "audio"
+AUDIO_DIRECTORY = LEVELS_DIRECTORY / "music"
 CHARTS_DIRECTORY = Path(__file__).resolve().parent / "charts"
 
 
@@ -145,7 +145,7 @@ def resolve_audio_path(value: str) -> Path:
 
 def main():
     parser = argparse.ArgumentParser(description="Build a rhythm level from a song, a chart, input or BPM timing.")
-    parser.add_argument("--analyze", metavar="AUDIO", default=None, help="Analyze a song (path, or file name inside audio/) and build a level from it.")
+    parser.add_argument("--analyze", metavar="AUDIO", default=None, help="Analyze a song (path, or file name inside levels/music/) and build a level from it.")
     parser.add_argument("--chart", metavar="CHART", default=None, help="Build a level from a saved (possibly hand-edited) chart JSON.")
     parser.add_argument("--difficulty", choices=sorted(DIFFICULTIES), default="normal", help="Event density for --analyze.")
     parser.add_argument("--bpm", type=float, default=None, help="BPM mode: build a beat-driven level. With --analyze: tempo hint for beat tracking.")
