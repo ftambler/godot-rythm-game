@@ -17,6 +17,8 @@ var _run_finished: bool = false
 func _ready() -> void:
 	player.hit_registered.connect(score_handler.handle_hit)
 	player.hit_registered.connect(hud.flash_hit)
+	if not HitMarker.FOLLOW_PLAYER:
+		player.hit_registered.connect(hud.show_hit_marker)
 	score_handler.score_updated.connect(update_hud)
 	score_handler.gameplay_stats_updated.connect(update_gameplay_hud)
 	score_handler.health_depleted.connect(_on_health_depleted)
@@ -95,3 +97,4 @@ func update_hud(score: int, accuracy: float) -> void:
 func update_gameplay_hud(combo: int, health: int) -> void:
 	hud.update_combo(combo)
 	hud.update_health(health)
+	player.aura.set_health(health)
