@@ -47,6 +47,18 @@
       "wallCount": 800,
       "orbCount": 892,
       "speedTriggerCount": 11
+    },
+    {
+      "id": "bloodbath",
+      "levelName": "Bloodbath",
+      "music": "atTheSpeedOfLight.mp3",
+      "songName": "At the Speed of Light",
+      "artist": "Si",
+      "difficulty": 10,
+      "songDuration": 255.111,
+      "wallCount": 407,
+      "orbCount": 475,
+      "speedTriggerCount": 6
     }
   ]
 }
