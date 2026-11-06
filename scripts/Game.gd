@@ -95,3 +95,4 @@ func update_hud(score: int, accuracy: float) -> void:
 func update_gameplay_hud(combo: int, health: int) -> void:
 	hud.update_combo(combo)
 	hud.update_health(health)
+	player.aura.set_health(health)
