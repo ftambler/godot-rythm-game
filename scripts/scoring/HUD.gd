@@ -12,6 +12,7 @@ const IDLE_COMBO_ALPHA := 0.35
 @onready var combo_label: Label = %ComboLabel
 @onready var health_label: Label = %HealthLabel
 @onready var health_bar: ProgressBar = %HealthBar
+@onready var hit_marker_anchor: Control = %HitMarkerAnchor
 
 var _last_score := 0
 var _last_combo := 0
@@ -55,6 +56,10 @@ func flash_hit(result: HitResult.Type) -> void:
 	_health_fill.bg_color = Palette.hit_result_color(result)
 	_health_tween = create_tween()
 	_health_tween.tween_property(_health_fill, "bg_color", Palette.CYAN, Palette.EFFECT_DURATION * 2.0)
+
+
+func show_hit_marker(result: HitResult.Type) -> void:
+	HitMarker.spawn(hit_marker_anchor, null, result)
 
 
 func _pulse(control: Control, peak: float, pivot: Vector2) -> void:
