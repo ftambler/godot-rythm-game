@@ -59,6 +59,78 @@
       "wallCount": 407,
       "orbCount": 475,
       "speedTriggerCount": 6
+    },
+    {
+      "id": "deadlocked_easy",
+      "levelName": "Deadlocked (Easy)",
+      "music": "deadlocked.mp3",
+      "songName": "Deadlocked",
+      "artist": "Unknown",
+      "difficulty": 2,
+      "songDuration": 211.039,
+      "wallCount": 85,
+      "orbCount": 156,
+      "speedTriggerCount": 4
+    },
+    {
+      "id": "deadlocked_normal",
+      "levelName": "Deadlocked (Normal)",
+      "music": "deadlocked.mp3",
+      "songName": "Deadlocked",
+      "artist": "Unknown",
+      "difficulty": 5,
+      "songDuration": 211.039,
+      "wallCount": 192,
+      "orbCount": 260,
+      "speedTriggerCount": 8
+    },
+    {
+      "id": "deadlocked_hard",
+      "levelName": "Deadlocked (Hard)",
+      "music": "deadlocked.mp3",
+      "songName": "Deadlocked",
+      "artist": "Unknown",
+      "difficulty": 10,
+      "songDuration": 211.039,
+      "wallCount": 274,
+      "orbCount": 303,
+      "speedTriggerCount": 8
+    },
+    {
+      "id": "nockem_easy",
+      "levelName": "Nockem (Easy)",
+      "music": "nockem.mp3",
+      "songName": "Nockem",
+      "artist": "Unknown",
+      "difficulty": 2,
+      "songDuration": 214.799,
+      "wallCount": 109,
+      "orbCount": 172,
+      "speedTriggerCount": 5
+    },
+    {
+      "id": "nockem_normal",
+      "levelName": "Nockem (Normal)",
+      "music": "nockem.mp3",
+      "songName": "Nockem",
+      "artist": "Unknown",
+      "difficulty": 5,
+      "songDuration": 214.799,
+      "wallCount": 224,
+      "orbCount": 290,
+      "speedTriggerCount": 6
+    },
+    {
+      "id": "nockem_hard",
+      "levelName": "Nockem (Hard)",
+      "music": "nockem.mp3",
+      "songName": "Nockem",
+      "artist": "Unknown",
+      "difficulty": 10,
+      "songDuration": 214.799,
+      "wallCount": 383,
+      "orbCount": 432,
+      "speedTriggerCount": 6
     }
   ]
 }
