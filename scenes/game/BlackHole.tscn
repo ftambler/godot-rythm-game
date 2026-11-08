@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/BlackHole.gd" id="1_bhole"]
+[ext_resource type="Script" path="res://scripts/visual/BlackHoleVisual.gd" id="2_bhvis"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bhole"]
+radius = 24.0
+
+[node name="BlackHole" type="Area2D"]
+script = ExtResource("1_bhole")
+
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("2_bhvis")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bhole")
