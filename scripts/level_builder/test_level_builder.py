@@ -80,9 +80,26 @@ class LevelBuilderPhysicsTests(unittest.TestCase):
         self.assertEqual(payload["songDuration"], 5.0)
         for obj in level.objects:
             self.assertLess(obj.start, obj.end)
+            if obj.type == "black_hole":
+                continue
             self.assertLessEqual(obj.end, level.song_duration)
             if obj.start > 0:
                 self.assertAlmostEqual(obj.end - obj.start, OBJECT_SPAWN_LEAD + OBJECT_DESPAWN_DELAY)
+
+    def test_black_hole_sits_at_the_end_of_the_path(self):
+        level = generate_level_from_bpm(
+            music="test.mp3",
+            song_start=0.0,
+            song_duration=2.0,
+            bpm=60.0,
+            initial_player=PlayerState(position=(0.0, 0.0), direction=Direction.DOWN_RIGHT, speed=500.0),
+            pattern=["orb"],
+        )
+
+        black_holes = [obj for obj in level.objects if obj.type == "black_hole"]
+        self.assertEqual(len(black_holes), 1)
+        # Only orbs, so the path is a straight line for the whole level.
+        self.assertAlmostEqual(math.hypot(*black_holes[0].position), 500.0 * level.song_duration, delta=0.01)
 
     def test_bpm_levels_never_stack_objects(self):
         for seed in range(20):

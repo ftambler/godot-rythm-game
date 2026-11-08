@@ -23,6 +23,7 @@ const GREEN := Color("#78F59A")   # successful interactions
 const YELLOW := Color("#FFD166")  # speed changes, special events
 const WALL := Color("#4FB4FF")    # cool blue variant of cyan for static obstacles
 const ORB := Color("#FF2E97")     # hot pink for orbs
+const BLACK_HOLE := Color("#010206")  # near-black for the level exit core
 
 # Text
 const WHITE := Color("#F3F6FF")
