@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shieldbeat – Game Design Document</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Colors mirror scripts/visual/Palette.gd */
+  :root {
+    --background: #080B18;
+    --background-secondary: #0D1222;
+    --grid: #151D32;
+    --grid-highlight: #1B2740;
+    --panel: #11182A;
+    --panel-elevated: #182239;
+    --border: #293650;
+    --cyan: #35E7F2;
+    --pink: #FF4FA3;
+    --danger: #FF2A2A;
+    --green: #78F59A;
+    --yellow: #FFD166;
+    --wall: #FF4FD0;
+    --orb: #FFFA64;
+    --white: #F3F6FF;
+    --muted: #8D9AB5;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    margin: 0;
+    padding: 72px 16px 96px;
+    background: var(--background);
+    color: var(--white);
+    font: 400 16px/1.7 "Inter", system-ui, sans-serif;
+  }
+
+  /* Fixed layers repeat on every printed page, so each page gets the whole
+     A4 background image instead of one image stretched across the document. */
+  .page-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--background) url("gdd_background.png") center / cover no-repeat;
+  }
+
+  /* Layout table: its thead/tfoot repeat on every printed page, giving each
+     page a top and bottom margin while @page margin stays 0 (so the
+     background still reaches the paper edge). */
+  .print-frame { width: 100%; border-collapse: collapse; }
+  .print-frame > * > tr > td { padding: 0; }
+  .page-space { height: 0; }
+
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  /* Neon titles: white core, glow in a Palette accent */
+  .neon {
+    --glow: var(--cyan);
+    color: var(--white);
+    font-family: "Orbitron", sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-shadow:
+      0 0 4px var(--glow),
+      0 0 12px var(--glow),
+      0 0 40px var(--glow),
+      0 0 128px var(--glow);
+  }
+  .neon.pink   { --glow: var(--pink); }
+  .neon.green  { --glow: var(--green); }
+  .neon.yellow { --glow: var(--yellow); }
+  .neon.wall   { --glow: var(--wall); }
+  .neon.orb    { --glow: var(--orb); }
+
+  h1, h2, h3, h4 { margin: 0; line-height: 1.25; }
+
+  h1 {
+    font-size: clamp(32px, 7vw, 56px);
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-family: "Orbitron", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin: 20px 0 8px;
+  }
+  .authors {
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0 0 64px;
+  }
+
+  h2 {
+    font-size: clamp(24px, 4.5vw, 34px);
+    text-transform: uppercase;
+    margin: 88px 0 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  h2 .num { color: var(--muted); text-shadow: none; margin-right: 0.4em; }
+  h3 {
+    font-size: 20px;
+    margin: 48px 0 16px;
+  }
+  h4 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin: 28px 0 8px;
+  }
+
+  p { margin: 0 0 16px; }
+  .muted { color: var(--muted); }
+  strong { color: var(--white); font-weight: 600; }
+  a { color: var(--cyan); text-decoration-color: rgba(53, 231, 242, 0.4); }
+  code {
+    font: 500 0.88em "JetBrains Mono", ui-monospace, monospace;
+    color: var(--cyan);
+    background: rgba(53, 231, 242, 0.08);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+
+  .panel {
+    background: rgba(17, 24, 42, 0.82); /* --panel */
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 0 0 20px;
+  }
+  .panel > :last-child { margin-bottom: 0; }
+
+  ul, ol { margin: 0 0 16px; padding-left: 24px; }
+  li { margin-bottom: 8px; }
+  li::marker { color: var(--cyan); font-weight: 600; }
+
+  .loop li::marker { font-family: "Orbitron", sans-serif; }
+
+  .keys kbd {
+    display: inline-block;
+    min-width: 26px;
+    padding: 1px 7px;
+    border: 1px solid var(--cyan);
+    border-radius: 5px;
+    color: var(--cyan);
+    font: 600 13px/1.5 "Orbitron", sans-serif;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(53, 231, 242, 0.35);
+  }
+
+  .tag { font-weight: 600; }
+  .tag.green  { color: var(--green); }
+  .tag.yellow { color: var(--yellow); }
+  .tag.pink   { color: var(--pink); }
+  .tag.orb    { color: var(--orb); }
+  .tag.wall   { color: var(--wall); }
+  .tag.danger { color: var(--danger); }
+
+  figure {
+    margin: 32px 0;
+  }
+  .figure-slot {
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    background: rgba(8, 11, 24, 0.6);
+    color: var(--muted);
+    font-family: "Orbitron", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 16px;
+  }
+  figure img {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  figcaption {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* Generic data table (same look as the MDA table of the previous doc) */
+  .data {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(17, 24, 42, 0.82);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 0 20px;
+    font-size: 15px;
+  }
+  .data th, .data td {
+    padding: 14px 18px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+  }
+  .data tr:last-child td { border-bottom: 0; }
+  .data th {
+    background: rgba(24, 34, 57, 0.9); /* --panel-elevated */
+    color: var(--muted);
+    font: 600 12px/1.4 "Orbitron", sans-serif;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .data td:first-child { color: var(--white); font-weight: 600; }
+  .data.kv td:first-child { width: 32%; color: var(--muted); font-weight: 500; }
+  .data .num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .table-scroll { overflow-x: auto; margin: 0 0 20px; }
+  .table-scroll .data { margin: 0; min-width: 520px; }
+
+  .mda td:first-child { width: 30%; }
+  .mda td:first-child strong {
+    display: block;
+    font-family: "Orbitron", sans-serif;
+    font-size: 15px;
+  }
+  .mda td:first-child span { color: var(--muted); font-size: 13px; font-weight: 400; }
+
+  .stars { color: var(--yellow); letter-spacing: 0.05em; }
+
+  .swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    margin-right: 8px;
+    vertical-align: -2px;
+    border: 1px solid rgba(243, 246, 255, 0.25);
+  }
+  .hex { font: 500 13px "JetBrains Mono", ui-monospace, monospace; color: var(--white); }
+
+  .note {
+    border-left: 3px solid var(--yellow);
+    background: rgba(255, 209, 102, 0.06);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 20px;
+    margin: 0 0 20px;
+    font-size: 15px;
+  }
+  .note > :last-child { margin-bottom: 0; }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { padding: 0 18mm; }
+    .page-bg { background-size: 100% 100%; } /* image is exactly A4 */
+    .page-space { height: 16mm; }
+    h1 { margin-top: 12mm; }
+    h2 { margin-top: 48px; break-after: avoid; }
+    .keep { break-inside: avoid; }
+    h3, h4 { break-after: avoid; }
+    .panel, figure, .data tr, .note { break-inside: avoid; }
+    .table-scroll { overflow: visible; }
+  }
+
+  @media (max-width: 560px) {
+    .panel { padding: 18px 18px; }
+    .data th, .data td { padding: 12px 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="page-bg" aria-hidden="true"></div>
+<table class="print-frame" role="presentation">
+<thead><tr><td><div class="page-space"></div></td></tr></thead>
+<tfoot><tr><td><div class="page-space"></div></td></tr></tfoot>
+<tbody><tr><td>
+<main>
+
+  <h1 class="neon">Shieldbeat</h1>
+  <p class="subtitle">Game Design Document · Entrega final</p>
+  <p class="authors">Desarrollo de Videojuegos 2026 · Santiago Pereira y Federico Tambler</p>
+
+  <!-- 1. One-pager -->
+  <h2 class="neon"><span class="num">01</span>One-pager</h2>
+  <div class="panel">
+    <p>Shieldbeat es un juego 2D de reflejos y ritmo. Una pelota rebota sola por la pantalla al compás de una canción y el jugador no la mueve: lo único que hace es protegerla en cada choque. Lo que se controla es el momento y la dirección de la respuesta.</p>
+    <p>La pelota arranca en el centro y avanza en línea recta en una de ocho direcciones (las cuatro cardinales y las cuatro diagonales). Cuando choca con una <span class="tag wall">pared</span> rebota como un rayo de luz en un espejo, y justo en ese momento el escudo tiene que estar apuntando hacia la pared. Cuando pasa por un <span class="tag orb">orbe</span> hay que apretar espacio, y los <span class="tag yellow">activadores de velocidad</span> la aceleran o la frenan a mitad del nivel.</p>
+    <p>Cada acierto suma puntos y combo, y los perfectos además recuperan vida. Cada error saca vida. Si la barra llega a cero se pierde el nivel; si no, el nivel termina cuando la pelota entra en el <strong>agujero negro</strong> que aparece al final, y se muestra el puntaje con la precisión.</p>
+    <p>Los niveles no están hechos a mano. Escribimos una herramienta en Python que analiza el MP3 y ubica paredes y orbes sobre los golpes de la música, así que la pelota rebota literalmente en el beat.</p>
+    <p>Las reglas se aprenden rápido (un escudo y una tecla), pero jugarlo bien cuesta bastante más: hay que seguir el ritmo y, al mismo tiempo, leer hacia dónde va a salir la pelota después de cada rebote.</p>
+  </div>
+
+  <figure>
+    <img src="images/fig1-partida.png" alt="Partida en curso con HUD, pelota, orbe y cartel PERFECT">
+    <figcaption>Figura 1. Partida en curso: puntaje, precisión y combo arriba, barra de vida abajo a la izquierda, la pelota con su estela, un orbe y el cartel de acierto.</figcaption>
+  </figure>
+
+  <!-- 2. Ficha técnica -->
+  <h2 class="neon"><span class="num">02</span>Ficha técnica</h2>
+  <p>El juego está hecho en Godot 4.7 con GDScript y está pensado para PC con teclado. Se puede correr desde el proyecto o con el ejecutable de Windows que publica el repositorio.</p>
+
+  <table class="data kv">
+    <thead><tr><th>Campo</th><th>Detalle</th></tr></thead>
+    <tbody>
+      <tr><td>Título</td><td>Shieldbeat</td></tr>
+      <tr><td>Género</td><td>Ritmo / reflejos con razonamiento espacial</td></tr>
+      <tr><td>Perspectiva</td><td>2D cenital. La cámara sigue a la pelota con una zona muerta</td></tr>
+      <tr><td>Plataforma</td><td>PC, con preset de exportación para Windows Desktop</td></tr>
+      <tr><td>Entrada</td><td>Solo teclado. Las teclas se pueden reasignar desde Opciones</td></tr>
+      <tr><td>Jugadores</td><td>1</td></tr>
+      <tr><td>Motor</td><td>Godot 4.7</td></tr>
+      <tr><td>Lenguajes</td><td>GDScript para el juego; Python 3 con librosa para el generador de niveles</td></tr>
+      <tr><td>Audio</td><td>MP3 en <code>levels/music/</code>, reproducidos por un autoload (<code>MusicController</code>) con fades, volumen normalizado y offset de inicio</td></tr>
+      <tr><td>Datos de nivel</td><td>Un JSON por nivel en <code>levels/</code> y un catálogo en <code>levels/index.json</code></td></tr>
+      <tr><td>Duración de una partida</td><td>De 1 a 7 minutos según la canción</td></tr>
+      <tr><td>Distribución</td><td>Una GitHub Action compila el build de Windows y lo publica como release</td></tr>
+      <tr><td>Repositorio</td><td><a href="https://github.com/ftambler/godot-rythm-game">github.com/ftambler/godot-rythm-game</a></td></tr>
+    </tbody>
+  </table>
+
+  <p>El código separa lo que pasa en el nivel de lo que hace el jugador:</p>
+  <ul>
+    <li><code>Game.gd</code> carga el nivel, actualiza el HUD y abre la pantalla de resultados.</li>
+    <li><code>scripts/level/</code> lee el JSON y hace aparecer y desaparecer los objetos según el tiempo.</li>
+    <li><code>scripts/player/</code> tiene el movimiento, el escudo, el rebote y la evaluación de cada golpe.</li>
+    <li><code>scripts/world/</code> define las paredes, los orbes, los activadores de velocidad y el agujero negro.</li>
+    <li><code>scripts/scoring/</code> lleva el puntaje, la precisión, el combo y la vida.</li>
+  </ul>
+
+  <!-- 3. Mecánicas -->
+  <h2 class="neon"><span class="num">03</span>Mecánicas y jugabilidad</h2>
+  <p>Todo el juego gira alrededor de un ciclo corto que se repite en cada rebote: ver hacia dónde va la pelota, identificar la pared con la que va a chocar, poner el escudo de ese lado en el momento justo y ver el resultado. El puntaje, la vida, el combo y la velocidad se apoyan sobre ese ciclo.</p>
+
+  <h3 class="neon wall">Cómo se juega</h3>
+  <div class="panel">
+    <p>El jugador elige una canción y una dificultad, ve una breve introducción con el nombre del tema, el artista, la dificultad y la duración, y arranca. La pelota sale del centro y se mueve sola. Las paredes, los orbes y los activadores van apareciendo sincronizados con la música, y hay que ir resolviéndolos a medida que llegan. Las primeras veces se juega reaccionando; con la práctica uno empieza a leer la trayectoria y a anticiparse.</p>
+    <p>La partida termina cuando la pelota llega al agujero negro del final (<span class="tag green">nivel completado</span>) o cuando la vida llega a cero (<span class="tag pink">nivel fallido</span>). En los dos casos aparece la pantalla de resultados, y si queda canción, sigue sonando de fondo.</p>
+  </div>
+
+  <figure>
+    <img src="images/fig2-miss.png" alt="Un fallo: cartel MISS y escudo en rosa">
+    <figcaption>Figura 2. Un fallo: la pelota llegó a la pared sin el escudo del lado correcto. Aparece el cartel MISS, el escudo se tiñe de rosa, baja la vida y el combo vuelve a 0.</figcaption>
+  </figure>
+
+  <h3 class="neon wall">Controles</h3>
+  <p>Se juega solo con teclado, y cada acción admite dos teclas que se pueden cambiar desde Opciones (ver Figura 6).</p>
+  <div class="table-scroll">
+  <table class="data">
+    <thead><tr><th>Acción</th><th>Teclas por defecto</th><th>Notas</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Escudo arriba / abajo / izquierda / derecha</td>
+        <td class="keys"><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> o <kbd>W</kbd> <kbd>S</kbd> <kbd>A</kbd> <kbd>D</kbd></td>
+        <td>Dos teclas a la vez dan una diagonal (<span class="keys"><kbd>W</kbd> + <kbd>D</kbd></span> = ↗)</td>
+      </tr>
+      <tr>
+        <td>Golpear orbe</td>
+        <td class="keys"><kbd>Espacio</kbd> o <kbd>Enter</kbd></td>
+        <td>Hay que apretarla mientras la pelota está sobre el orbe</td>
+      </tr>
+      <tr>
+        <td>Pausa</td>
+        <td class="keys"><kbd>Esc</kbd> o <kbd>P</kbd></td>
+        <td>Abre el menú de pausa</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p>El único personaje es la pelota con su escudo, y el jugador nunca decide la trayectoria: solo hacia dónde apunta el escudo y cuándo.</p>
+
+  <div class="keep">
+  <h3 class="neon wall">Reflexión</h3>
+  <p>Las paredes tienen cuatro orientaciones y cada una cambia la dirección siempre de la misma forma, así que el resultado se puede calcular antes del impacto.</p>
+  <table class="data">
+    <thead><tr><th>Pared</th><th>Efecto sobre la dirección</th></tr></thead>
+    <tbody>
+      <tr><td>Horizontal</td><td>Invierte el componente vertical</td></tr>
+      <tr><td>Vertical</td><td>Invierte el componente horizontal</td></tr>
+      <tr><td>Diagonal ↗ o ↘</td><td>Intercambia los componentes: la pelota dobla 90° como contra un espejo a 45°</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>El escudo se pone del lado de la pared con la que choca la pelota, perpendicular a ella. En una pared horizontal o vertical alcanza con una tecla; en una diagonal hay que apretar las dos que forman esa diagonal. Calcular el rebote sirve para otra cosa: saber hacia dónde va a ir la pelota y cuál es la próxima pared. Entre 8 direcciones y 4 tipos de pared hay 32 combinaciones, y a medida que sube la velocidad hay que resolverlas cada vez más rápido.</p>
+
+  <div class="keep">
+  <h3 class="neon wall">Evaluación de cada golpe</h3>
+  <p>Cada paso por una pared o un orbe se evalúa como acierto total (<span class="tag green">FULL</span>), acierto parcial (<span class="tag yellow">HALF</span>) o fallo (<span class="tag pink">MISS</span>).</p>
+  <div class="table-scroll">
+  <table class="data">
+    <thead><tr><th>Resultado</th><th>Condición</th><th>Puntos</th><th>Precisión</th><th>Vida</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="tag green">FULL</span></td>
+        <td>Escudo exactamente del lado esperado, u orbe golpeado con la pelota en su centro</td>
+        <td class="num">100</td><td class="num">100 %</td><td class="num">+5</td>
+      </tr>
+      <tr>
+        <td><span class="tag yellow">HALF</span></td>
+        <td>Escudo en una dirección vecina a la esperada (un paso de error entre las 8), u orbe golpeado en su anillo exterior, un poco antes o después</td>
+        <td class="num">50</td><td class="num">50 %</td><td>Sin cambio</td>
+      </tr>
+      <tr>
+        <td><span class="tag pink">MISS</span></td>
+        <td>Escudo sin activar o en una dirección incorrecta, u orbe que pasa sin que se apriete espacio</td>
+        <td class="num">0</td><td class="num">0 %</td><td>−10 y el combo vuelve a 0</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+  <p>La precisión final es el promedio de todos los golpes y la vida máxima es 100. El combo sube con FULL y con HALF y se reinicia con MISS. Apretar espacio cuando no hay ningún orbe cerca no cuenta para nada. En pantalla, un FULL se muestra como <span class="tag green">PERFECT</span>, un HALF como <span class="tag yellow">GOOD</span> y un fallo como <span class="tag pink">MISS</span>.</p>
+  <p>El HALF está para que apuntar casi bien valga algo sin dar el puntaje completo. Se nota sobre todo en las diagonales, donde es común apretar una sola de las dos teclas.</p>
+
+  <figure>
+    <img src="images/fig3-resultados.png" alt="Pantalla de resultados con puntaje 900 y precisión 52,9 %">
+    <figcaption>Figura 3. Pantalla de resultados: puntaje, precisión y conteo de golpes fallados, parciales y totales. Con 9 FULL, 0 HALF y 8 MISS la precisión es 52,9 %.</figcaption>
+  </figure>
+
+  <div class="keep">
+  <h3 class="neon wall">Objetos del nivel</h3>
+  <p>No hay enemigos con inteligencia artificial. Todos los objetos son fijos y aparecen y desaparecen según los tiempos <code>start</code> y <code>end</code> del JSON del nivel, así que el desafío está en el timing y en leer el espacio.</p>
+  <div class="table-scroll">
+  <table class="data">
+    <thead><tr><th>Objeto</th><th>Qué hace</th><th>Para qué está</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="tag wall">Pared</span></td>
+        <td>Obstáculo con 4 orientaciones. Hace rebotar la pelota y obliga a usar el escudo</td>
+        <td>Marca los golpes fuertes de la canción (bombo, caja) y los cambios de dirección</td>
+      </tr>
+      <tr>
+        <td><span class="tag orb">Orbe</span></td>
+        <td>Zona que la pelota atraviesa. Hay que apretar espacio mientras está adentro; el centro da FULL y el anillo exterior HALF</td>
+        <td>Marca los golpes secundarios y suma una segunda acción al juego</td>
+      </tr>
+      <tr>
+        <td><span class="tag yellow">Activador de velocidad</span></td>
+        <td>Al atravesarlo, la pelota pasa a la velocidad 1, 2 o 3</td>
+        <td>Acompaña las partes tranquilas o intensas de la canción</td>
+      </tr>
+      <tr>
+        <td>Agujero negro</td>
+        <td>Aparece al final del recorrido. Cuando la pelota entra, el nivel se completa</td>
+        <td>Le da un cierre visible al nivel, aunque la canción siga</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+  <p>Las tres velocidades son 600, 800 y 1000 unidades por segundo. Cuanto más rápido va la pelota, menos tiempo hay para ver venir la próxima pared.</p>
+
+  <figure>
+    <img src="images/fig4-elementos.png" alt="Pared, orbe y pelota con dos carteles PERFECT">
+    <figcaption>Figura 4. Los elementos en pantalla: una pared, un orbe y la pelota con su estela, con dos aciertos seguidos marcados como PERFECT.</figcaption>
+  </figure>
+
+  <div class="keep">
+  <h3 class="neon wall">Modos de juego y contenido</h3>
+  <p>Hay un solo modo: un nivel por canción, que se juega completo y se mide por puntaje y precisión. Cada canción tiene tres dificultades (Easy, Normal y Hard), que cambian la cantidad de objetos y la velocidad máxima de la pelota. La dificultad se muestra con estrellas, de 1 a 10.</p>
+  <div class="table-scroll">
+  <table class="data">
+    <thead><tr><th>Canción</th><th>Artista</th><th>Dificultades</th><th>Duración</th></tr></thead>
+    <tbody>
+      <tr><td>Demo (tutorial)</td><td class="muted">—</td><td>Única <span class="stars">1★</span></td><td class="num">0:09</td></tr>
+      <tr><td>Deadlocked</td><td>F-777</td><td>Easy <span class="stars">1★</span> · Normal <span class="stars">4★</span> · Hard <span class="stars">8★</span></td><td class="num">1:06</td></tr>
+      <tr><td>Nockem</td><td>Bossfight</td><td>Easy <span class="stars">1★</span> · Normal <span class="stars">4★</span> · Hard <span class="stars">7★</span></td><td class="num">1:38</td></tr>
+      <tr><td>Stalemate</td><td>KyZ</td><td>Easy <span class="stars">2★</span> · Normal <span class="stars">6★</span> · Hard <span class="stars">10★</span></td><td class="num">2:25</td></tr>
+      <tr><td>At the Speed of Light</td><td>DimRain47</td><td>Easy <span class="stars">3★</span> · Normal <span class="stars">6★</span> · Hard <span class="stars">9★</span></td><td class="num">4:15</td></tr>
+      <tr><td>Flamewall</td><td>Camellia</td><td>Easy <span class="stars">3★</span> · Normal <span class="stars">6★</span> · Hard <span class="stars">10★</span></td><td class="num">6:53</td></tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+  <p>En total el catálogo tiene 16 niveles. El recorrido por las pantallas es: menú principal, selección de nivel (con un fragmento de la canción de fondo), introducción del nivel, partida (con pausa) y resultados, desde donde se puede reintentar o volver a la selección de nivel.</p>
+
+  <h3 class="neon wall">Niveles generados desde el audio</h3>
+  <p>Los niveles no se diseñan a mano. La herramienta de <code>scripts/level_builder</code> toma cualquier MP3 y:</p>
+  <div class="panel">
+    <ol class="loop">
+      <li>Analiza la canción con librosa: detecta el tempo y los pulsos, y mide la fuerza de cada golpe.</li>
+      <li>Se queda con los golpes más fuertes según la dificultad. Los más graves se convierten en paredes y el resto en orbes. Los cambios de velocidad se ubican según el volumen de cada tramo.</li>
+      <li>Guarda el resultado como un chart editable (<code>charts/&lt;nombre&gt;.chart.json</code>) que se puede retocar a mano.</li>
+      <li>Simula el recorrido de la pelota con la misma física del juego y pone cada objeto donde va a estar la pelota en ese pulso, orientando las paredes para que no tapen otros objetos. Al final del recorrido ubica el agujero negro.</li>
+      <li>Escribe <code>levels/&lt;nombre&gt;.json</code> y lo agrega a <code>index.json</code> para que aparezca en el juego.</li>
+    </ol>
+  </div>
+  <p>También se puede regenerar un nivel desde un chart editado (<code>--chart</code>), probar otro recorrido con los mismos tiempos (<code>--seed</code>), recortar la canción (<code>--duration</code>) o usar un modo simple sin análisis (<code>--bpm --pattern</code>).</p>
+
+  <h3 class="neon wall">Qué lo hace distinto</h3>
+  <div class="panel">
+    <p>En la mayoría de los juegos de ritmo uno toca notas que van llegando. Acá el jugador no mueve nada: su tarea es anticipar un rebote. Eso lo obliga a prestar atención a la música y a los objetos al mismo tiempo, y agrega una parte de razonamiento espacial que los juegos de ritmo tradicionales no suelen tener.</p>
+    <p>Además, los aciertos parciales hacen que equivocarse por poco no sea tan castigado, y con el generador podemos sumar una canción nueva con sus tres dificultades en pocos minutos. Por último, como los cambios de velocidad siguen la intensidad del tema, las partes fuertes de la canción también se juegan más rápido.</p>
+  </div>
+
+  <!-- 4. Público objetivo -->
+  <h2 class="neon"><span class="num">04</span>Público objetivo</h2>
+  <p>El juego está pensado para gente de entre 13 y 30 años a la que le gusta la música, sobre todo la electrónica, y los juegos de reflejos en los que siempre querés intentar una vez más. No hace falta haber jugado juegos de ritmo antes: Easy es accesible para jugadores casuales y Hard apunta a quienes ya juegan Geometry Dash, osu! o similares.</p>
+  <table class="data kv">
+    <thead><tr><th>Dimensión</th><th>Descripción</th></tr></thead>
+    <tbody>
+      <tr><td>Edad</td><td>13 a 30 años. No hay violencia ni contenido sensible, así que es apto para todo público</td></tr>
+      <tr><td>Experiencia</td><td>Cualquiera. Easy para jugadores casuales, Hard para quienes ya juegan juegos de ritmo</td></tr>
+      <tr><td>Intereses</td><td>Música electrónica, bass y chiptune; juegos de ritmo; juegos difíciles pero justos; mejorar el propio puntaje y la precisión</td></tr>
+      <tr><td>Temática</td><td>Abstracta y musical. No hay mundo ni historia que conocer</td></tr>
+      <tr><td>Contexto de uso</td><td>Partidas de 1 a 7 minutos (una canción), en PC</td></tr>
+    </tbody>
+  </table>
+  <p>Creemos que le va a gustar a ese público porque las reglas se entienden enseguida, las partidas son cortas y se pueden repetir sin perder tiempo, y cada nivel termina con un puntaje y una precisión que dan ganas de mejorar o de comparar con amigos.</p>
+
+  <!-- 5. Motivación -->
+  <h2 class="neon"><span class="num">05</span>Motivación del jugador</h2>
+  <div class="panel">
+    <p>El objetivo básico es llegar al final del nivel sin quedarse sin vida. Más allá de eso, cada uno intenta sacar el mejor puntaje, la mejor precisión y el combo más largo que pueda. No hay un "ganar" absoluto: cada intento deja un resultado concreto (cuántos FULL, HALF y MISS) y eso invita a volver a jugar el nivel.</p>
+    <p>El juego no tiene historia. La idea es que el jugador sienta que forma parte de la canción: cada rebote bien defendido cae sobre el beat, así que de alguna forma está "tocando" el tema con sus reacciones. Con las partidas pasa de reaccionar a anticiparse, y esa mejora se ve en los números, que es lo que lo lleva a pasar de Easy a Hard y a manejar los cambios de velocidad.</p>
+  </div>
+
+  <div class="keep">
+  <h3 class="neon wall">Estéticas (MDA)</h3>
+  <p class="muted">Según el paper MDA (Hunicke, LeBlanc y Zubek, 2004), el juego busca cuatro estéticas, ordenadas por importancia:</p>
+  <table class="data mda">
+    <thead><tr><th>Estética</th><th>Cómo la genera el juego</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Desafío</strong><span>Challenge</span></td>
+        <td>Timing exacto, escudo del lado correcto, diagonales que exigen dos teclas y cambios de velocidad que suben la dificultad.</td>
+      </tr>
+      <tr>
+        <td><strong>Sensación</strong><span>Sensation</span></td>
+        <td>Cada acierto coincide con un golpe de la música y viene acompañado de un efecto visual.</td>
+      </tr>
+      <tr>
+        <td><strong>Sumisión</strong><span>Submission</span></td>
+        <td>El ciclo repetitivo y rítmico lleva a un estado de flujo en el que se reacciona casi sin pensar.</td>
+      </tr>
+      <tr>
+        <td><strong>Descubrimiento</strong><span>Discovery</span></td>
+        <td>Cada canción y cada dificultad tiene sus propios patrones, que el jugador va aprendiendo.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- 6. Look and feel -->
+  <h2 class="neon"><span class="num">06</span>Look and feel</h2>
+  <p>La dirección de arte es neón minimalista sobre una grilla oscura. Todo se dibuja con formas geométricas y brillo, sin casi nada de decoración, para que las trayectorias se lean bien incluso a máxima velocidad. La interfaz sigue la misma línea: paneles oscuros, bordes finos y títulos con efecto neón.</p>
+
+  <div class="keep">
+  <h3 class="neon wall">Paleta y significado de los colores</h3>
+  <p>Todos los colores están definidos en un solo archivo (<code>scripts/visual/Palette.gd</code>), del que también se genera el tema de la interfaz. Cada color tiene un uso fijo para que el jugador sepa qué es cada cosa sin leer nada: <span class="tag wall">magenta</span> es pared (usar el escudo), <span class="tag orb">amarillo claro</span> es orbe (apretar espacio), y <span class="tag green">verde</span>, <span class="tag yellow">ámbar</span> y <span class="tag pink">rosa</span> son FULL, HALF y MISS.</p>
+  <div class="table-scroll">
+  <table class="data">
+    <thead><tr><th>Color</th><th>Hex</th><th>Uso</th></tr></thead>
+    <tbody>
+      <tr><td><span class="swatch" style="background:#080B18"></span>Fondo</td><td><span class="hex">#080B18</span> / <span class="hex">#0D1222</span></td><td>Fondo principal y secundario</td></tr>
+      <tr><td><span class="swatch" style="background:#1B2740"></span>Grilla</td><td><span class="hex">#151D32</span> / <span class="hex">#1B2740</span></td><td>Líneas del fondo animado que da sensación de movimiento</td></tr>
+      <tr><td><span class="swatch" style="background:#182239"></span>Panel</td><td><span class="hex">#11182A</span> / <span class="hex">#182239</span> / <span class="hex">#293650</span></td><td>Menús, ventanas y bordes</td></tr>
+      <tr><td><span class="swatch" style="background:#35E7F2"></span>Cian</td><td><span class="hex">#35E7F2</span></td><td>Pelota, escudo, acentos y precisión</td></tr>
+      <tr><td><span class="swatch" style="background:#FF4FD0"></span>Magenta</td><td><span class="hex">#FF4FD0</span></td><td>Paredes</td></tr>
+      <tr><td><span class="swatch" style="background:#FFFA64"></span>Amarillo claro</td><td><span class="hex">#FFFA64</span></td><td>Orbes</td></tr>
+      <tr><td><span class="swatch" style="background:#78F59A"></span>Verde</td><td><span class="hex">#78F59A</span></td><td>Aciertos totales y vida</td></tr>
+      <tr><td><span class="swatch" style="background:#FFD166"></span>Ámbar</td><td><span class="hex">#FFD166</span></td><td>Aciertos parciales y activadores de velocidad</td></tr>
+      <tr><td><span class="swatch" style="background:#FF4FA3"></span>Rosa</td><td><span class="hex">#FF4FA3</span></td><td>Fallos y daño</td></tr>
+      <tr><td><span class="swatch" style="background:#FF2A2A"></span>Rojo</td><td><span class="hex">#FF2A2A</span></td><td>Aura de vida baja alrededor de la pelota</td></tr>
+      <tr><td><span class="swatch" style="background:#010206"></span>Negro</td><td><span class="hex">#010206</span></td><td>Núcleo del agujero negro del final</td></tr>
+      <tr><td><span class="swatch" style="background:#F3F6FF"></span>Blanco</td><td><span class="hex">#F3F6FF</span> / <span class="hex">#8D9AB5</span></td><td>Texto principal y secundario</td></tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+
+  <h3 class="neon wall">Elementos visuales</h3>
+  <div class="panel">
+    <p>El fondo es una grilla dibujada con un shader que se mueve todo el tiempo. La cámara sigue a la pelota con una zona muerta invertida, que deja ver más de lo que viene que de lo que ya pasó. La pelota deja una estela que se alarga con la velocidad, y cada golpe genera un efecto de impacto del color del resultado, junto con un cartel (PERFECT, GOOD o MISS) que sube y se desvanece. Cuando la vida baja de la mitad, aparece un <span class="tag danger">aura roja</span> alrededor de la pelota que se hace más fuerte a medida que el jugador se acerca a perder.</p>
+    <p>El HUD es chico y está pegado a los bordes para no tapar la acción: puntaje y precisión arriba a la izquierda, combo arriba al centro (pulsa cada vez que sube) y la barra de vida abajo a la izquierda, que destella al ganar o perder vida. Para los títulos usamos Orbitron, por su aire retro-futurista, y para el texto Inter, que se lee bien en tamaños chicos.</p>
+  </div>
+
+  <figure>
+    <img src="images/fig5-miss-perfect.png" alt="Un MISS seguido de un PERFECT, con el aura roja de vida baja">
+    <figcaption>Figura 5. Un fallo seguido de un acierto: el cartel anterior se desvanece mientras aparece el nuevo. El resplandor rojo alrededor de la pelota es el aura de vida baja.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="images/fig6-opciones.png" alt="Menú de opciones con volumen y teclas reasignables">
+    <figcaption>Figura 6. Menú de opciones con el mismo estilo que el resto de la interfaz: volumen de música y efectos, y dos teclas reasignables por acción.</figcaption>
+  </figure>
+
+  <h3 class="neon wall">Referencias</h3>
+  <div class="panel">
+    <ul>
+      <li><strong>Geometry Dash:</strong> la lectura geométrica y la música como guía.</li>
+      <li><strong>Just Shapes &amp; Beats:</strong> obstáculos sincronizados con la música y estética de formas simples.</li>
+      <li><strong>Thumper:</strong> la sensación de velocidad, de impacto y de ritmo.</li>
+      <li><strong>Audiosurf:</strong> niveles generados a partir de la música.</li>
+      <li><strong>Synthwave / Tron:</strong> neón sobre fondo oscuro.</li>
+    </ul>
+  </div>
+
+  <h3 class="neon wall">Relación con el público</h3>
+  <p>El neón y el synthwave son familiares para quien escucha música electrónica y juega juegos de ritmo. La interfaz limpia ayuda con lo más importante en un juego de reflejos, que es entender la pantalla de un vistazo. El contraste es alto y cada color significa siempre lo mismo, así que hay menos que procesar cuando la pelota va a 1000 unidades por segundo.</p>
+
+  <h3 class="neon wall">Imágenes objetivo</h3>
+  <p>Las capturas de las Figuras 1 a 6 muestran el estado actual del juego, que también es el objetivo visual de la entrega: el HUD, los menús y los efectos ya tienen su arte final.</p>
+
+  <figure>
+    <img src="images/fig7-mainMenu.png" alt="Menú principal con las opciones Play, Options y Quit">
+    <figcaption>Figura 7. Menú principal: Play, Options y Quit sobre la grilla del fondo.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="images/fig8-levelSelect.png" alt="Selección de nivel con tarjetas por canción y dificultad">
+    <figcaption>Figura 8. Selección de nivel: una tarjeta por canción y dificultad, con estrellas, duración y cantidad de paredes, orbes y cambios de velocidad. Los niveles se pueden ordenar por dificultad, duración o nombre.</figcaption>
+  </figure>
+
+  <!-- 7. Mercado -->
+  <h2 class="neon"><span class="num">07</span>Comparación con el mercado</h2>
+  <p>Hay muchos juegos que mezclan música y reflejos, pero casi todos piden esquivar, saltar o tocar notas. Ninguno de los que tomamos como referencia pide anticipar un rebote.</p>
+  <div class="table-scroll">
+  <table class="data">
+    <thead><tr><th>Juego</th><th>Qué ofrece</th><th>En qué se diferencia Shieldbeat</th></tr></thead>
+    <tbody>
+      <tr><td>Geometry Dash</td><td>Plataformas con timing musical</td><td>Ahí se salta; acá no se controla el movimiento, se defiende y se anticipa</td></tr>
+      <tr><td>Just Shapes &amp; Beats</td><td>Esquivar proyectiles al ritmo</td><td>Ahí el movimiento es libre; acá la trayectoria es fija y se responde con dirección y timing</td></tr>
+      <tr><td>Thumper</td><td>Ritmo, velocidad y tensión con pocos botones</td><td>Es más atmosférico; Shieldbeat suma razonamiento espacial en 8 direcciones</td></tr>
+      <tr><td>Beat Saber, Guitar Hero, osu!</td><td>Notas que llegan al jugador</td><td>Ahí se apunta y se tocan notas; acá hay que prever el rebote y la dirección exacta</td></tr>
+      <tr><td>Audiosurf</td><td>Niveles generados desde tu música</td><td>Parecido en la generación, pero con un chart editable y la misma física en la herramienta y en el juego</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Lo que más diferencia al proyecto es que mezcla ritmo con geometría: no alcanza con seguir el beat, también hay que resolver el rebote. Se explica en un minuto, pero las diagonales y los cambios de velocidad le dan profundidad. Y el generador nos deja sumar canciones sin diseñar cada nivel, con tres dificultades por canción.</p>
+  <p>También tiene límites claros: un solo modo de juego, solo PC y teclado, un catálogo chico de canciones, y no hay multijugador ni ranking online.</p>
+
+  <!-- 8. Build -->
+  <h2 class="neon"><span class="num">08</span>Cómo probar el build</h2>
+  <div class="panel">
+    <p>Hay dos formas de correrlo:</p>
+    <ol class="loop">
+      <li>Clonar el <a href="https://github.com/ftambler/godot-rythm-game">repositorio</a>, abrir <code>project.godot</code> con Godot 4.7 y apretar <span class="keys"><kbd>F5</kbd></span>. La escena principal es el menú.</li>
+      <li>Si no se quiere instalar Godot, bajar el ejecutable de Windows del <a href="https://github.com/ftambler/godot-rythm-game/releases/latest">último release</a>.</li>
+    </ol>
+    <p>Para una primera prueba conviene empezar por Demo, que dura 9 segundos, y después jugar Deadlocked o Nockem en Easy. Si no se quiere esperar a que termine un nivel, se puede salir en cualquier momento desde el menú de pausa (<span class="keys"><kbd>Esc</kbd></span> o <span class="keys"><kbd>P</kbd></span>).</p>
+  </div>
+
+  <h3 class="neon yellow">A tener en cuenta</h3>
+  <div class="panel">
+    <ul>
+      <li>Como los niveles se generan automáticamente, algunos tramos pueden tener patrones más difíciles de leer que en un nivel diseñado a mano.</li>
+      <li>La música de cada nivel está en <code>levels/music/</code> y tiene que estar ahí para que suene. Si falta un archivo, el juego lo avisa por consola y sigue sin música.</li>
+      <li>La sincronización de audio ya está ajustada; si se nota algún desfase, puede ser por la latencia de audio de la computadora.</li>
+      <li>Los récords no se guardan: el puntaje solo se ve al terminar el nivel. Lo que sí se guarda es el volumen y las teclas elegidas en Opciones.</li>
+      <li>Después de terminar un nivel, el botón de reintentar se habilita tras unos segundos para evitar reinicios accidentales.</li>
+    </ul>
+  </div>
+
+</main>
+</td></tr></tbody>
+</table>
+</body>
+</html>
