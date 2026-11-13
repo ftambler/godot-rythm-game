@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/LevelCard.gd" id="1_card"]
 
 [node name="LevelCard" type="PanelContainer"]
-custom_minimum_size = Vector2(360, 0)
+custom_minimum_size = Vector2(450, 0)
 offset_right = 360.0
 offset_bottom = 120.0
 script = ExtResource("1_card")
