@@ -5,6 +5,7 @@ extends Node
 const WALL_SCENE := preload("res://scenes/game/Wall.tscn")
 const ORB_SCENE := preload("res://scenes/game/Orb.tscn")
 const SPEED_TRIGGER_SCENE := preload("res://scenes/game/SpeedTrigger.tscn")
+const BLACK_HOLE_SCENE := preload("res://scenes/game/BlackHole.tscn")
 
 @onready var walls: Node2D = $Walls
 @onready var orbs: Node2D = $Orbs
@@ -13,6 +14,8 @@ const SPEED_TRIGGER_SCENE := preload("res://scenes/game/SpeedTrigger.tscn")
 var level: LevelData
 var level_time: float = 0.0
 var _has_finished := false
+# Levels without a black hole (older level files) end when the song duration runs out.
+var _ends_by_time := true
 
 signal level_finished
 
@@ -25,6 +28,7 @@ func start_level(level_data: LevelData) -> void:
 	level = level_data
 	level_time = level.song_start
 	_has_finished = false
+	_ends_by_time = not level.objects.any(func(data: LevelObjectData) -> bool: return data.type == "black_hole")
 
 	spawn_queue = level.objects.duplicate()
 	spawn_queue.sort_custom(_sort_by_start)
@@ -44,9 +48,16 @@ func _process(delta: float) -> void:
 	_process_spawns()
 	_process_despawns()
 
-	if level_time >= level.song_duration:
-		_has_finished = true
-		level_finished.emit()
+	if _ends_by_time and level_time >= level.song_duration:
+		_finish()
+
+
+func _finish() -> void:
+	if _has_finished:
+		return
+
+	_has_finished = true
+	level_finished.emit()
 
 
 func _process_spawns() -> void:
@@ -92,6 +103,12 @@ func _spawn_object(data: LevelObjectData) -> void:
 			var speed_trigger: SpeedTrigger = object
 			speed_trigger.speed_type = data.speed_type
 			speed_triggers.add_child(object)
+
+		"black_hole":
+			object = BLACK_HOLE_SCENE.instantiate()
+			var black_hole: BlackHole = object
+			black_hole.player_entered.connect(_finish)
+			add_child(object)
 
 		_:
 			push_error("Unknown level object type: " + data.type)

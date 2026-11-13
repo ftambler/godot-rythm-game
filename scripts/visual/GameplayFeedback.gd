@@ -53,6 +53,8 @@ func _flush() -> void:
 		_pending_orbs.clear()
 		return
 
+	if HitMarker.FOLLOW_PLAYER:
+		HitMarker.spawn(self, player, _pending_result)
 	var color := Palette.hit_result_color(_pending_result)
 	for wall_transform in _pending_walls:
 		HitEffect.spawn_wall(self, wall_transform, player.global_position, color)

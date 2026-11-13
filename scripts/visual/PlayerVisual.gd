@@ -1,7 +1,7 @@
 class_name PlayerVisual
 extends Node2D
 
-## Solid cyan square for the player. Flashes the hit-result color whenever the
+## Solid cyan ball for the player. Flashes the hit-result color whenever the
 ## player registers a hit (wall bounce or orb press).
 ## Purely visual: never scales or rotates, so it can't misrepresent the hitbox or direction.
 
@@ -21,13 +21,13 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	var half := Palette.PLAYER_SIZE * 0.5
-	var rect := Rect2(-half, -half, Palette.PLAYER_SIZE, Palette.PLAYER_SIZE)
+	var radius := Palette.PLAYER_SIZE * 0.5
 	var accent := Palette.CYAN.lerp(_flash_color, _flash_strength)
 
-	NeonDraw.glow_rect(self, rect, accent)
-	draw_rect(rect, accent)
-	draw_rect(rect.grow(-Palette.OUTLINE_WIDTH * 0.5), accent.lightened(0.55), false, Palette.OUTLINE_WIDTH)
+	draw_circle(Vector2.ZERO, radius + Palette.GLOW_FAR_WIDTH * 0.5, Color(accent, accent.a * Palette.GLOW_FAR_ALPHA))
+	draw_circle(Vector2.ZERO, radius + Palette.GLOW_NEAR_WIDTH * 0.5, Color(accent, accent.a * Palette.GLOW_NEAR_ALPHA))
+	draw_circle(Vector2.ZERO, radius, accent)
+	draw_arc(Vector2.ZERO, radius - Palette.OUTLINE_WIDTH * 0.5, 0.0, TAU, 32, accent.lightened(0.55), Palette.OUTLINE_WIDTH, true)
 
 
 func _on_hit_registered(result: HitResult.Type) -> void:

@@ -596,4 +596,17 @@ def generate_level(
     for layout in layouts:
         level.objects.extend(layout.objects)
 
+    # The level ends when the player enters the black hole, which sits where
+    # the path is once the level time runs out.
+    end_position = layouts[-1].end_player.position
+    level.objects.append(
+        LevelObject(
+            type="black_hole",
+            position=(round(end_position[0], 3), round(end_position[1], 3)),
+            start=max(0.0, level.song_duration - OBJECT_SPAWN_LEAD),
+            end=level.song_duration + OBJECT_DESPAWN_DELAY,
+            group_id=len(layouts),
+        )
+    )
+
     return level
