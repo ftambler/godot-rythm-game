@@ -7,7 +7,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from analyze import MAX_ORB_RUN, MIN_REACTION_TIME, MIN_WALL_GAP_BEATS, analyze_song, merge_short_sections
+from analyze import FIRST_EVENT_TIME, MAX_ORB_RUN, MIN_REACTION_TIME, MIN_WALL_GAP_BEATS, analyze_song, merge_short_sections
 from chart import load_chart, save_chart
 from models import Action
 
@@ -96,6 +96,10 @@ class AnalyzeSongTests(unittest.TestCase):
             for action in actions:
                 orb_run = orb_run + 1 if action == Action.ONE else 0
                 self.assertLessEqual(orb_run, MAX_ORB_RUN)
+
+    def test_no_events_before_objects_can_be_announced(self):
+        for chart in self.charts.values():
+            self.assertGreaterEqual(chart.inputs[0].time, FIRST_EVENT_TIME)
 
     def test_loud_section_speeds_up(self):
         chart = self.charts["normal"]

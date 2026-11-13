@@ -2,6 +2,8 @@ extends Node
 
 const MUSIC_DIRECTORY := "res://levels/music/"
 const MIN_VOLUME_DB := -80.0
+# Volume of the rest of a song after its level ends early (results screen).
+const AFTER_LEVEL_VOLUME_DB := -12.0
 const SETTINGS_PATH := "user://settings.cfg"
 const MENU_MUSIC := "res://audio/ui/menuLoop.mp3"
 const UI_BUTTON_SOUND := preload("res://audio/ui/menuButton.mp3")
@@ -99,6 +101,7 @@ func play_music(file_name: String, start_position := 0.0, fade_duration := 1.0, 
 	if _player.playing:
 		await fade_out(fade_duration)
 
+	_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	_player.stream = stream
 	_player.volume_db = MIN_VOLUME_DB
 	_player.play(start_position)
@@ -114,6 +117,19 @@ func stop_music(fade_duration := 1.0) -> void:
 		_kill_fade()
 	_player.stop()
 	_player.stream = null
+	_player.process_mode = Node.PROCESS_MODE_PAUSABLE
+
+## Keeps the current song going through a paused tree (e.g. the results
+## screen after a level that ends before its song does), faded down to
+## AFTER_LEVEL_VOLUME_DB. play_music / stop_music make it pausable again.
+func continue_music_quietly(fade_duration := 1.0) -> void:
+	if not _player.playing:
+		return
+
+	_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	_kill_fade()
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(_player, "volume_db", AFTER_LEVEL_VOLUME_DB, maxf(fade_duration, 0.0))
 
 func is_music_playing() -> bool:
 	return _player.playing
