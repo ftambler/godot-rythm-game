@@ -86,7 +86,7 @@ text = "Restart"
 [node name="MainMenuButton" type="Button" parent="Overlay/Panel/MarginContainer/Content"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "Go to main menu"
+text = "Back to level select"
 
 [connection signal="value_changed" from="Overlay/Panel/MarginContainer/Content/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="Overlay/Panel/MarginContainer/Content/SfxSlider" to="." method="_on_sfx_slider_value_changed"]

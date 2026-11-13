@@ -37,7 +37,7 @@ func _ready() -> void:
 	level_intro.start_requested.connect(_start_level)
 	pause_menu.restart_requested.connect(_replay_level)
 	results_screen.replay_requested.connect(_replay_level)
-	results_screen.menu_requested.connect(_return_to_menu)
+	results_screen.menu_requested.connect(_return_to_level_select)
 	update_hud(score_handler.get_score(), score_handler.get_accuracy())
 	update_gameplay_hud(score_handler.combo, score_handler.health)
 	player.object_hit.connect(level_manager.object_hit)
@@ -132,10 +132,10 @@ func _replay_level() -> void:
 	await MusicController.stop_music(0.0)
 	get_tree().reload_current_scene()
 
-func _return_to_menu() -> void:
+func _return_to_level_select() -> void:
 	get_tree().paused = false
 	await MusicController.stop_music(0.0)
-	get_tree().change_scene_to_file("res://scenes/ui/Menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/ui/LevelSelect.tscn")
 
 func update_hud(score: int, accuracy: float) -> void:
 	hud.update_score(score)
