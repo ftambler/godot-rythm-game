@@ -6,7 +6,9 @@ signal menu_requested
 
 # Replay stays disabled (with a countdown) so presses meant for the orbs can't activate it.
 const INPUT_COOLDOWN := 3.0
+const FADE_IN_DURATION := 0.6
 
+@onready var overlay: Panel = $Overlay
 @onready var title_label: Label = $Overlay/Panel/Margin/Content/Title
 @onready var score_label: Label = $Overlay/Panel/Margin/Content/Summary/Score/Value
 @onready var accuracy_label: Label = $Overlay/Panel/Margin/Content/Summary/Accuracy/Value
@@ -37,6 +39,8 @@ func open(score_handler: ScoreHandler, did_win: bool) -> void:
 	half_label.text = str(score_handler.half_hits)
 	full_label.text = str(score_handler.full_hits)
 	visible = true
+	overlay.modulate.a = 0.0
+	create_tween().tween_property(overlay, "modulate:a", 1.0, FADE_IN_DURATION)
 	_cooldown_left = INPUT_COOLDOWN
 	_update_cooldown_buttons()
 	set_process(true)

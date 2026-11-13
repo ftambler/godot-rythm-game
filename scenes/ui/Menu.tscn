@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_menu")
 
-[node name="GridBackground" parent="." instance=ExtResource("3_grid")]
+[node name="GridBackground" parent="." unique_id=425570018 instance=ExtResource("3_grid")]
 
 [node name="MainPanel" type="PanelContainer" parent="." unique_id=361850791]
 layout_mode = 1
@@ -46,18 +46,13 @@ theme_override_constants/separation = 12
 
 [node name="Kicker" type="Label" parent="MainPanel/Content/Margin/Stack" unique_id=346630078]
 layout_mode = 2
-text = "RHYTHM / REFLEX"
 theme_type_variation = &"KickerLabel"
+text = "RHYTHM / REFLEX"
 
 [node name="Title" type="Label" parent="MainPanel/Content/Margin/Stack" unique_id=1684216363]
 layout_mode = 2
-text = "TITULO: El juego"
 theme_type_variation = &"TitleLabel"
-
-[node name="Subtitle" type="Label" parent="MainPanel/Content/Margin/Stack" unique_id=1987082890]
-layout_mode = 2
-text = "Descripcion que no pense"
-theme_type_variation = &"MutedLabel"
+text = "Shieldbeat"
 
 [node name="Rule" type="Panel" parent="MainPanel/Content/Margin/Stack" unique_id=1036228446]
 custom_minimum_size = Vector2(48, 2)

@@ -41,7 +41,7 @@ Top-level structure:
 - `project.godot` — Godot config and input mapping
 - `Game.tscn` — root game scene
 - `levels/` — level definitions, including `test.json`
-- `audio/` — music assets referenced by level files, such as `test.ogg` or `test.mp3`
+- `levels/music/` — music assets referenced by level files, such as `test.ogg` or `test.mp3`
 - `scenes/` — scene files for runtime objects
 - `scripts/` — gameplay logic and editor-side tools
 - `GODOT PLAN.txt` — earlier design notes, some of which are aspirational and not fully implemented
@@ -193,7 +193,7 @@ This is an autoload singleton registered as `MusicController` in `project.godot`
 
 Current behavior:
 
-- resolves relative music names from `res://audio/`
+- resolves relative music names from `res://levels/music/`
 - supports Godot audio assets such as `.ogg` and `.mp3`
 - starts level music at the `songStart` offset
 - fades between tracks and when stopping playback
@@ -201,7 +201,7 @@ Current behavior:
 - avoids restarting the same track if it is already playing
 - logs a warning and continues without music when the referenced file is missing or cannot be loaded
 
-The active test level references `test.mp3`, so the corresponding file must exist at `res://audio/test.mp3`. OGG files are also supported; update the level's `music` value to the matching filename when using one.
+The active test level references `test.mp3`, so the corresponding file must exist at `res://levels/music/test.mp3`. OGG files are also supported; update the level's `music` value to the matching filename when using one.
 
 The controller can also be used directly by other systems:
 

@@ -151,7 +151,7 @@ text = "Replay"
 custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Main menu"
+text = "Level select"
 
 [connection signal="pressed" from="Overlay/Panel/Margin/Content/Buttons/ReplayButton" to="." method="_on_replay_button_pressed"]
 [connection signal="pressed" from="Overlay/Panel/Margin/Content/Buttons/MenuButton" to="." method="_on_menu_button_pressed"]

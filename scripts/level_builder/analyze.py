@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 
 from chart import Chart
+from config import OBJECT_SPAWN_LEAD
 from models import Action, InputEvent
 
 SAMPLE_RATE = 22050
@@ -33,6 +34,9 @@ MIN_WALL_GAP_BEATS = 0.5
 MAX_ORB_RUN = 4
 # Never place two events closer than this (seconds), whatever the tempo.
 MIN_REACTION_TIME = 0.1
+# No events before this (seconds into the level): objects appear OBJECT_SPAWN_LEAD
+# before their beat, so earlier ones would pop up on top of the ball unannounced.
+FIRST_EVENT_TIME = OBJECT_SPAWN_LEAD
 # Grid point weights by position inside the beat: on-beat hits are favoured.
 ON_BEAT_WEIGHT = 1.0
 HALF_BEAT_WEIGHT = 0.85
@@ -236,6 +240,7 @@ def select_events(
 ) -> list[float]:
     selected: list[float] = []
     min_gap = max(settings.min_gap_beats * beat_duration, MIN_REACTION_TIME)
+    grid = [point for point in grid if point.time >= FIRST_EVENT_TIME]
 
     # Strongest hits first, so the min gap never drops a strong hit for a weak one.
     # Loud parts of the song keep more of their hits, quiet parts fewer.

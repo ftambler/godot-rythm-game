@@ -1,7 +1,9 @@
 extends Node
 
-const MUSIC_DIRECTORY := "res://audio/"
+const MUSIC_DIRECTORY := "res://levels/music/"
 const MIN_VOLUME_DB := -80.0
+# Volume of the rest of a song after its level ends early (results screen).
+const AFTER_LEVEL_VOLUME_DB := -12.0
 const SETTINGS_PATH := "user://settings.cfg"
 const MENU_MUSIC := "res://audio/ui/menuLoop.mp3"
 const UI_BUTTON_SOUND := preload("res://audio/ui/menuButton.mp3")
@@ -18,6 +20,8 @@ var _last_ui_sound_frame := -1
 var _volume := 1.0
 var _sfx_volume := 1.0
 var _fade_tween: Tween
+# Read once: AudioServer.get_output_latency() is too costly to call every frame.
+var _output_latency := 0.0
 
 func _ready() -> void:
 	# Fades and UI sounds keep running while the game is paused (pause menu,
@@ -28,6 +32,7 @@ func _ready() -> void:
 	_ensure_bus("SFX")
 	_set_bus_volume("Music", _volume)
 	_set_bus_volume("SFX", _sfx_volume)
+	_output_latency = AudioServer.get_output_latency()
 	_player = AudioStreamPlayer.new()
 	_player.name = "MusicPlayer"
 	_player.bus = "Music"
@@ -62,18 +67,26 @@ func play_ui_sound() -> void:
 	_last_ui_sound_frame = frame
 	_ui_player.play()
 
-func play_music(file_name: String, start_position := 0.0, fade_duration := 1.0, loop := false) -> void:
+## Loads a song by file name (relative to MUSIC_DIRECTORY) or res:// path.
+## Holding on to the result keeps it cached, so a later play_music of the
+## same song starts without a loading hitch.
+func load_music(file_name: String) -> AudioStream:
 	var music_path := file_name
 	if not music_path.begins_with("res://"):
 		music_path = MUSIC_DIRECTORY + file_name
 
 	if not ResourceLoader.exists(music_path):
 		push_warning("Music file not found: " + music_path)
-		return
+		return null
 
 	var stream := load(music_path) as AudioStream
 	if stream == null:
 		push_warning("Unable to load music file: " + music_path)
+	return stream
+
+func play_music(file_name: String, start_position := 0.0, fade_duration := 1.0, loop := false) -> void:
+	var stream := load_music(file_name)
+	if stream == null:
 		return
 
 	if _player.playing and _player.stream == stream:
@@ -88,6 +101,7 @@ func play_music(file_name: String, start_position := 0.0, fade_duration := 1.0, 
 	if _player.playing:
 		await fade_out(fade_duration)
 
+	_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	_player.stream = stream
 	_player.volume_db = MIN_VOLUME_DB
 	_player.play(start_position)
@@ -103,12 +117,32 @@ func stop_music(fade_duration := 1.0) -> void:
 		_kill_fade()
 	_player.stop()
 	_player.stream = null
+	_player.process_mode = Node.PROCESS_MODE_PAUSABLE
+
+## Keeps the current song going through a paused tree (e.g. the results
+## screen after a level that ends before its song does), faded down to
+## AFTER_LEVEL_VOLUME_DB. play_music / stop_music make it pausable again.
+func continue_music_quietly(fade_duration := 1.0) -> void:
+	if not _player.playing:
+		return
+
+	_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	_kill_fade()
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(_player, "volume_db", AFTER_LEVEL_VOLUME_DB, maxf(fade_duration, 0.0))
+
+func is_music_playing() -> bool:
+	return _player.playing
+
+## Song position (s) of what is coming out of the speakers right now. More
+## precise than get_playback_position(), which only moves once per audio mix.
+func get_song_position() -> float:
+	return _player.get_playback_position() + AudioServer.get_time_since_last_mix() - _output_latency
 
 func set_volume(value: float) -> void:
 	_volume = clampf(value, 0.0, 1.0)
 	_save_setting("audio", "music_volume", _volume)
-	if _player and _player.playing:
-		_player.volume_db = _volume_to_db(_volume)
+	_set_bus_volume("Music", _volume)
 
 func get_volume() -> float:
 	return _volume
@@ -121,10 +155,11 @@ func set_sfx_volume(value: float) -> void:
 func get_sfx_volume() -> float:
 	return _sfx_volume
 
+## Fades the player to full volume; the music volume setting lives on the Music bus.
 func fade_in(duration: float) -> void:
 	_kill_fade()
 	_fade_tween = create_tween()
-	_fade_tween.tween_property(_player, "volume_db", _volume_to_db(_volume), maxf(duration, 0.0))
+	_fade_tween.tween_property(_player, "volume_db", 0.0, maxf(duration, 0.0))
 	await _fade_tween.finished
 
 func fade_out(duration: float) -> void:
