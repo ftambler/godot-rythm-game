@@ -121,6 +121,8 @@ func _finish_level(did_win: bool) -> void:
 
 	_run_finished = true
 	_stop_sync()
+	# Levels can end before their song does; let the rest play under the results.
+	MusicController.continue_music_quietly()
 	get_tree().paused = true
 	pause_menu.set_pause_enabled(false)
 	results_screen.open(score_handler, did_win)

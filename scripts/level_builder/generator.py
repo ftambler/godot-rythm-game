@@ -1,3 +1,4 @@
+import math
 import random
 from dataclasses import dataclass
 
@@ -10,9 +11,13 @@ from config import (
     MAX_LAYOUT_ATTEMPTS,
     OBJECT_CLEARANCE,
     OBJECT_SPAWN_LEAD,
+    PLAYER_RADIUS,
+    PLAYER_SAFE_MARGIN,
     SIMULATION_STEP,
     SPEED_LEVELS,
+    WALL_THICKNESS,
 )
+from directions import Direction
 from models import (
     Action,
     InputEvent,
@@ -26,8 +31,19 @@ from simulator import advance_to, sample_segment
 # Seconds of already placed path re-checked together with each new chunk:
 # enough to cover every object that can still be on screen.
 CONFLICT_LOOKBACK = max(OBJECT_SPAWN_LEAD, OBJECT_DESPAWN_DELAY) + 0.25
-# How many previous travel directions the wall choice tries to avoid.
-RECENT_DIRECTIONS = 3
+# Shapes the path follows for a stretch of walls, with how often each is picked:
+# "loop" keeps turning the same way and circles around, "zigzag" alternates
+# and travels off across the screen, "wander" turns at random.
+PATH_SHAPES = {"loop": 0.3, "zigzag": 0.4, "wander": 0.3}
+# How many walls one shape lasts (inclusive), unless a speed change cuts it short.
+SHAPE_LENGTH = (3, 8)
+# Direction along the length of each wall type, as Wall.gd rotates it.
+WALL_AXES = {
+    WallType.HORIZONTAL: (1.0, 0.0),
+    WallType.VERTICAL: (0.0, 1.0),
+    WallType.DIAGONAL_DOWN: (math.sqrt(0.5), math.sqrt(0.5)),
+    WallType.DIAGONAL_UP: (math.sqrt(0.5), -math.sqrt(0.5)),
+}
 
 
 @dataclass
@@ -72,6 +88,73 @@ def get_valid_wall_types(direction) -> list[WallType]:
             valid.append(wall_type)
 
     return valid
+
+
+def make_rng(seed: int | None, music: str) -> random.Random:
+    """Random choices for one level: the same seed gives each song its own layout."""
+
+    return random.Random(None if seed is None else f"{music}:{seed}")
+
+
+def get_wall_position(
+    position: tuple[float, float],
+    direction: Direction,
+    wall_type: WallType,
+) -> tuple[float, float]:
+    """Where to put a wall so the player touches it with its center at `position`.
+
+    Without this every bounce comes a little early and a little off to the
+    side; along a zig-zag that adds up until the player misses a wall.
+    """
+
+    axis_x, axis_y = WALL_AXES[wall_type]
+    normal_x, normal_y = -axis_y, axis_x
+    move_x, move_y = direction.unit_vector()
+    side = 1 if move_x * normal_x + move_y * normal_y > 0 else -1
+    contact = PLAYER_RADIUS + PLAYER_SAFE_MARGIN + WALL_THICKNESS / 2
+
+    return (
+        round(position[0] + side * normal_x * contact, 3),
+        round(position[1] + side * normal_y * contact, 3),
+    )
+
+
+def get_turn(direction: Direction, new_direction: Direction) -> int:
+    """1 for a clockwise turn on screen (y points down), -1 for counter-clockwise, 0 for straight back."""
+
+    (x, y), (new_x, new_y) = direction.value, new_direction.value
+    cross = x * new_y - y * new_x
+    return (cross > 0) - (cross < 0)
+
+
+def plan_turns(chunks: list[list[TimelineEvent]], rng: random.Random) -> list[int]:
+    """Turn wanted at the wall that starts each chunk (the first chunk has no wall).
+
+    Every bounce is a 90 degree turn either way, so the sequence of turns is
+    the shape of the path. It is planned in stretches of a few walls, each
+    following one of PATH_SHAPES; a speed change starts a new stretch, so the
+    shape changes along with the song.
+    """
+
+    turns = [0]
+    shape, turn, remaining = None, 0, 0
+
+    for chunk in chunks[1:]:
+        if remaining == 0:
+            shape = rng.choices(list(PATH_SHAPES), weights=list(PATH_SHAPES.values()))[0]
+            turn = rng.choice((1, -1))
+            remaining = rng.randint(*SHAPE_LENGTH)
+        elif shape == "zigzag":
+            turn = -turn
+        elif shape == "wander":
+            turn = rng.choice((1, -1))
+
+        turns.append(turn)
+        remaining -= 1
+        if any(event.kind == "speed" for event in chunk):
+            remaining = 0
+
+    return turns
 
 
 def generate_beat_events(
@@ -260,7 +343,7 @@ def simulate_chunk(
             objects.append(
                 LevelObject(
                     type="walls",
-                    position=position,
+                    position=get_wall_position(player.position, player.direction, wall_type),
                     wall_type=wall_type,
                     start=spawn_time,
                     end=despawn_time,
@@ -429,6 +512,7 @@ def layout_chunks(
     placed: list[ChunkLayout] = []
     remaining_options: list[list[WallType | None]] = []
     rejected = 0
+    planned_turns = plan_turns(chunks, rng)
 
     while len(placed) < len(chunks):
         index = len(placed)
@@ -441,11 +525,13 @@ def layout_chunks(
                 options = [None]
             else:
                 options = get_valid_wall_types(start_player.direction)
-                rng.shuffle(options)
-                # Options are popped from the end: try directions not used
-                # recently first, so the path doesn't zig-zag back and forth.
-                recent = {chunk.end_player.direction for chunk in placed[-RECENT_DIRECTIONS:]}
-                options.sort(key=lambda wall_type: get_bounce(start_player.direction, wall_type) not in recent)
+                # Options are popped from the end: the planned turn first, then
+                # the other way, and going straight back along the path last.
+                turns = {
+                    wall_type: get_turn(start_player.direction, get_bounce(start_player.direction, wall_type))
+                    for wall_type in options
+                }
+                options.sort(key=lambda wall_type: (turns[wall_type] != 0, turns[wall_type] == planned_turns[index]))
             remaining_options.append(options)
 
         layout = None
@@ -504,7 +590,7 @@ def generate_level(
         chunks,
         initial_player,
         level.song_duration,
-        random.Random(seed),
+        make_rng(seed, music),
     )
 
     for layout in layouts:

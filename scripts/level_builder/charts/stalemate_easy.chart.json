@@ -1,0 +1,952 @@
+{
+  "music": "stalemate.mp3",
+  "songStart": 0.0,
+  "songDuration": 142.0,
+  "bpm": 170.01,
+  "difficulty": "easy",
+  "startSpeed": 1,
+  "events": [
+    {
+      "time": 1.483,
+      "type": "wall"
+    },
+    {
+      "time": 2.18,
+      "type": "orb"
+    },
+    {
+      "time": 2.876,
+      "type": "wall"
+    },
+    {
+      "time": 3.573,
+      "type": "orb"
+    },
+    {
+      "time": 3.945,
+      "type": "orb"
+    },
+    {
+      "time": 4.316,
+      "type": "wall"
+    },
+    {
+      "time": 4.839,
+      "type": "orb"
+    },
+    {
+      "time": 5.361,
+      "type": "orb"
+    },
+    {
+      "time": 5.895,
+      "type": "orb"
+    },
+    {
+      "time": 6.429,
+      "type": "orb"
+    },
+    {
+      "time": 7.126,
+      "type": "wall"
+    },
+    {
+      "time": 7.822,
+      "type": "orb"
+    },
+    {
+      "time": 8.542,
+      "type": "wall"
+    },
+    {
+      "time": 9.239,
+      "type": "orb"
+    },
+    {
+      "time": 9.61,
+      "type": "orb"
+    },
+    {
+      "time": 10.307,
+      "type": "wall"
+    },
+    {
+      "time": 11.003,
+      "type": "wall"
+    },
+    {
+      "time": 11.375,
+      "type": "wall"
+    },
+    {
+      "time": 12.072,
+      "type": "orb"
+    },
+    {
+      "time": 12.768,
+      "type": "wall"
+    },
+    {
+      "time": 13.488,
+      "type": "orb"
+    },
+    {
+      "time": 14.01,
+      "type": "orb"
+    },
+    {
+      "time": 14.533,
+      "type": "wall"
+    },
+    {
+      "time": 15.253,
+      "type": "orb"
+    },
+    {
+      "time": 15.949,
+      "type": "orb"
+    },
+    {
+      "time": 16.646,
+      "type": "orb"
+    },
+    {
+      "time": 17.366,
+      "type": "wall"
+    },
+    {
+      "time": 18.062,
+      "type": "orb"
+    },
+    {
+      "time": 18.782,
+      "type": "orb"
+    },
+    {
+      "time": 19.479,
+      "type": "orb"
+    },
+    {
+      "time": 19.85,
+      "type": "wall"
+    },
+    {
+      "time": 20.373,
+      "type": "orb"
+    },
+    {
+      "time": 20.895,
+      "type": "orb"
+    },
+    {
+      "time": 21.267,
+      "type": "wall"
+    },
+    {
+      "time": 21.963,
+      "type": "orb"
+    },
+    {
+      "time": 22.66,
+      "type": "orb"
+    },
+    {
+      "time": 23.356,
+      "type": "wall"
+    },
+    {
+      "time": 24.076,
+      "type": "wall"
+    },
+    {
+      "time": 24.773,
+      "type": "wall"
+    },
+    {
+      "time": 25.493,
+      "type": "wall"
+    },
+    {
+      "time": 26.015,
+      "type": "orb"
+    },
+    {
+      "time": 26.538,
+      "type": "orb"
+    },
+    {
+      "time": 27.257,
+      "type": "wall"
+    },
+    {
+      "time": 27.78,
+      "type": "orb"
+    },
+    {
+      "time": 28.651,
+      "type": "orb"
+    },
+    {
+      "time": 29.347,
+      "type": "wall"
+    },
+    {
+      "time": 30.067,
+      "type": "orb"
+    },
+    {
+      "time": 30.764,
+      "type": "orb"
+    },
+    {
+      "time": 31.46,
+      "type": "orb"
+    },
+    {
+      "time": 32.18,
+      "type": "orb"
+    },
+    {
+      "time": 32.877,
+      "type": "wall"
+    },
+    {
+      "time": 33.422,
+      "type": "orb"
+    },
+    {
+      "time": 34.293,
+      "type": "wall"
+    },
+    {
+      "time": 35.013,
+      "type": "orb"
+    },
+    {
+      "time": 35.71,
+      "type": "orb"
+    },
+    {
+      "time": 36.406,
+      "type": "orb"
+    },
+    {
+      "time": 36.778,
+      "type": "wall"
+    },
+    {
+      "time": 37.474,
+      "type": "wall"
+    },
+    {
+      "time": 38.008,
+      "type": "orb"
+    },
+    {
+      "time": 38.542,
+      "type": "orb"
+    },
+    {
+      "time": 39.239,
+      "type": "orb"
+    },
+    {
+      "time": 39.959,
+      "type": "orb"
+    },
+    {
+      "time": 40.655,
+      "type": "wall"
+    },
+    {
+      "time": 41.375,
+      "type": "orb"
+    },
+    {
+      "time": 42.072,
+      "type": "orb"
+    },
+    {
+      "time": 42.792,
+      "type": "orb"
+    },
+    {
+      "time": 43.314,
+      "type": "wall"
+    },
+    {
+      "time": 43.674,
+      "type": "orb"
+    },
+    {
+      "time": 44.034,
+      "type": "orb"
+    },
+    {
+      "time": 44.556,
+      "type": "wall"
+    },
+    {
+      "time": 45.427,
+      "type": "orb"
+    },
+    {
+      "time": 45.95,
+      "type": "orb"
+    },
+    {
+      "time": 46.646,
+      "type": "wall"
+    },
+    {
+      "time": 47.343,
+      "type": "orb"
+    },
+    {
+      "time": 48.063,
+      "type": "wall"
+    },
+    {
+      "time": 48.759,
+      "type": "orb"
+    },
+    {
+      "time": 49.479,
+      "type": "wall"
+    },
+    {
+      "time": 50.176,
+      "type": "orb"
+    },
+    {
+      "time": 50.872,
+      "type": "wall"
+    },
+    {
+      "time": 51.244,
+      "type": "orb"
+    },
+    {
+      "time": 51.615,
+      "type": "orb"
+    },
+    {
+      "time": 52.138,
+      "type": "orb"
+    },
+    {
+      "time": 52.66,
+      "type": "wall"
+    },
+    {
+      "time": 53.183,
+      "type": "orb"
+    },
+    {
+      "time": 53.728,
+      "type": "orb"
+    },
+    {
+      "time": 54.425,
+      "type": "orb"
+    },
+    {
+      "time": 55.121,
+      "type": "orb"
+    },
+    {
+      "time": 55.493,
+      "type": "wall"
+    },
+    {
+      "time": 56.19,
+      "type": "orb"
+    },
+    {
+      "time": 56.712,
+      "type": "orb"
+    },
+    {
+      "time": 57.258,
+      "type": "orb"
+    },
+    {
+      "time": 57.78,
+      "type": "orb"
+    },
+    {
+      "time": 58.303,
+      "type": "wall"
+    },
+    {
+      "time": 58.837,
+      "type": "orb"
+    },
+    {
+      "time": 59.371,
+      "type": "orb"
+    },
+    {
+      "time": 60.067,
+      "type": "orb"
+    },
+    {
+      "time": 60.764,
+      "type": "orb"
+    },
+    {
+      "time": 61.135,
+      "type": "wall"
+    },
+    {
+      "time": 61.832,
+      "type": "orb"
+    },
+    {
+      "time": 62.203,
+      "type": "orb"
+    },
+    {
+      "time": 62.9,
+      "type": "wall"
+    },
+    {
+      "time": 63.597,
+      "type": "orb"
+    },
+    {
+      "time": 64.316,
+      "type": "wall"
+    },
+    {
+      "time": 65.013,
+      "type": "wall"
+    },
+    {
+      "time": 65.71,
+      "type": "wall"
+    },
+    {
+      "time": 66.43,
+      "type": "orb"
+    },
+    {
+      "time": 66.952,
+      "type": "orb"
+    },
+    {
+      "time": 67.474,
+      "type": "orb"
+    },
+    {
+      "time": 67.846,
+      "type": "orb"
+    },
+    {
+      "time": 68.543,
+      "type": "wall"
+    },
+    {
+      "time": 69.239,
+      "type": "wall"
+    },
+    {
+      "time": 69.959,
+      "type": "wall"
+    },
+    {
+      "time": 70.656,
+      "type": "orb"
+    },
+    {
+      "time": 71.375,
+      "type": "orb"
+    },
+    {
+      "time": 72.072,
+      "type": "wall"
+    },
+    {
+      "time": 72.594,
+      "type": "orb"
+    },
+    {
+      "time": 73.117,
+      "type": "orb"
+    },
+    {
+      "time": 73.639,
+      "type": "orb"
+    },
+    {
+      "time": 74.162,
+      "type": "wall"
+    },
+    {
+      "time": 74.533,
+      "type": "orb"
+    },
+    {
+      "time": 75.23,
+      "type": "wall"
+    },
+    {
+      "time": 75.601,
+      "type": "wall"
+    },
+    {
+      "time": 76.298,
+      "type": "wall"
+    },
+    {
+      "time": 76.995,
+      "type": "orb"
+    },
+    {
+      "time": 77.366,
+      "type": "orb"
+    },
+    {
+      "time": 78.063,
+      "type": "wall"
+    },
+    {
+      "time": 78.585,
+      "type": "orb"
+    },
+    {
+      "time": 79.108,
+      "type": "wall"
+    },
+    {
+      "time": 79.804,
+      "type": "orb"
+    },
+    {
+      "time": 80.524,
+      "type": "wall"
+    },
+    {
+      "time": 81.244,
+      "type": "orb"
+    },
+    {
+      "time": 81.94,
+      "type": "orb"
+    },
+    {
+      "time": 82.637,
+      "type": "orb"
+    },
+    {
+      "time": 83.009,
+      "type": "orb"
+    },
+    {
+      "time": 83.705,
+      "type": "wall"
+    },
+    {
+      "time": 84.077,
+      "type": "orb"
+    },
+    {
+      "time": 84.773,
+      "type": "wall"
+    },
+    {
+      "time": 85.47,
+      "type": "orb"
+    },
+    {
+      "time": 86.166,
+      "type": "wall"
+    },
+    {
+      "time": 86.538,
+      "type": "orb"
+    },
+    {
+      "time": 87.06,
+      "type": "orb"
+    },
+    {
+      "time": 87.583,
+      "type": "wall"
+    },
+    {
+      "time": 88.279,
+      "type": "orb"
+    },
+    {
+      "time": 88.999,
+      "type": "wall"
+    },
+    {
+      "time": 89.719,
+      "type": "orb"
+    },
+    {
+      "time": 90.416,
+      "type": "wall"
+    },
+    {
+      "time": 90.787,
+      "type": "orb"
+    },
+    {
+      "time": 91.484,
+      "type": "orb"
+    },
+    {
+      "time": 92.18,
+      "type": "wall"
+    },
+    {
+      "time": 92.877,
+      "type": "orb"
+    },
+    {
+      "time": 93.249,
+      "type": "wall"
+    },
+    {
+      "time": 93.922,
+      "type": "wall"
+    },
+    {
+      "time": 94.293,
+      "type": "orb"
+    },
+    {
+      "time": 94.665,
+      "type": "wall"
+    },
+    {
+      "time": 95.187,
+      "type": "orb"
+    },
+    {
+      "time": 95.71,
+      "type": "orb"
+    },
+    {
+      "time": 96.232,
+      "type": "orb"
+    },
+    {
+      "time": 96.755,
+      "type": "orb"
+    },
+    {
+      "time": 97.126,
+      "type": "wall"
+    },
+    {
+      "time": 97.846,
+      "type": "orb"
+    },
+    {
+      "time": 98.369,
+      "type": "orb"
+    },
+    {
+      "time": 98.891,
+      "type": "wall"
+    },
+    {
+      "time": 99.588,
+      "type": "orb"
+    },
+    {
+      "time": 99.959,
+      "type": "orb"
+    },
+    {
+      "time": 100.656,
+      "type": "wall"
+    },
+    {
+      "time": 101.19,
+      "type": "orb"
+    },
+    {
+      "time": 101.724,
+      "type": "wall"
+    },
+    {
+      "time": 102.397,
+      "type": "orb"
+    },
+    {
+      "time": 103.117,
+      "type": "wall"
+    },
+    {
+      "time": 103.489,
+      "type": "orb"
+    },
+    {
+      "time": 104.011,
+      "type": "orb"
+    },
+    {
+      "time": 104.533,
+      "type": "wall"
+    },
+    {
+      "time": 105.23,
+      "type": "orb"
+    },
+    {
+      "time": 105.602,
+      "type": "orb"
+    },
+    {
+      "time": 106.298,
+      "type": "orb"
+    },
+    {
+      "time": 106.832,
+      "type": "orb"
+    },
+    {
+      "time": 107.366,
+      "type": "wall"
+    },
+    {
+      "time": 108.063,
+      "type": "orb"
+    },
+    {
+      "time": 108.759,
+      "type": "wall"
+    },
+    {
+      "time": 109.131,
+      "type": "orb"
+    },
+    {
+      "time": 109.653,
+      "type": "orb"
+    },
+    {
+      "time": 110.176,
+      "type": "wall"
+    },
+    {
+      "time": 110.547,
+      "type": "orb"
+    },
+    {
+      "time": 111.244,
+      "type": "orb"
+    },
+    {
+      "time": 111.964,
+      "type": "orb"
+    },
+    {
+      "time": 112.486,
+      "type": "orb"
+    },
+    {
+      "time": 113.009,
+      "type": "wall"
+    },
+    {
+      "time": 113.38,
+      "type": "orb"
+    },
+    {
+      "time": 114.077,
+      "type": "orb"
+    },
+    {
+      "time": 114.773,
+      "type": "wall"
+    },
+    {
+      "time": 115.308,
+      "type": "orb"
+    },
+    {
+      "time": 115.842,
+      "type": "wall"
+    },
+    {
+      "time": 116.213,
+      "type": "orb"
+    },
+    {
+      "time": 116.736,
+      "type": "orb"
+    },
+    {
+      "time": 117.258,
+      "type": "orb"
+    },
+    {
+      "time": 117.955,
+      "type": "orb"
+    },
+    {
+      "time": 118.651,
+      "type": "wall"
+    },
+    {
+      "time": 119.371,
+      "type": "orb"
+    },
+    {
+      "time": 120.068,
+      "type": "orb"
+    },
+    {
+      "time": 120.439,
+      "type": "wall"
+    },
+    {
+      "time": 120.962,
+      "type": "orb"
+    },
+    {
+      "time": 121.484,
+      "type": "orb"
+    },
+    {
+      "time": 122.181,
+      "type": "wall"
+    },
+    {
+      "time": 122.715,
+      "type": "orb"
+    },
+    {
+      "time": 123.249,
+      "type": "wall"
+    },
+    {
+      "time": 123.783,
+      "type": "orb"
+    },
+    {
+      "time": 124.317,
+      "type": "orb"
+    },
+    {
+      "time": 125.013,
+      "type": "orb"
+    },
+    {
+      "time": 125.71,
+      "type": "orb"
+    },
+    {
+      "time": 126.082,
+      "type": "wall"
+    },
+    {
+      "time": 126.604,
+      "type": "orb"
+    },
+    {
+      "time": 127.126,
+      "type": "orb"
+    },
+    {
+      "time": 127.823,
+      "type": "orb"
+    },
+    {
+      "time": 128.357,
+      "type": "orb"
+    },
+    {
+      "time": 128.891,
+      "type": "wall"
+    },
+    {
+      "time": 129.425,
+      "type": "orb"
+    },
+    {
+      "time": 129.959,
+      "type": "orb"
+    },
+    {
+      "time": 130.656,
+      "type": "wall"
+    },
+    {
+      "time": 131.376,
+      "type": "wall"
+    },
+    {
+      "time": 132.072,
+      "type": "wall"
+    },
+    {
+      "time": 132.769,
+      "type": "wall"
+    },
+    {
+      "time": 133.489,
+      "type": "orb"
+    },
+    {
+      "time": 134.185,
+      "type": "orb"
+    },
+    {
+      "time": 134.905,
+      "type": "orb"
+    },
+    {
+      "time": 135.602,
+      "type": "orb"
+    },
+    {
+      "time": 136.298,
+      "type": "wall"
+    },
+    {
+      "time": 137.018,
+      "type": "orb"
+    },
+    {
+      "time": 137.715,
+      "type": "wall"
+    },
+    {
+      "time": 138.435,
+      "type": "wall"
+    },
+    {
+      "time": 139.131,
+      "type": "orb"
+    },
+    {
+      "time": 139.828,
+      "type": "orb"
+    },
+    {
+      "time": 140.548,
+      "type": "orb"
+    },
+    {
+      "time": 141.244,
+      "type": "orb"
+    },
+    {
+      "time": 141.964,
+      "type": "wall"
+    }
+  ],
+  "speedChanges": [
+    {
+      "time": 18.434,
+      "speed": 2
+    }
+  ]
+}

@@ -1,0 +1,6083 @@
+{
+  "music": "stalemate.mp3",
+  "songStart": 0.0,
+  "songDuration": 145.0,
+  "player": {
+    "position": [
+      0.0,
+      0.0
+    ],
+    "direction": [
+      -1,
+      1
+    ],
+    "speed": 1
+  },
+  "objects": [
+    {
+      "type": "orb",
+      "position": [
+        -333.896,
+        333.896
+      ],
+      "start": 0.0,
+      "end": 1.287,
+      "groupId": 1
+    },
+    {
+      "type": "walls",
+      "position": [
+        -483.62,
+        481.54
+      ],
+      "start": 0.135,
+      "end": 1.635,
+      "groupId": 1,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -331.816,
+        629.184
+      ],
+      "start": 0.4830000000000001,
+      "end": 1.983,
+      "groupId": 2,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -481.964,
+        779.332
+      ],
+      "start": 0.8320000000000001,
+      "end": 2.332,
+      "groupId": 3,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -629.608,
+        629.608
+      ],
+      "start": 1.1800000000000002,
+      "end": 2.68,
+      "groupId": 4
+    },
+    {
+      "type": "orb",
+      "position": [
+        -777.252,
+        481.964
+      ],
+      "start": 1.528,
+      "end": 3.028,
+      "groupId": 4
+    },
+    {
+      "type": "walls",
+      "position": [
+        -926.976,
+        334.32
+      ],
+      "start": 1.876,
+      "end": 3.376,
+      "groupId": 4,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -774.748,
+        186.252
+      ],
+      "start": 2.225,
+      "end": 3.725,
+      "groupId": 5,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -924.471,
+        38.608
+      ],
+      "start": 2.573,
+      "end": 4.073,
+      "groupId": 6
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1084.378,
+        -119.218
+      ],
+      "start": 2.945,
+      "end": 4.445,
+      "groupId": 6,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1003.809,
+        -197.707
+      ],
+      "start": 3.13,
+      "end": 4.63,
+      "groupId": 7
+    },
+    {
+      "type": "walls",
+      "position": [
+        -924.896,
+        -278.7
+      ],
+      "start": 3.316,
+      "end": 4.816,
+      "groupId": 7,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -777.252,
+        -126.896
+      ],
+      "start": 3.6639999999999997,
+      "end": 5.164,
+      "groupId": 8,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -629.184,
+        -277.044
+      ],
+      "start": 4.013,
+      "end": 5.513,
+      "groupId": 9
+    },
+    {
+      "type": "walls",
+      "position": [
+        -479.46,
+        -424.688
+      ],
+      "start": 4.361,
+      "end": 5.861,
+      "groupId": 9,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -631.264,
+        -572.332
+      ],
+      "start": 4.709,
+      "end": 6.209,
+      "groupId": 10,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -550.27,
+        -651.245
+      ],
+      "start": 4.895,
+      "end": 6.395,
+      "groupId": 11
+    },
+    {
+      "type": "walls",
+      "position": [
+        -469.277,
+        -730.158
+      ],
+      "start": 5.081,
+      "end": 6.581,
+      "groupId": 11,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -619.001,
+        -877.802
+      ],
+      "start": 5.429,
+      "end": 6.929,
+      "groupId": 12
+    },
+    {
+      "type": "walls",
+      "position": [
+        -766.645,
+        -1027.526
+      ],
+      "start": 5.777,
+      "end": 7.277,
+      "groupId": 12,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -916.793,
+        -877.378
+      ],
+      "start": 6.126,
+      "end": 7.626,
+      "groupId": 13,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -764.989,
+        -729.734
+      ],
+      "start": 6.474,
+      "end": 7.974,
+      "groupId": 14,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -914.713,
+        -582.09
+      ],
+      "start": 6.822,
+      "end": 8.322,
+      "groupId": 15
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1146.362,
+        -350.442
+      ],
+      "start": 7.368,
+      "end": 8.868,
+      "groupId": 15
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1220.183,
+        -274.54
+      ],
+      "start": 7.542,
+      "end": 9.042,
+      "groupId": 15,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1369.907,
+        -424.264
+      ],
+      "start": 7.890000000000001,
+      "end": 9.39,
+      "groupId": 16,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1219.759,
+        -572.332
+      ],
+      "start": 8.239,
+      "end": 9.739,
+      "groupId": 17
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1060.277,
+        -729.734
+      ],
+      "start": 8.61,
+      "end": 10.11,
+      "groupId": 17,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1210.425,
+        -879.882
+      ],
+      "start": 8.959,
+      "end": 10.459,
+      "groupId": 18,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1358.069,
+        -728.078
+      ],
+      "start": 9.307,
+      "end": 10.807,
+      "groupId": 19,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1505.713,
+        -877.802
+      ],
+      "start": 9.655,
+      "end": 11.155,
+      "groupId": 20
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1655.437,
+        -1025.446
+      ],
+      "start": 10.003,
+      "end": 11.503,
+      "groupId": 20,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1574.444,
+        -1104.359
+      ],
+      "start": 10.189,
+      "end": 11.689,
+      "groupId": 21
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1493.451,
+        -1183.272
+      ],
+      "start": 10.375,
+      "end": 11.875,
+      "groupId": 21,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1643.175,
+        -1332.996
+      ],
+      "start": 10.723,
+      "end": 12.223,
+      "groupId": 22,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1791.243,
+        -1182.848
+      ],
+      "start": 11.072,
+      "end": 12.572,
+      "groupId": 23
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1940.967,
+        -1035.204
+      ],
+      "start": 11.42,
+      "end": 12.92,
+      "groupId": 23,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1789.163,
+        -887.56
+      ],
+      "start": 11.768,
+      "end": 13.268,
+      "groupId": 24,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1938.887,
+        -737.837
+      ],
+      "start": 12.116,
+      "end": 13.616,
+      "groupId": 25,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2017.8,
+        -818.83
+      ],
+      "start": 12.302,
+      "end": 13.802,
+      "groupId": 26
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2096.713,
+        -897.743
+      ],
+      "start": 12.488,
+      "end": 13.988,
+      "groupId": 26
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2244.357,
+        -1045.387
+      ],
+      "start": 12.836,
+      "end": 14.336,
+      "groupId": 26
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2394.505,
+        -1193.455
+      ],
+      "start": 13.185,
+      "end": 14.685,
+      "groupId": 26,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2242.701,
+        -1341.099
+      ],
+      "start": 13.533,
+      "end": 15.033,
+      "groupId": 27,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2323.694,
+        -1420.012
+      ],
+      "start": 13.719,
+      "end": 15.219,
+      "groupId": 28
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2402.183,
+        -1498.501
+      ],
+      "start": 13.904,
+      "end": 15.404,
+      "groupId": 28
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2550.251,
+        -1648.649
+      ],
+      "start": 14.253,
+      "end": 15.753,
+      "groupId": 28,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2699.975,
+        -1498.925
+      ],
+      "start": 14.601,
+      "end": 16.101,
+      "groupId": 29,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2548.171,
+        -1351.281
+      ],
+      "start": 14.949,
+      "end": 16.448999999999998,
+      "groupId": 30,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2698.319,
+        -1203.213
+      ],
+      "start": 15.297999999999998,
+      "end": 16.798,
+      "groupId": 31
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2848.043,
+        -1055.569
+      ],
+      "start": 15.646,
+      "end": 17.146,
+      "groupId": 31,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2767.05,
+        -974.576
+      ],
+      "start": 15.832,
+      "end": 17.332,
+      "groupId": 32,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2686.481,
+        -1055.145
+      ],
+      "start": 16.017,
+      "end": 17.517,
+      "groupId": 33,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2836.63,
+        -1205.293
+      ],
+      "start": 16.366,
+      "end": 17.866,
+      "groupId": 34,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2984.273,
+        -1055.569
+      ],
+      "start": 16.714,
+      "end": 18.214,
+      "groupId": 35
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3131.917,
+        -905.845
+      ],
+      "start": 17.062,
+      "end": 18.562,
+      "groupId": 35,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3210.83,
+        -986.838
+      ],
+      "start": 17.248,
+      "end": 18.748,
+      "groupId": 36
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3291.824,
+        -1065.751
+      ],
+      "start": 17.434,
+      "end": 18.934,
+      "groupId": 36,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "speed_trigger",
+      "position": [
+        -3215.922,
+        -1139.573
+      ],
+      "start": 17.608,
+      "end": 19.108,
+      "groupId": 37,
+      "speed": 2
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3115.412,
+        -1238.003
+      ],
+      "start": 17.782,
+      "end": 19.282,
+      "groupId": 37,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3314.351,
+        -1434.861
+      ],
+      "start": 18.13,
+      "end": 19.63,
+      "groupId": 38
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3511.775,
+        -1634.365
+      ],
+      "start": 18.479,
+      "end": 19.979,
+      "groupId": 38,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3616.993,
+        -1527.068
+      ],
+      "start": 18.665,
+      "end": 20.165,
+      "groupId": 39
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3721.644,
+        -1420.336
+      ],
+      "start": 18.85,
+      "end": 20.35,
+      "groupId": 39,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3919.069,
+        -1621.92
+      ],
+      "start": 19.199,
+      "end": 20.699,
+      "groupId": 40,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4115.927,
+        -1422.982
+      ],
+      "start": 19.547,
+      "end": 21.047,
+      "groupId": 41
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4312.786,
+        -1226.123
+      ],
+      "start": 19.895,
+      "end": 21.395,
+      "groupId": 41
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4418.003,
+        -1120.906
+      ],
+      "start": 20.081,
+      "end": 21.581,
+      "groupId": 41
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4523.221,
+        -1013.608
+      ],
+      "start": 20.267,
+      "end": 21.767,
+      "groupId": 41,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4621.65,
+        -1114.117
+      ],
+      "start": 20.441,
+      "end": 21.941,
+      "groupId": 42
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4720.079,
+        -1214.627
+      ],
+      "start": 20.615,
+      "end": 22.115,
+      "groupId": 42,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4916.938,
+        -1015.688
+      ],
+      "start": 20.963,
+      "end": 22.463,
+      "groupId": 43
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5116.442,
+        -818.264
+      ],
+      "start": 21.312,
+      "end": 22.812,
+      "groupId": 43,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5015.933,
+        -719.835
+      ],
+      "start": 21.486,
+      "end": 22.986,
+      "groupId": 44
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4917.503,
+        -619.325
+      ],
+      "start": 21.66,
+      "end": 23.16,
+      "groupId": 44,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4819.074,
+        -719.835
+      ],
+      "start": 21.834,
+      "end": 23.334,
+      "groupId": 45
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4720.645,
+        -818.264
+      ],
+      "start": 22.008,
+      "end": 23.508,
+      "groupId": 45
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4521.706,
+        -1015.122
+      ],
+      "start": 22.356,
+      "end": 23.856,
+      "groupId": 45,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4629.004,
+        -1120.34
+      ],
+      "start": 22.542,
+      "end": 24.042,
+      "groupId": 46
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4734.221,
+        -1227.637
+      ],
+      "start": 22.728,
+      "end": 24.228,
+      "groupId": 46,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4931.08,
+        -1026.619
+      ],
+      "start": 23.076,
+      "end": 24.576,
+      "groupId": 47,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5029.509,
+        -1127.128
+      ],
+      "start": 23.25,
+      "end": 24.75,
+      "groupId": 48
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5128.504,
+        -1228.203
+      ],
+      "start": 23.425,
+      "end": 24.925,
+      "groupId": 48,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5327.443,
+        -1029.265
+      ],
+      "start": 23.773,
+      "end": 25.273,
+      "groupId": 49,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5128.504,
+        -832.406
+      ],
+      "start": 24.121,
+      "end": 25.621,
+      "groupId": 50
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5023.287,
+        -727.189
+      ],
+      "start": 24.307,
+      "end": 25.807,
+      "groupId": 50
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4915.989,
+        -621.971
+      ],
+      "start": 24.493,
+      "end": 25.993,
+      "groupId": 50,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5016.498,
+        -523.542
+      ],
+      "start": 24.667,
+      "end": 26.167,
+      "groupId": 51
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5117.008,
+        -425.113
+      ],
+      "start": 24.841,
+      "end": 26.341,
+      "groupId": 51,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "speed_trigger",
+      "position": [
+        -5016.498,
+        -326.683
+      ],
+      "start": 25.015,
+      "end": 26.515,
+      "groupId": 52,
+      "speed": 3
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4893.462,
+        -201.567
+      ],
+      "start": 25.189,
+      "end": 26.689,
+      "groupId": 52,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4646.682,
+        -450.427
+      ],
+      "start": 25.538,
+      "end": 27.038,
+      "groupId": 53
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4398.528,
+        -696.5
+      ],
+      "start": 25.886,
+      "end": 27.386,
+      "groupId": 53,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4532.13,
+        -828.022
+      ],
+      "start": 26.072,
+      "end": 27.572,
+      "groupId": 54
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4662.945,
+        -960.917
+      ],
+      "start": 26.257,
+      "end": 27.757,
+      "groupId": 54,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4786.689,
+        -835.093
+      ],
+      "start": 26.432,
+      "end": 27.932,
+      "groupId": 55
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4909.725,
+        -709.977
+      ],
+      "start": 26.606,
+      "end": 28.106,
+      "groupId": 55,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5032.762,
+        -835.093
+      ],
+      "start": 26.78,
+      "end": 28.28,
+      "groupId": 56
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5155.798,
+        -960.21
+      ],
+      "start": 26.954,
+      "end": 28.454,
+      "groupId": 56,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5278.835,
+        -835.093
+      ],
+      "start": 27.128,
+      "end": 28.628,
+      "groupId": 57
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5403.952,
+        -712.057
+      ],
+      "start": 27.302,
+      "end": 28.802,
+      "groupId": 57,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5278.835,
+        -589.02
+      ],
+      "start": 27.476,
+      "end": 28.976,
+      "groupId": 58
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5153.011,
+        -465.276
+      ],
+      "start": 27.651,
+      "end": 29.151,
+      "groupId": 58,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5278.128,
+        -342.24
+      ],
+      "start": 27.825,
+      "end": 29.325,
+      "groupId": 59
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5403.244,
+        -219.203
+      ],
+      "start": 27.999,
+      "end": 29.499,
+      "groupId": 59,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5153.011,
+        26.87
+      ],
+      "start": 28.347,
+      "end": 29.847,
+      "groupId": 60,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5286.613,
+        158.392
+      ],
+      "start": 28.533,
+      "end": 30.033,
+      "groupId": 61
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5420.215,
+        289.914
+      ],
+      "start": 28.719,
+      "end": 30.219,
+      "groupId": 61,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5172.062,
+        535.987
+      ],
+      "start": 29.067,
+      "end": 30.567,
+      "groupId": 62
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5049.025,
+        659.024
+      ],
+      "start": 29.241,
+      "end": 30.741,
+      "groupId": 62
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4925.989,
+        784.14
+      ],
+      "start": 29.415,
+      "end": 30.915,
+      "groupId": 62,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4679.208,
+        535.28
+      ],
+      "start": 29.764,
+      "end": 31.264,
+      "groupId": 63
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4431.055,
+        289.207
+      ],
+      "start": 30.112,
+      "end": 31.612,
+      "groupId": 63,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4556.172,
+        166.17
+      ],
+      "start": 30.286,
+      "end": 31.786,
+      "groupId": 64
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4679.208,
+        41.054
+      ],
+      "start": 30.46,
+      "end": 31.96,
+      "groupId": 64,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4810.73,
+        174.655
+      ],
+      "start": 30.646,
+      "end": 32.146,
+      "groupId": 65
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4942.252,
+        306.177
+      ],
+      "start": 30.832,
+      "end": 32.332,
+      "groupId": 65
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5188.325,
+        552.25
+      ],
+      "start": 31.18,
+      "end": 32.68,
+      "groupId": 65
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5436.478,
+        798.324
+      ],
+      "start": 31.528,
+      "end": 33.028,
+      "groupId": 65,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5187.618,
+        1047.184
+      ],
+      "start": 31.877000000000002,
+      "end": 33.377,
+      "groupId": 66,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5056.803,
+        914.289
+      ],
+      "start": 32.062,
+      "end": 33.562,
+      "groupId": 67
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4925.282,
+        780.687
+      ],
+      "start": 32.248,
+      "end": 33.748,
+      "groupId": 67,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4802.245,
+        905.804
+      ],
+      "start": 32.422,
+      "end": 33.922,
+      "groupId": 68
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4679.208,
+        1030.92
+      ],
+      "start": 32.596,
+      "end": 34.096,
+      "groupId": 68,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4432.428,
+        779.98
+      ],
+      "start": 32.945,
+      "end": 34.445,
+      "groupId": 69,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4186.355,
+        1030.213
+      ],
+      "start": 33.293,
+      "end": 34.793,
+      "groupId": 70,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3938.202,
+        782.06
+      ],
+      "start": 33.641,
+      "end": 35.141,
+      "groupId": 71,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4071.804,
+        648.458
+      ],
+      "start": 33.827,
+      "end": 35.327,
+      "groupId": 72,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4205.406,
+        782.06
+      ],
+      "start": 34.013,
+      "end": 35.513,
+      "groupId": 73,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3957.252,
+        1030.213
+      ],
+      "start": 34.361,
+      "end": 35.861,
+      "groupId": 74,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3710.472,
+        781.353
+      ],
+      "start": 34.71,
+      "end": 36.21,
+      "groupId": 75
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3464.399,
+        533.2
+      ],
+      "start": 35.058,
+      "end": 36.558,
+      "groupId": 75,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3218.326,
+        781.353
+      ],
+      "start": 35.406,
+      "end": 36.906,
+      "groupId": 76
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3086.804,
+        912.875
+      ],
+      "start": 35.592,
+      "end": 37.092,
+      "groupId": 76
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2953.202,
+        1044.397
+      ],
+      "start": 35.778,
+      "end": 37.278,
+      "groupId": 76,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3201.355,
+        1290.47
+      ],
+      "start": 36.126,
+      "end": 37.626,
+      "groupId": 77
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3447.428,
+        1536.543
+      ],
+      "start": 36.474,
+      "end": 37.974,
+      "groupId": 77
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3570.465,
+        1661.66
+      ],
+      "start": 36.648,
+      "end": 38.148,
+      "groupId": 77,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3694.209,
+        1535.836
+      ],
+      "start": 36.823,
+      "end": 38.323,
+      "groupId": 78
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3825.023,
+        1405.021
+      ],
+      "start": 37.008,
+      "end": 38.508,
+      "groupId": 78
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3958.625,
+        1273.499
+      ],
+      "start": 37.194,
+      "end": 38.694,
+      "groupId": 78,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3710.472,
+        1027.426
+      ],
+      "start": 37.542,
+      "end": 39.042,
+      "groupId": 79
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3587.436,
+        904.39
+      ],
+      "start": 37.716,
+      "end": 39.216,
+      "groupId": 79
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3461.612,
+        780.646
+      ],
+      "start": 37.891,
+      "end": 39.391,
+      "groupId": 79,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3586.728,
+        657.609
+      ],
+      "start": 38.065,
+      "end": 39.565,
+      "groupId": 80
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3709.765,
+        534.573
+      ],
+      "start": 38.239,
+      "end": 39.739,
+      "groupId": 80
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3841.287,
+        403.051
+      ],
+      "start": 38.425,
+      "end": 39.925,
+      "groupId": 80
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3972.102,
+        270.156
+      ],
+      "start": 38.61,
+      "end": 40.11,
+      "groupId": 80,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4218.882,
+        521.096
+      ],
+      "start": 38.959,
+      "end": 40.459,
+      "groupId": 81,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4341.918,
+        395.98
+      ],
+      "start": 39.133,
+      "end": 40.633,
+      "groupId": 82
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4464.955,
+        270.863
+      ],
+      "start": 39.307,
+      "end": 40.807,
+      "groupId": 82,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4587.992,
+        395.98
+      ],
+      "start": 39.481,
+      "end": 40.981,
+      "groupId": 83
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4713.108,
+        519.016
+      ],
+      "start": 39.655,
+      "end": 41.155,
+      "groupId": 83,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4579.506,
+        652.618
+      ],
+      "start": 39.841,
+      "end": 41.341,
+      "groupId": 84,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4445.904,
+        519.016
+      ],
+      "start": 40.027,
+      "end": 41.527,
+      "groupId": 85,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4694.058,
+        272.943
+      ],
+      "start": 40.375,
+      "end": 41.875,
+      "groupId": 86
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4817.094,
+        149.907
+      ],
+      "start": 40.549,
+      "end": 42.049,
+      "groupId": 86
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4942.211,
+        26.87
+      ],
+      "start": 40.723,
+      "end": 42.223,
+      "groupId": 86,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4816.387,
+        -96.874
+      ],
+      "start": 40.898,
+      "end": 42.398,
+      "groupId": 87
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4693.351,
+        -219.91
+      ],
+      "start": 41.072,
+      "end": 42.572,
+      "groupId": 87
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4570.314,
+        -342.947
+      ],
+      "start": 41.246,
+      "end": 42.746,
+      "groupId": 87
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4445.197,
+        -465.983
+      ],
+      "start": 41.42,
+      "end": 42.92,
+      "groupId": 87,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4578.799,
+        -597.505
+      ],
+      "start": 41.606,
+      "end": 43.106,
+      "groupId": 88
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4710.321,
+        -729.027
+      ],
+      "start": 41.792,
+      "end": 43.292,
+      "groupId": 88
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4958.474,
+        -975.1
+      ],
+      "start": 42.14,
+      "end": 43.64,
+      "groupId": 88,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4833.358,
+        -1098.137
+      ],
+      "start": 42.314,
+      "end": 43.814,
+      "groupId": 89
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4710.321,
+        -1221.173
+      ],
+      "start": 42.488,
+      "end": 43.988,
+      "groupId": 89
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4578.799,
+        -1352.695
+      ],
+      "start": 42.674,
+      "end": 44.174,
+      "groupId": 89
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4445.197,
+        -1484.217
+      ],
+      "start": 42.86,
+      "end": 44.36,
+      "groupId": 89,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4570.314,
+        -1607.254
+      ],
+      "start": 43.034,
+      "end": 44.534,
+      "groupId": 90
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4693.351,
+        -1730.29
+      ],
+      "start": 43.208,
+      "end": 44.708,
+      "groupId": 90
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4941.504,
+        -1976.363
+      ],
+      "start": 43.556,
+      "end": 45.056,
+      "groupId": 90,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4690.563,
+        -2223.144
+      ],
+      "start": 43.905,
+      "end": 45.405,
+      "groupId": 91,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4815.68,
+        -2346.18
+      ],
+      "start": 44.079,
+      "end": 45.579,
+      "groupId": 92
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5000.235,
+        -2530.735
+      ],
+      "start": 44.34,
+      "end": 45.84,
+      "groupId": 92
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5184.79,
+        -2715.29
+      ],
+      "start": 44.601,
+      "end": 46.101,
+      "groupId": 92
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5431.57,
+        -2964.15
+      ],
+      "start": 44.95,
+      "end": 46.45,
+      "groupId": 92,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5554.607,
+        -2839.034
+      ],
+      "start": 45.124,
+      "end": 46.624,
+      "groupId": 93
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5800.68,
+        -2592.961
+      ],
+      "start": 45.472,
+      "end": 46.972,
+      "groupId": 93
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5925.796,
+        -2469.924
+      ],
+      "start": 45.646,
+      "end": 47.146,
+      "groupId": 93,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5660.673,
+        -2204.8
+      ],
+      "start": 46.018,
+      "end": 47.518,
+      "groupId": 94,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5546.121,
+        -2321.432
+      ],
+      "start": 46.18,
+      "end": 47.68,
+      "groupId": 95
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5428.783,
+        -2436.69
+      ],
+      "start": 46.343,
+      "end": 47.843,
+      "groupId": 95,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5561.678,
+        -2567.505
+      ],
+      "start": 46.528,
+      "end": 48.028,
+      "groupId": 96
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5693.2,
+        -2699.027
+      ],
+      "start": 46.714,
+      "end": 48.214,
+      "groupId": 96
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5939.98,
+        -2947.887
+      ],
+      "start": 47.063,
+      "end": 48.563,
+      "groupId": 96,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6063.016,
+        -2822.77
+      ],
+      "start": 47.237,
+      "end": 48.737,
+      "groupId": 97
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6186.053,
+        -2699.734
+      ],
+      "start": 47.411,
+      "end": 48.911,
+      "groupId": 97
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6309.09,
+        -2576.697
+      ],
+      "start": 47.585,
+      "end": 49.085,
+      "groupId": 97
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6434.206,
+        -2453.661
+      ],
+      "start": 47.759,
+      "end": 49.259,
+      "groupId": 97,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6300.604,
+        -2322.139
+      ],
+      "start": 47.945,
+      "end": 49.445,
+      "groupId": 98
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5923.009,
+        -1942.464
+      ],
+      "start": 48.479,
+      "end": 49.979,
+      "groupId": 98,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5674.856,
+        -2190.617
+      ],
+      "start": 48.827,
+      "end": 50.327,
+      "groupId": 99,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5799.973,
+        -2313.653
+      ],
+      "start": 49.001,
+      "end": 50.501,
+      "groupId": 100
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5923.716,
+        -2439.477
+      ],
+      "start": 49.176,
+      "end": 50.676,
+      "groupId": 100,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6169.79,
+        -2191.324
+      ],
+      "start": 49.524,
+      "end": 51.024,
+      "groupId": 101
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6417.943,
+        -1945.251
+      ],
+      "start": 49.872,
+      "end": 51.372,
+      "groupId": 101,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6284.341,
+        -1813.729
+      ],
+      "start": 50.058,
+      "end": 51.558,
+      "groupId": 102
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6152.819,
+        -1680.127
+      ],
+      "start": 50.244,
+      "end": 51.744,
+      "groupId": 102,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6022.004,
+        -1813.022
+      ],
+      "start": 50.429,
+      "end": 51.929,
+      "groupId": 103
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5890.482,
+        -1944.544
+      ],
+      "start": 50.615,
+      "end": 52.115,
+      "groupId": 103
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5767.446,
+        -2067.58
+      ],
+      "start": 50.789,
+      "end": 52.289,
+      "groupId": 103
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5644.409,
+        -2190.617
+      ],
+      "start": 50.963,
+      "end": 52.463,
+      "groupId": 103
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5395.549,
+        -2437.397
+      ],
+      "start": 51.312,
+      "end": 52.812,
+      "groupId": 103,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5645.782,
+        -2683.47
+      ],
+      "start": 51.66,
+      "end": 53.16,
+      "groupId": 104,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5520.665,
+        -2806.507
+      ],
+      "start": 51.834,
+      "end": 53.334,
+      "groupId": 105
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5395.549,
+        -2929.543
+      ],
+      "start": 52.008,
+      "end": 53.508,
+      "groupId": 105,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5521.373,
+        -3053.287
+      ],
+      "start": 52.183,
+      "end": 53.683,
+      "groupId": 106
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5646.489,
+        -3176.324
+      ],
+      "start": 52.357,
+      "end": 53.857,
+      "groupId": 106,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5513.594,
+        -3307.138
+      ],
+      "start": 52.542,
+      "end": 54.042,
+      "groupId": 107
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5379.993,
+        -3438.66
+      ],
+      "start": 52.728,
+      "end": 54.228,
+      "groupId": 107,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5505.109,
+        -3561.697
+      ],
+      "start": 52.902,
+      "end": 54.402,
+      "groupId": 108
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5630.226,
+        -3684.733
+      ],
+      "start": 53.076,
+      "end": 54.576,
+      "groupId": 108,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5379.285,
+        -3931.514
+      ],
+      "start": 53.425,
+      "end": 54.925,
+      "groupId": 109,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5504.402,
+        -4054.55
+      ],
+      "start": 53.599,
+      "end": 55.099,
+      "groupId": 110
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5627.439,
+        -4177.587
+      ],
+      "start": 53.773,
+      "end": 55.273,
+      "groupId": 110
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5875.592,
+        -4423.66
+      ],
+      "start": 54.121,
+      "end": 55.621,
+      "groupId": 110,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5610.468,
+        -4688.784
+      ],
+      "start": 54.493,
+      "end": 55.993,
+      "groupId": 111,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5487.431,
+        -4563.667
+      ],
+      "start": 54.667,
+      "end": 56.167,
+      "groupId": 112
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5364.395,
+        -4438.551
+      ],
+      "start": 54.841,
+      "end": 56.341,
+      "groupId": 112,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5117.615,
+        -4687.411
+      ],
+      "start": 55.19,
+      "end": 56.69,
+      "groupId": 113
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4871.541,
+        -4935.564
+      ],
+      "start": 55.538,
+      "end": 57.038,
+      "groupId": 113,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4748.505,
+        -4810.447
+      ],
+      "start": 55.712,
+      "end": 57.212,
+      "groupId": 114
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4625.468,
+        -4687.411
+      ],
+      "start": 55.886,
+      "end": 57.386,
+      "groupId": 114
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4493.946,
+        -4555.889
+      ],
+      "start": 56.072,
+      "end": 57.572,
+      "groupId": 114
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4360.345,
+        -4424.367
+      ],
+      "start": 56.258,
+      "end": 57.758,
+      "groupId": 114,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4485.461,
+        -4301.331
+      ],
+      "start": 56.432,
+      "end": 57.932,
+      "groupId": 115
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4608.498,
+        -4178.294
+      ],
+      "start": 56.606,
+      "end": 58.106,
+      "groupId": 115
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4854.571,
+        -3930.141
+      ],
+      "start": 56.954,
+      "end": 58.454,
+      "groupId": 115,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5103.431,
+        -4179.001
+      ],
+      "start": 57.303,
+      "end": 58.803,
+      "groupId": 116,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4978.315,
+        -4302.038
+      ],
+      "start": 57.477,
+      "end": 58.977,
+      "groupId": 117
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4853.198,
+        -4425.074
+      ],
+      "start": 57.651,
+      "end": 59.151,
+      "groupId": 117,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4986.8,
+        -4556.596
+      ],
+      "start": 57.837,
+      "end": 59.337,
+      "groupId": 118
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5117.615,
+        -4689.491
+      ],
+      "start": 58.022,
+      "end": 59.522,
+      "groupId": 118,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5364.395,
+        -4438.551
+      ],
+      "start": 58.371,
+      "end": 59.871,
+      "groupId": 119,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5487.431,
+        -4563.667
+      ],
+      "start": 58.545,
+      "end": 60.045,
+      "groupId": 120
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5610.468,
+        -4686.704
+      ],
+      "start": 58.719,
+      "end": 60.219,
+      "groupId": 120
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5733.505,
+        -4809.74
+      ],
+      "start": 58.893,
+      "end": 60.393,
+      "groupId": 120
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5856.541,
+        -4932.777
+      ],
+      "start": 59.067,
+      "end": 60.567,
+      "groupId": 120
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6103.321,
+        -5181.637
+      ],
+      "start": 59.416,
+      "end": 60.916,
+      "groupId": 120,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6351.475,
+        -4933.484
+      ],
+      "start": 59.764,
+      "end": 61.264,
+      "groupId": 121,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6084.978,
+        -4671.147
+      ],
+      "start": 60.135,
+      "end": 61.635,
+      "groupId": 122,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6210.802,
+        -4547.404
+      ],
+      "start": 60.31,
+      "end": 61.81,
+      "groupId": 123
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6333.838,
+        -4422.287
+      ],
+      "start": 60.484,
+      "end": 61.984,
+      "groupId": 123,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6456.875,
+        -4547.404
+      ],
+      "start": 60.658,
+      "end": 62.158,
+      "groupId": 124
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6579.911,
+        -4672.52
+      ],
+      "start": 60.832,
+      "end": 62.332,
+      "groupId": 124,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6711.433,
+        -4538.918
+      ],
+      "start": 61.018,
+      "end": 62.518,
+      "groupId": 125
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6842.248,
+        -4406.024
+      ],
+      "start": 61.203,
+      "end": 62.703,
+      "groupId": 125,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7091.108,
+        -4654.884
+      ],
+      "start": 61.552,
+      "end": 63.052,
+      "groupId": 126,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6965.992,
+        -4777.921
+      ],
+      "start": 61.726,
+      "end": 63.226,
+      "groupId": 127
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6840.875,
+        -4900.957
+      ],
+      "start": 61.9,
+      "end": 63.4,
+      "groupId": 127,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6965.992,
+        -5023.994
+      ],
+      "start": 62.074,
+      "end": 63.574,
+      "groupId": 128
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7089.028,
+        -5147.03
+      ],
+      "start": 62.248,
+      "end": 63.748,
+      "groupId": 128
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7335.809,
+        -5395.891
+      ],
+      "start": 62.597,
+      "end": 64.09700000000001,
+      "groupId": 128,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7458.845,
+        -5270.774
+      ],
+      "start": 62.771,
+      "end": 64.271,
+      "groupId": 129
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7583.962,
+        -5147.737
+      ],
+      "start": 62.945,
+      "end": 64.445,
+      "groupId": 129,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7450.36,
+        -5014.136
+      ],
+      "start": 63.131,
+      "end": 64.631,
+      "groupId": 130,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7319.545,
+        -5149.11
+      ],
+      "start": 63.316,
+      "end": 64.816,
+      "groupId": 131,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7195.801,
+        -5023.287
+      ],
+      "start": 63.491,
+      "end": 64.991,
+      "groupId": 132
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7072.765,
+        -4900.25
+      ],
+      "start": 63.665000000000006,
+      "end": 65.165,
+      "groupId": 132
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6826.692,
+        -4652.097
+      ],
+      "start": 64.013,
+      "end": 65.513,
+      "groupId": 132,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6703.655,
+        -4777.213
+      ],
+      "start": 64.187,
+      "end": 65.687,
+      "groupId": 133
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6580.619,
+        -4900.25
+      ],
+      "start": 64.361,
+      "end": 65.861,
+      "groupId": 133
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6456.875,
+        -5023.994
+      ],
+      "start": 64.536,
+      "end": 66.036,
+      "groupId": 133
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6331.758,
+        -5147.03
+      ],
+      "start": 64.71,
+      "end": 66.21,
+      "groupId": 133,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6464.653,
+        -5277.845
+      ],
+      "start": 64.895,
+      "end": 66.395,
+      "groupId": 134
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6596.175,
+        -5409.367
+      ],
+      "start": 65.081,
+      "end": 66.581,
+      "groupId": 134
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6842.955,
+        -5658.227
+      ],
+      "start": 65.43,
+      "end": 66.93,
+      "groupId": 134,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6965.992,
+        -5533.111
+      ],
+      "start": 65.604,
+      "end": 67.104,
+      "groupId": 135
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7089.028,
+        -5410.074
+      ],
+      "start": 65.778,
+      "end": 67.278,
+      "groupId": 135
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7337.181,
+        -5164.001
+      ],
+      "start": 66.126,
+      "end": 67.626,
+      "groupId": 135,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7089.028,
+        -4915.848
+      ],
+      "start": 66.474,
+      "end": 67.974,
+      "groupId": 136,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6957.506,
+        -5049.45
+      ],
+      "start": 66.66,
+      "end": 68.16,
+      "groupId": 137
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6825.985,
+        -5180.971
+      ],
+      "start": 66.846,
+      "end": 68.346,
+      "groupId": 137
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6702.948,
+        -5304.008
+      ],
+      "start": 67.02,
+      "end": 68.52,
+      "groupId": 137
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6579.911,
+        -5427.045
+      ],
+      "start": 67.194,
+      "end": 68.694,
+      "groupId": 137
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6331.051,
+        -5673.825
+      ],
+      "start": 67.543,
+      "end": 69.043,
+      "groupId": 137,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6456.168,
+        -5796.861
+      ],
+      "start": 67.717,
+      "end": 69.217,
+      "groupId": 138
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6640.723,
+        -5981.416
+      ],
+      "start": 67.978,
+      "end": 69.478,
+      "groupId": 138
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6827.357,
+        -6165.971
+      ],
+      "start": 68.239,
+      "end": 69.739,
+      "groupId": 138,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6640.723,
+        -6350.526
+      ],
+      "start": 68.5,
+      "end": 70.0,
+      "groupId": 139
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6447.682,
+        -6543.566
+      ],
+      "start": 68.773,
+      "end": 70.273,
+      "groupId": 139
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6314.081,
+        -6675.088
+      ],
+      "start": 68.959,
+      "end": 70.459,
+      "groupId": 139,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6439.197,
+        -6798.125
+      ],
+      "start": 69.133,
+      "end": 70.633,
+      "groupId": 140
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6685.27,
+        -7044.198
+      ],
+      "start": 69.481,
+      "end": 70.981,
+      "groupId": 140
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6811.094,
+        -7167.941
+      ],
+      "start": 69.656,
+      "end": 71.156,
+      "groupId": 140,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6678.199,
+        -7298.756
+      ],
+      "start": 69.841,
+      "end": 71.341,
+      "groupId": 141
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6546.677,
+        -7430.278
+      ],
+      "start": 70.027,
+      "end": 71.527,
+      "groupId": 141
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6298.524,
+        -7676.351
+      ],
+      "start": 70.375,
+      "end": 71.875,
+      "groupId": 141,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6424.348,
+        -7800.095
+      ],
+      "start": 70.55,
+      "end": 72.05,
+      "groupId": 142
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6549.465,
+        -7923.131
+      ],
+      "start": 70.724,
+      "end": 72.224,
+      "groupId": 142,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6424.348,
+        -8046.168
+      ],
+      "start": 70.898,
+      "end": 72.398,
+      "groupId": 143
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6299.231,
+        -8169.205
+      ],
+      "start": 71.072,
+      "end": 72.572,
+      "groupId": 143,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6424.348,
+        -8292.241
+      ],
+      "start": 71.246,
+      "end": 72.746,
+      "groupId": 144
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6547.385,
+        -8415.278
+      ],
+      "start": 71.42,
+      "end": 72.92,
+      "groupId": 144
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6794.165,
+        -8662.058
+      ],
+      "start": 71.769,
+      "end": 73.269,
+      "groupId": 144
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6919.281,
+        -8785.095
+      ],
+      "start": 71.943,
+      "end": 73.443,
+      "groupId": 144,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6794.165,
+        -8908.131
+      ],
+      "start": 72.117,
+      "end": 73.617,
+      "groupId": 145
+    },
+    {
+      "type": "speed_trigger",
+      "position": [
+        -6671.128,
+        -9031.168
+      ],
+      "start": 72.291,
+      "end": 73.791,
+      "groupId": 145,
+      "speed": 2
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6570.619,
+        -9129.597
+      ],
+      "start": 72.465,
+      "end": 73.965,
+      "groupId": 145,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6769.557,
+        -9326.456
+      ],
+      "start": 72.813,
+      "end": 74.313,
+      "groupId": 146
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6966.982,
+        -9525.96
+      ],
+      "start": 73.162,
+      "end": 74.662,
+      "groupId": 146,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7072.199,
+        -9418.662
+      ],
+      "start": 73.348,
+      "end": 74.848,
+      "groupId": 147
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7178.931,
+        -9314.011
+      ],
+      "start": 73.533,
+      "end": 75.033,
+      "groupId": 147,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6977.347,
+        -9116.586
+      ],
+      "start": 73.882,
+      "end": 75.382,
+      "groupId": 148,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7178.365,
+        -8919.728
+      ],
+      "start": 74.23,
+      "end": 75.73,
+      "groupId": 149,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7071.068,
+        -8814.51
+      ],
+      "start": 74.416,
+      "end": 75.916,
+      "groupId": 150
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6964.336,
+        -8709.858
+      ],
+      "start": 74.601,
+      "end": 76.101,
+      "groupId": 150,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7163.84,
+        -8512.434
+      ],
+      "start": 74.95,
+      "end": 76.45,
+      "groupId": 151
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7362.779,
+        -8315.576
+      ],
+      "start": 75.298,
+      "end": 76.798,
+      "groupId": 151,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7262.269,
+        -8217.146
+      ],
+      "start": 75.472,
+      "end": 76.972,
+      "groupId": 152
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7161.76,
+        -8118.717
+      ],
+      "start": 75.646,
+      "end": 77.146,
+      "groupId": 152,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7361.264,
+        -7921.293
+      ],
+      "start": 75.995,
+      "end": 77.495,
+      "groupId": 153
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7465.916,
+        -7816.641
+      ],
+      "start": 76.18,
+      "end": 77.68,
+      "groupId": 153
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7571.134,
+        -7711.424
+      ],
+      "start": 76.366,
+      "end": 77.866,
+      "groupId": 153
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7770.072,
+        -7514.565
+      ],
+      "start": 76.714,
+      "end": 78.214,
+      "groupId": 153,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7568.488,
+        -7317.141
+      ],
+      "start": 77.063,
+      "end": 78.563,
+      "groupId": 154,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7668.997,
+        -7218.712
+      ],
+      "start": 77.237,
+      "end": 78.737,
+      "groupId": 155
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7767.427,
+        -7118.202
+      ],
+      "start": 77.411,
+      "end": 78.911,
+      "groupId": 155,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7964.285,
+        -7317.141
+      ],
+      "start": 77.759,
+      "end": 79.259,
+      "groupId": 156
+    },
+    {
+      "type": "walls",
+      "position": [
+        -8163.789,
+        -7514.565
+      ],
+      "start": 78.108,
+      "end": 79.608,
+      "groupId": 156,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7964.851,
+        -7713.504
+      ],
+      "start": 78.456,
+      "end": 79.956,
+      "groupId": 157,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7866.422,
+        -7612.994
+      ],
+      "start": 78.63,
+      "end": 80.13,
+      "groupId": 158
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7767.992,
+        -7514.565
+      ],
+      "start": 78.804,
+      "end": 80.304,
+      "groupId": 158
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7655.987,
+        -7402.559
+      ],
+      "start": 79.002,
+      "end": 80.502,
+      "groupId": 158
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7544.547,
+        -7291.119
+      ],
+      "start": 79.199,
+      "end": 80.699,
+      "groupId": 158
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7360.699,
+        -7105.192
+      ],
+      "start": 79.524,
+      "end": 81.024,
+      "groupId": 158,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7161.76,
+        -7304.13
+      ],
+      "start": 79.872,
+      "end": 81.372,
+      "groupId": 159,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7269.058,
+        -7409.348
+      ],
+      "start": 80.058,
+      "end": 81.558,
+      "groupId": 160
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7376.355,
+        -7514.565
+      ],
+      "start": 80.244,
+      "end": 81.744,
+      "groupId": 160,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7175.337,
+        -7711.424
+      ],
+      "start": 80.592,
+      "end": 82.092,
+      "groupId": 161,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7376.355,
+        -7908.282
+      ],
+      "start": 80.94,
+      "end": 82.44,
+      "groupId": 162,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7275.28,
+        -8007.277
+      ],
+      "start": 81.115,
+      "end": 82.615,
+      "groupId": 163
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7176.851,
+        -8105.706
+      ],
+      "start": 81.289,
+      "end": 82.789,
+      "groupId": 163
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7078.422,
+        -8204.136
+      ],
+      "start": 81.463,
+      "end": 82.963,
+      "groupId": 163
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6977.912,
+        -8302.565
+      ],
+      "start": 81.637,
+      "end": 83.137,
+      "groupId": 163,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7085.21,
+        -8407.782
+      ],
+      "start": 81.823,
+      "end": 83.323,
+      "groupId": 164
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7190.427,
+        -8513.0
+      ],
+      "start": 82.009,
+      "end": 83.509,
+      "groupId": 164
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7389.366,
+        -8709.858
+      ],
+      "start": 82.357,
+      "end": 83.857,
+      "groupId": 164,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7188.347,
+        -8906.717
+      ],
+      "start": 82.705,
+      "end": 84.205,
+      "groupId": 165,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7295.645,
+        -9011.935
+      ],
+      "start": 82.891,
+      "end": 84.391,
+      "groupId": 166
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7402.942,
+        -9117.152
+      ],
+      "start": 83.077,
+      "end": 84.577,
+      "groupId": 166,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7204.004,
+        -9314.011
+      ],
+      "start": 83.425,
+      "end": 84.925,
+      "groupId": 167
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7005.065,
+        -9510.869
+      ],
+      "start": 83.773,
+      "end": 85.273,
+      "groupId": 167,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7105.575,
+        -9609.298
+      ],
+      "start": 83.947,
+      "end": 85.447,
+      "groupId": 168
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7206.65,
+        -9708.293
+      ],
+      "start": 84.122,
+      "end": 85.622,
+      "groupId": 168,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7005.631,
+        -9905.152
+      ],
+      "start": 84.47,
+      "end": 85.97,
+      "groupId": 169,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7112.929,
+        -10010.369
+      ],
+      "start": 84.656,
+      "end": 86.156,
+      "groupId": 170
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7217.58,
+        -10115.021
+      ],
+      "start": 84.841,
+      "end": 86.341,
+      "groupId": 170
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7403.508,
+        -10298.869
+      ],
+      "start": 85.166,
+      "end": 86.666,
+      "groupId": 170,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7296.211,
+        -10406.166
+      ],
+      "start": 85.352,
+      "end": 86.852,
+      "groupId": 171,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7188.913,
+        -10298.869
+      ],
+      "start": 85.538,
+      "end": 87.038,
+      "groupId": 172,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7387.852,
+        -10102.01
+      ],
+      "start": 85.886,
+      "end": 87.386,
+      "groupId": 173
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7585.276,
+        -9904.586
+      ],
+      "start": 86.235,
+      "end": 87.735,
+      "groupId": 173
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7782.134,
+        -9705.648
+      ],
+      "start": 86.583,
+      "end": 88.083,
+      "groupId": 173,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7880.564,
+        -9806.157
+      ],
+      "start": 86.757,
+      "end": 88.257,
+      "groupId": 174
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7978.993,
+        -9904.586
+      ],
+      "start": 86.931,
+      "end": 88.431,
+      "groupId": 174
+    },
+    {
+      "type": "orb",
+      "position": [
+        -8175.851,
+        -10101.445
+      ],
+      "start": 87.279,
+      "end": 88.779,
+      "groupId": 174
+    },
+    {
+      "type": "orb",
+      "position": [
+        -8281.069,
+        -10206.662
+      ],
+      "start": 87.465,
+      "end": 88.965,
+      "groupId": 174
+    },
+    {
+      "type": "walls",
+      "position": [
+        -8388.366,
+        -10311.88
+      ],
+      "start": 87.651,
+      "end": 89.151,
+      "groupId": 174,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -8189.428,
+        -10510.818
+      ],
+      "start": 87.999,
+      "end": 89.499,
+      "groupId": 175,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7992.004,
+        -10309.234
+      ],
+      "start": 88.348,
+      "end": 89.848,
+      "groupId": 176,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7887.352,
+        -10415.966
+      ],
+      "start": 88.533,
+      "end": 90.033,
+      "groupId": 177
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7782.134,
+        -10523.263
+      ],
+      "start": 88.719,
+      "end": 90.219,
+      "groupId": 177,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7683.705,
+        -10422.754
+      ],
+      "start": 88.893,
+      "end": 90.393,
+      "groupId": 178
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7536.061,
+        -10275.11
+      ],
+      "start": 89.154,
+      "end": 90.654,
+      "groupId": 178
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7387.852,
+        -10124.82
+      ],
+      "start": 89.416,
+      "end": 90.916,
+      "groupId": 178,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7283.2,
+        -10231.552
+      ],
+      "start": 89.601,
+      "end": 91.101,
+      "groupId": 179
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7177.982,
+        -10336.77
+      ],
+      "start": 89.787,
+      "end": 91.287,
+      "groupId": 179
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6978.478,
+        -10534.194
+      ],
+      "start": 90.136,
+      "end": 91.636,
+      "groupId": 179,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7177.417,
+        -10731.053
+      ],
+      "start": 90.484,
+      "end": 91.984,
+      "groupId": 180
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7376.355,
+        -10927.911
+      ],
+      "start": 90.832,
+      "end": 92.332,
+      "groupId": 180,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7275.846,
+        -11026.34
+      ],
+      "start": 91.006,
+      "end": 92.506,
+      "groupId": 181
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7177.417,
+        -11126.85
+      ],
+      "start": 91.18,
+      "end": 92.68,
+      "groupId": 181,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6979.992,
+        -10925.265
+      ],
+      "start": 91.529,
+      "end": 93.029,
+      "groupId": 182,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6783.134,
+        -11124.204
+      ],
+      "start": 91.877,
+      "end": 93.377,
+      "groupId": 183
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6675.836,
+        -11229.421
+      ],
+      "start": 92.063,
+      "end": 93.563,
+      "groupId": 183,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6785.214,
+        -11334.639
+      ],
+      "start": 92.249,
+      "end": 93.749,
+      "groupId": 184,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6684.705,
+        -11433.068
+      ],
+      "start": 92.423,
+      "end": 93.923,
+      "groupId": 185
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6586.275,
+        -11531.497
+      ],
+      "start": 92.597,
+      "end": 94.097,
+      "groupId": 185
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6494.634,
+        -11623.138
+      ],
+      "start": 92.759,
+      "end": 94.259,
+      "groupId": 185
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6400.348,
+        -11715.345
+      ],
+      "start": 92.922,
+      "end": 94.422,
+      "groupId": 185,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6507.645,
+        -11820.563
+      ],
+      "start": 93.108,
+      "end": 94.608,
+      "groupId": 186
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6612.297,
+        -11925.214
+      ],
+      "start": 93.293,
+      "end": 94.793,
+      "groupId": 186
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6717.514,
+        -12030.432
+      ],
+      "start": 93.479,
+      "end": 94.979,
+      "groupId": 186
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6824.812,
+        -12135.649
+      ],
+      "start": 93.665,
+      "end": 95.165,
+      "groupId": 186,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6724.303,
+        -12234.079
+      ],
+      "start": 93.839,
+      "end": 95.339,
+      "groupId": 187
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6625.873,
+        -12332.508
+      ],
+      "start": 94.013,
+      "end": 95.513,
+      "groupId": 187
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6426.369,
+        -12529.932
+      ],
+      "start": 94.362,
+      "end": 95.862,
+      "groupId": 187,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6625.308,
+        -12726.791
+      ],
+      "start": 94.71,
+      "end": 96.21,
+      "groupId": 188
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6822.166,
+        -12923.649
+      ],
+      "start": 95.058,
+      "end": 96.558,
+      "groupId": 188
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7019.025,
+        -13122.588
+      ],
+      "start": 95.406,
+      "end": 96.906,
+      "groupId": 188,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7216.449,
+        -12923.084
+      ],
+      "start": 95.755,
+      "end": 97.255,
+      "groupId": 189
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7321.666,
+        -12817.866
+      ],
+      "start": 95.941,
+      "end": 97.441,
+      "groupId": 189
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7428.398,
+        -12713.214
+      ],
+      "start": 96.126,
+      "end": 97.626,
+      "groupId": 189,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7321.101,
+        -12607.997
+      ],
+      "start": 96.312,
+      "end": 97.812,
+      "groupId": 190
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7166.669,
+        -12451.485
+      ],
+      "start": 96.585,
+      "end": 98.085,
+      "groupId": 190,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7016.945,
+        -12601.209
+      ],
+      "start": 96.846,
+      "end": 98.346,
+      "groupId": 191,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7215.883,
+        -12800.147
+      ],
+      "start": 97.194,
+      "end": 98.694,
+      "groupId": 192,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7413.307,
+        -12600.643
+      ],
+      "start": 97.543,
+      "end": 99.043,
+      "groupId": 193
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7511.737,
+        -12502.214
+      ],
+      "start": 97.717,
+      "end": 99.217,
+      "groupId": 193
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7612.246,
+        -12403.784
+      ],
+      "start": 97.891,
+      "end": 99.391,
+      "groupId": 193,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7511.737,
+        -12305.355
+      ],
+      "start": 98.065,
+      "end": 99.565,
+      "groupId": 194
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7413.307,
+        -12204.846
+      ],
+      "start": 98.239,
+      "end": 99.739,
+      "groupId": 194,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7215.883,
+        -12404.35
+      ],
+      "start": 98.588,
+      "end": 100.088,
+      "groupId": 195
+    },
+    {
+      "type": "orb",
+      "position": [
+        -7111.231,
+        -12509.002
+      ],
+      "start": 98.773,
+      "end": 100.273,
+      "groupId": 195
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7006.014,
+        -12616.299
+      ],
+      "start": 98.959,
+      "end": 100.459,
+      "groupId": 195,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6807.075,
+        -12417.361
+      ],
+      "start": 99.307,
+      "end": 100.807,
+      "groupId": 196,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6908.15,
+        -12318.366
+      ],
+      "start": 99.482,
+      "end": 100.982,
+      "groupId": 197
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7008.66,
+        -12219.937
+      ],
+      "start": 99.656,
+      "end": 101.156,
+      "groupId": 197,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6908.15,
+        -12121.507
+      ],
+      "start": 99.83,
+      "end": 101.33,
+      "groupId": 198
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6809.721,
+        -12023.078
+      ],
+      "start": 100.004,
+      "end": 101.504,
+      "groupId": 198
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6702.424,
+        -11917.861
+      ],
+      "start": 100.19,
+      "end": 101.69,
+      "groupId": 198,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6809.721,
+        -11812.643
+      ],
+      "start": 100.376,
+      "end": 101.876,
+      "groupId": 199
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7008.66,
+        -11615.785
+      ],
+      "start": 100.724,
+      "end": 102.224,
+      "groupId": 199,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6809.721,
+        -11418.926
+      ],
+      "start": 101.072,
+      "end": 102.572,
+      "groupId": 200
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6623.793,
+        -11235.078
+      ],
+      "start": 101.397,
+      "end": 102.897,
+      "groupId": 200,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6731.091,
+        -11129.861
+      ],
+      "start": 101.583,
+      "end": 103.083,
+      "groupId": 201
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6838.388,
+        -11024.643
+      ],
+      "start": 101.769,
+      "end": 103.269,
+      "groupId": 201,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "speed_trigger",
+      "position": [
+        -6737.879,
+        -10926.214
+      ],
+      "start": 101.94300000000001,
+      "end": 103.44300000000001,
+      "groupId": 202,
+      "speed": 3
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6614.843,
+        -10801.097
+      ],
+      "start": 102.117,
+      "end": 103.617,
+      "groupId": 202,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6483.321,
+        -10934.699
+      ],
+      "start": 102.303,
+      "end": 103.803,
+      "groupId": 203
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6349.719,
+        -11066.221
+      ],
+      "start": 102.489,
+      "end": 103.989,
+      "groupId": 203,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6599.952,
+        -11312.294
+      ],
+      "start": 102.837,
+      "end": 104.337,
+      "groupId": 204,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6351.799,
+        -11558.367
+      ],
+      "start": 103.185,
+      "end": 104.685,
+      "groupId": 205
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6103.646,
+        -11804.441
+      ],
+      "start": 103.533,
+      "end": 105.033,
+      "groupId": 205,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6229.469,
+        -11928.184
+      ],
+      "start": 103.708,
+      "end": 105.208,
+      "groupId": 206
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6352.506,
+        -12051.221
+      ],
+      "start": 103.882,
+      "end": 105.382,
+      "groupId": 206
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6598.579,
+        -12297.294
+      ],
+      "start": 104.23,
+      "end": 105.73,
+      "groupId": 206
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6730.101,
+        -12428.816
+      ],
+      "start": 104.416,
+      "end": 105.916,
+      "groupId": 206
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6861.623,
+        -12562.418
+      ],
+      "start": 104.602,
+      "end": 106.102,
+      "groupId": 206,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7109.776,
+        -12314.265
+      ],
+      "start": 104.95,
+      "end": 106.45,
+      "groupId": 207,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6984.659,
+        -12191.228
+      ],
+      "start": 105.124,
+      "end": 106.624,
+      "groupId": 208
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6859.543,
+        -12068.191
+      ],
+      "start": 105.298,
+      "end": 106.798,
+      "groupId": 208,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -7109.776,
+        -11822.118
+      ],
+      "start": 105.646,
+      "end": 107.146,
+      "groupId": 209,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6976.174,
+        -11690.596
+      ],
+      "start": 105.832,
+      "end": 107.332,
+      "groupId": 210
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6844.652,
+        -11559.075
+      ],
+      "start": 106.018,
+      "end": 107.518,
+      "groupId": 210
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6598.579,
+        -11310.921
+      ],
+      "start": 106.366,
+      "end": 107.866,
+      "groupId": 210,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6349.719,
+        -11559.782
+      ],
+      "start": 106.715,
+      "end": 108.215,
+      "groupId": 211,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6599.952,
+        -11805.855
+      ],
+      "start": 107.063,
+      "end": 108.563,
+      "groupId": 212,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6351.799,
+        -12051.928
+      ],
+      "start": 107.411,
+      "end": 108.911,
+      "groupId": 213
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6228.762,
+        -12174.965
+      ],
+      "start": 107.585,
+      "end": 109.085,
+      "groupId": 213
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6103.646,
+        -12298.001
+      ],
+      "start": 107.759,
+      "end": 109.259,
+      "groupId": 213,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6239.327,
+        -12429.523
+      ],
+      "start": 107.945,
+      "end": 109.445,
+      "groupId": 214,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6105.726,
+        -12563.125
+      ],
+      "start": 108.131,
+      "end": 109.631,
+      "groupId": 215,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5857.572,
+        -12314.972
+      ],
+      "start": 108.479,
+      "end": 109.979,
+      "groupId": 216,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6106.433,
+        -12068.191
+      ],
+      "start": 108.828,
+      "end": 110.328,
+      "groupId": 217
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6229.469,
+        -11945.155
+      ],
+      "start": 109.002,
+      "end": 110.502,
+      "groupId": 217
+    },
+    {
+      "type": "walls",
+      "position": [
+        -6354.586,
+        -11822.118
+      ],
+      "start": 109.176,
+      "end": 110.676,
+      "groupId": 217,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6220.984,
+        -11690.596
+      ],
+      "start": 109.362,
+      "end": 110.862,
+      "groupId": 218
+    },
+    {
+      "type": "orb",
+      "position": [
+        -6090.169,
+        -11559.782
+      ],
+      "start": 109.547,
+      "end": 111.047,
+      "groupId": 218
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5843.389,
+        -11313.001
+      ],
+      "start": 109.896,
+      "end": 111.396,
+      "groupId": 218
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5597.316,
+        -11064.848
+      ],
+      "start": 110.244,
+      "end": 111.744,
+      "groupId": 218,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5474.279,
+        -11189.965
+      ],
+      "start": 110.418,
+      "end": 111.918,
+      "groupId": 219
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5351.243,
+        -11315.081
+      ],
+      "start": 110.592,
+      "end": 112.092,
+      "groupId": 219,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5219.721,
+        -11179.4
+      ],
+      "start": 110.778,
+      "end": 112.278,
+      "groupId": 220,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5086.119,
+        -11313.001
+      ],
+      "start": 110.964,
+      "end": 112.464,
+      "groupId": 221,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5334.272,
+        -11559.075
+      ],
+      "start": 111.312,
+      "end": 112.812,
+      "groupId": 222
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5580.345,
+        -11805.148
+      ],
+      "start": 111.66,
+      "end": 113.16,
+      "groupId": 222
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5704.089,
+        -11928.891
+      ],
+      "start": 111.835,
+      "end": 113.335,
+      "groupId": 222
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5829.206,
+        -12051.928
+      ],
+      "start": 112.009,
+      "end": 113.509,
+      "groupId": 222,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5696.311,
+        -12182.743
+      ],
+      "start": 112.194,
+      "end": 113.694,
+      "groupId": 223
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5564.789,
+        -12314.265
+      ],
+      "start": 112.38,
+      "end": 113.88,
+      "groupId": 223
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5318.009,
+        -12561.045
+      ],
+      "start": 112.729,
+      "end": 114.229,
+      "groupId": 223
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5071.936,
+        -12809.198
+      ],
+      "start": 113.077,
+      "end": 114.577,
+      "groupId": 223,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4825.862,
+        -12558.965
+      ],
+      "start": 113.425,
+      "end": 114.925,
+      "groupId": 224,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4702.826,
+        -12684.081
+      ],
+      "start": 113.599,
+      "end": 115.099,
+      "groupId": 225
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4577.709,
+        -12807.118
+      ],
+      "start": 113.773,
+      "end": 115.273,
+      "groupId": 225,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4828.649,
+        -13053.898
+      ],
+      "start": 114.122,
+      "end": 115.622,
+      "groupId": 226,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4695.048,
+        -13185.42
+      ],
+      "start": 114.308,
+      "end": 115.808,
+      "groupId": 227
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4564.233,
+        -13316.235
+      ],
+      "start": 114.493,
+      "end": 115.993,
+      "groupId": 227
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4315.373,
+        -13563.015
+      ],
+      "start": 114.842,
+      "end": 116.342,
+      "groupId": 227,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4448.267,
+        -13695.91
+      ],
+      "start": 115.027,
+      "end": 116.527,
+      "groupId": 228,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4579.789,
+        -13562.308
+      ],
+      "start": 115.213,
+      "end": 116.713,
+      "groupId": 229
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4764.344,
+        -13377.753
+      ],
+      "start": 115.474,
+      "end": 116.974,
+      "groupId": 229
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4949.606,
+        -13192.491
+      ],
+      "start": 115.736,
+      "end": 117.236,
+      "groupId": 229
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5072.643,
+        -13069.455
+      ],
+      "start": 115.91,
+      "end": 117.41,
+      "groupId": 229
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5320.796,
+        -12823.381
+      ],
+      "start": 116.258,
+      "end": 117.758,
+      "groupId": 229,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5195.679,
+        -12700.345
+      ],
+      "start": 116.432,
+      "end": 117.932,
+      "groupId": 230
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5072.643,
+        -12577.308
+      ],
+      "start": 116.606,
+      "end": 118.106,
+      "groupId": 230
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4825.862,
+        -12330.528
+      ],
+      "start": 116.955,
+      "end": 118.455,
+      "groupId": 230
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4700.746,
+        -12207.491
+      ],
+      "start": 117.129,
+      "end": 118.629,
+      "groupId": 230,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4887.381,
+        -12022.937
+      ],
+      "start": 117.39,
+      "end": 118.89,
+      "groupId": 231
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5074.016,
+        -11838.382
+      ],
+      "start": 117.651,
+      "end": 119.151,
+      "groupId": 231,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4948.899,
+        -11715.345
+      ],
+      "start": 117.825,
+      "end": 119.325,
+      "groupId": 232
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4823.782,
+        -11592.309
+      ],
+      "start": 117.999,
+      "end": 119.499,
+      "groupId": 232,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4957.384,
+        -11460.787
+      ],
+      "start": 118.185,
+      "end": 119.685,
+      "groupId": 233
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5090.986,
+        -11329.265
+      ],
+      "start": 118.371,
+      "end": 119.871,
+      "groupId": 233,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4965.87,
+        -11206.228
+      ],
+      "start": 118.545,
+      "end": 120.045,
+      "groupId": 234
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4842.833,
+        -11083.192
+      ],
+      "start": 118.719,
+      "end": 120.219,
+      "groupId": 234
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4593.973,
+        -10836.411
+      ],
+      "start": 119.068,
+      "end": 120.568,
+      "groupId": 234,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4726.867,
+        -10705.597
+      ],
+      "start": 119.253,
+      "end": 120.753,
+      "groupId": 235
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4860.469,
+        -10574.075
+      ],
+      "start": 119.439,
+      "end": 120.939,
+      "groupId": 235,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4735.353,
+        -10451.038
+      ],
+      "start": 119.613,
+      "end": 121.113,
+      "groupId": 236
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4610.236,
+        -10328.002
+      ],
+      "start": 119.787,
+      "end": 121.287,
+      "groupId": 236,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4859.096,
+        -10081.221
+      ],
+      "start": 120.136,
+      "end": 121.636,
+      "groupId": 237
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5105.17,
+        -9833.068
+      ],
+      "start": 120.484,
+      "end": 121.984,
+      "groupId": 237,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5228.206,
+        -9958.185
+      ],
+      "start": 120.658,
+      "end": 122.158,
+      "groupId": 238
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5351.243,
+        -10081.221
+      ],
+      "start": 120.832,
+      "end": 122.332,
+      "groupId": 238
+    },
+    {
+      "type": "walls",
+      "position": [
+        -5600.103,
+        -10328.002
+      ],
+      "start": 121.181,
+      "end": 122.681,
+      "groupId": 238,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5351.95,
+        -10574.075
+      ],
+      "start": 121.529,
+      "end": 123.029,
+      "groupId": 239
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5220.428,
+        -10705.597
+      ],
+      "start": 121.715,
+      "end": 123.215,
+      "groupId": 239
+    },
+    {
+      "type": "orb",
+      "position": [
+        -5089.613,
+        -10836.411
+      ],
+      "start": 121.9,
+      "end": 123.4,
+      "groupId": 239
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4965.87,
+        -10960.155
+      ],
+      "start": 122.075,
+      "end": 123.575,
+      "groupId": 239
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4842.833,
+        -11085.272
+      ],
+      "start": 122.249,
+      "end": 123.749,
+      "groupId": 239,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4719.796,
+        -10960.155
+      ],
+      "start": 122.423,
+      "end": 123.923,
+      "groupId": 240
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4594.68,
+        -10837.119
+      ],
+      "start": 122.597,
+      "end": 124.097,
+      "groupId": 240,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4728.282,
+        -10705.597
+      ],
+      "start": 122.783,
+      "end": 124.283,
+      "groupId": 241
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4861.883,
+        -10574.075
+      ],
+      "start": 122.969,
+      "end": 124.469,
+      "groupId": 241,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4613.73,
+        -10328.002
+      ],
+      "start": 123.317,
+      "end": 124.817,
+      "groupId": 242
+    },
+    {
+      "type": "orb",
+      "position": [
+        -4367.657,
+        -10081.928
+      ],
+      "start": 123.665,
+      "end": 125.165,
+      "groupId": 242
+    },
+    {
+      "type": "walls",
+      "position": [
+        -4121.584,
+        -9833.775
+      ],
+      "start": 124.013,
+      "end": 125.513,
+      "groupId": 242,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3874.804,
+        -10082.636
+      ],
+      "start": 124.362,
+      "end": 125.862,
+      "groupId": 243
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3628.731,
+        -10328.709
+      ],
+      "start": 124.71,
+      "end": 126.21,
+      "groupId": 243
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3497.209,
+        -10460.231
+      ],
+      "start": 124.896,
+      "end": 126.396,
+      "groupId": 243
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3365.687,
+        -10593.832
+      ],
+      "start": 125.082,
+      "end": 126.582,
+      "groupId": 243,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -3242.65,
+        -10468.716
+      ],
+      "start": 125.256,
+      "end": 126.756,
+      "groupId": 244
+    },
+    {
+      "type": "walls",
+      "position": [
+        -3119.614,
+        -10343.599
+      ],
+      "start": 125.43,
+      "end": 126.93,
+      "groupId": 244,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2873.541,
+        -10591.752
+      ],
+      "start": 125.778,
+      "end": 127.278,
+      "groupId": 245
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2627.467,
+        -10839.906
+      ],
+      "start": 126.126,
+      "end": 127.626,
+      "groupId": 245,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2380.687,
+        -10591.045
+      ],
+      "start": 126.475,
+      "end": 127.975,
+      "groupId": 246
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2134.614,
+        -10344.972
+      ],
+      "start": 126.823,
+      "end": 128.32299999999998,
+      "groupId": 246
+    },
+    {
+      "type": "speed_trigger",
+      "position": [
+        -2011.577,
+        -10221.936
+      ],
+      "start": 126.99699999999999,
+      "end": 128.49699999999999,
+      "groupId": 246,
+      "speed": 2
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1913.148,
+        -10123.506
+      ],
+      "start": 127.17099999999999,
+      "end": 128.671,
+      "groupId": 246
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1807.931,
+        -10018.289
+      ],
+      "start": 127.357,
+      "end": 128.857,
+      "groupId": 246
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1700.633,
+        -9913.071
+      ],
+      "start": 127.543,
+      "end": 129.043,
+      "groupId": 246,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1801.142,
+        -9814.642
+      ],
+      "start": 127.71700000000001,
+      "end": 129.217,
+      "groupId": 247
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1901.652,
+        -9716.213
+      ],
+      "start": 127.89099999999999,
+      "end": 129.391,
+      "groupId": 247,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1801.142,
+        -9617.784
+      ],
+      "start": 128.065,
+      "end": 129.565,
+      "groupId": 248
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1700.633,
+        -9519.354
+      ],
+      "start": 128.239,
+      "end": 129.739,
+      "groupId": 248,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1807.931,
+        -9414.137
+      ],
+      "start": 128.425,
+      "end": 129.925,
+      "groupId": 249
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1915.228,
+        -9308.919
+      ],
+      "start": 128.611,
+      "end": 130.111,
+      "groupId": 249,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1716.29,
+        -9112.061
+      ],
+      "start": 128.959,
+      "end": 130.459,
+      "groupId": 250
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1615.78,
+        -9013.632
+      ],
+      "start": 129.133,
+      "end": 130.633,
+      "groupId": 250,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1716.855,
+        -8914.637
+      ],
+      "start": 129.308,
+      "end": 130.808,
+      "groupId": 251
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1915.794,
+        -8717.778
+      ],
+      "start": 129.656,
+      "end": 131.156,
+      "groupId": 251,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1716.855,
+        -8520.92
+      ],
+      "start": 130.004,
+      "end": 131.504,
+      "groupId": 252
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1611.638,
+        -8415.702
+      ],
+      "start": 130.19,
+      "end": 131.69,
+      "groupId": 252
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1504.34,
+        -8310.485
+      ],
+      "start": 130.376,
+      "end": 131.876,
+      "groupId": 252,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1604.85,
+        -8212.055
+      ],
+      "start": 130.55,
+      "end": 132.05,
+      "groupId": 253
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1703.279,
+        -8111.546
+      ],
+      "start": 130.724,
+      "end": 132.224,
+      "groupId": 253,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1900.137,
+        -8312.565
+      ],
+      "start": 131.072,
+      "end": 132.572,
+      "groupId": 254,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2097.562,
+        -8113.06
+      ],
+      "start": 131.421,
+      "end": 132.921,
+      "groupId": 255
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2296.5,
+        -7916.202
+      ],
+      "start": 131.769,
+      "end": 133.269,
+      "groupId": 255,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2189.203,
+        -7810.984
+      ],
+      "start": 131.955,
+      "end": 133.455,
+      "groupId": 256
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2084.551,
+        -7706.333
+      ],
+      "start": 132.14,
+      "end": 133.64,
+      "groupId": 256
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1885.047,
+        -7508.908
+      ],
+      "start": 132.489,
+      "end": 133.989,
+      "groupId": 256,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2083.985,
+        -7312.05
+      ],
+      "start": 132.837,
+      "end": 134.337,
+      "groupId": 257
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2280.844,
+        -7115.191
+      ],
+      "start": 133.185,
+      "end": 134.685,
+      "groupId": 257
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2386.061,
+        -7009.974
+      ],
+      "start": 133.371,
+      "end": 134.871,
+      "groupId": 257
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2493.359,
+        -6904.756
+      ],
+      "start": 133.557,
+      "end": 135.057,
+      "groupId": 257,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -2392.849,
+        -6806.327
+      ],
+      "start": 133.731,
+      "end": 135.231,
+      "groupId": 258
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2294.42,
+        -6705.818
+      ],
+      "start": 133.905,
+      "end": 135.405,
+      "groupId": 258,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -2097.562,
+        -6906.836
+      ],
+      "start": 134.253,
+      "end": 135.753,
+      "groupId": 259,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1900.137,
+        -6707.332
+      ],
+      "start": 134.602,
+      "end": 136.102,
+      "groupId": 260
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1801.708,
+        -6608.903
+      ],
+      "start": 134.776,
+      "end": 136.276,
+      "groupId": 260
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1703.279,
+        -6508.394
+      ],
+      "start": 134.95,
+      "end": 136.45,
+      "groupId": 260,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1506.42,
+        -6709.412
+      ],
+      "start": 135.298,
+      "end": 136.798,
+      "groupId": 261,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1401.203,
+        -6602.115
+      ],
+      "start": 135.484,
+      "end": 136.984,
+      "groupId": 262
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1295.985,
+        -6496.897
+      ],
+      "start": 135.67,
+      "end": 137.17,
+      "groupId": 262
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1097.047,
+        -6300.039
+      ],
+      "start": 136.018,
+      "end": 137.518,
+      "groupId": 262,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1197.556,
+        -6201.609
+      ],
+      "start": 136.192,
+      "end": 137.692,
+      "groupId": 263
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1295.985,
+        -6103.18
+      ],
+      "start": 136.366,
+      "end": 137.866,
+      "groupId": 263
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1493.41,
+        -5903.676
+      ],
+      "start": 136.715,
+      "end": 138.215,
+      "groupId": 263,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1598.627,
+        -6010.973
+      ],
+      "start": 136.901,
+      "end": 138.401,
+      "groupId": 264
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1705.359,
+        -6115.625
+      ],
+      "start": 137.086,
+      "end": 138.586,
+      "groupId": 264,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1503.775,
+        -6313.049
+      ],
+      "start": 137.435,
+      "end": 138.935,
+      "groupId": 265,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1604.284,
+        -6411.479
+      ],
+      "start": 137.609,
+      "end": 139.109,
+      "groupId": 266
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1702.713,
+        -6509.908
+      ],
+      "start": 137.783,
+      "end": 139.283,
+      "groupId": 266
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1901.652,
+        -6706.766
+      ],
+      "start": 138.131,
+      "end": 139.631,
+      "groupId": 266,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1702.713,
+        -6903.625
+      ],
+      "start": 138.479,
+      "end": 139.979,
+      "groupId": 267
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1505.289,
+        -7103.129
+      ],
+      "start": 138.828,
+      "end": 140.328,
+      "groupId": 267,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1400.071,
+        -6995.832
+      ],
+      "start": 139.014,
+      "end": 140.514,
+      "groupId": 268
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1295.42,
+        -6889.1
+      ],
+      "start": 139.199,
+      "end": 140.699,
+      "groupId": 268,
+      "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -1097.995,
+        -7088.604
+      ],
+      "start": 139.548,
+      "end": 141.048,
+      "groupId": 269
+    },
+    {
+      "type": "orb",
+      "position": [
+        -901.137,
+        -7285.463
+      ],
+      "start": 139.896,
+      "end": 141.396,
+      "groupId": 269
+    },
+    {
+      "type": "walls",
+      "position": [
+        -800.628,
+        -7383.892
+      ],
+      "start": 140.07,
+      "end": 141.57,
+      "groupId": 269,
+      "wallType": "VERTICAL"
+    },
+    {
+      "type": "orb",
+      "position": [
+        -953.746,
+        -7534.93
+      ],
+      "start": 140.337,
+      "end": 141.837,
+      "groupId": 270
+    },
+    {
+      "type": "walls",
+      "position": [
+        -1308.43,
+        -7891.695
+      ],
+      "start": 140.964,
+      "end": 142.464,
+      "groupId": 270,
+      "wallType": "HORIZONTAL"
+    }
+  ]
+}
