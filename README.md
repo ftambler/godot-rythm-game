@@ -38,7 +38,7 @@ python -m venv .venv
 .\.venv\Scripts\python -m pip install -r requirements.txt
 ```
 
-Después, con la canción en `audio/`:
+Después, con la canción en `levels/music/`:
 
 ```powershell
 .\.venv\Scripts\python main.py --analyze cancion.mp3 --difficulty normal --name cancion_normal
