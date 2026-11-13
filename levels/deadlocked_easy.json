@@ -801,6 +801,16 @@
       "end": 62.75,
       "groupId": 25,
       "wallType": "VERTICAL"
+    },
+    {
+      "type": "black_hole",
+      "position": [
+        7424.409,
+        -20051.781
+      ],
+      "start": 65.0,
+      "end": 66.5,
+      "groupId": 26
     }
   ]
 }

@@ -1920,6 +1920,16 @@
       "start": 61.871,
       "end": 63.371,
       "groupId": 85
+    },
+    {
+      "type": "black_hole",
+      "position": [
+        109.884,
+        -3178.445
+      ],
+      "start": 65.0,
+      "end": 66.5,
+      "groupId": 86
     }
   ]
 }

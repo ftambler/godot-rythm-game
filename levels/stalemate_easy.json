@@ -2449,6 +2449,16 @@
       "end": 142.464,
       "groupId": 85,
       "wallType": "HORIZONTAL"
+    },
+    {
+      "type": "black_hole",
+      "position": [
+        -1738.917,
+        5104.462
+      ],
+      "start": 144.0,
+      "end": 145.5,
+      "groupId": 86
     }
   ]
 }
