@@ -21,8 +21,8 @@ const PINK := Color("#FF4FA3")    # misses, damage
 const DANGER := Color("#FF2A2A")  # low-health aura
 const GREEN := Color("#78F59A")   # successful interactions
 const YELLOW := Color("#FFD166")  # speed changes, special events
-const WALL := Color("#4FB4FF")    # cool blue variant of cyan for static obstacles
-const ORB := Color("#FF2E97")     # hot pink for orbs
+const WALL := Color("#ff4fd0")    # hot pink for static obstacles
+const ORB := Color("#fffa64")     # bright yellow for orbs
 const BLACK_HOLE := Color("#010206")  # near-black for the level exit core
 
 # Text
