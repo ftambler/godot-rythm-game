@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    # Skip the build (and release) when a push only touches docs.
+    paths-ignore:
+      - documents/**
+      - .github/workflows/pages.yml
+      - '**.md'
   workflow_dispatch:
 
 env:

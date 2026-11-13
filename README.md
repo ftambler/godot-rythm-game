@@ -10,6 +10,8 @@
 
 **Año:** 2026
 
+**Game Design Document:** [ftambler.github.io/godot-rythm-game](https://ftambler.github.io/godot-rythm-game/)
+
 ## Resumen del juego
 
 Juego de ritmo en el que una pelota parte del centro de la pantalla en una de ocho direcciones: arriba, abajo, izquierda, derecha y sus cuatro diagonales. Al chocar contra una pared (horizontal, vertical o diagonal), la pelota refleja su dirección como la luz en un espejo.
